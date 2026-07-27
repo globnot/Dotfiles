@@ -1,6 +1,10 @@
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
 vim.g.mapleader = " "
 
+-- Login 42 pour le header std (plugin/stdheader.vim) : indépendant de $USER
+-- système, qui vaut "globnot" ici, pas le login étudiant.
+vim.g.user42 = "aborda"
+
 -- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
