@@ -29,20 +29,21 @@ hl.monitor({
     scale    = 1.25,
 })
 
--- LG UltraGear, à droite du laptop (1536 = largeur logique de eDP-1 : 1920/1.25)
+-- LG UltraGear, au-dessus du laptop
 hl.monitor({
     output   = "HDMI-A-1",
     mode     = "2560x1440@143.93",
-    position = "1536x0",
+    position = "auto-up",
     scale    = 1.0,
 })
 
 -- Fallback for any monitor not explicitly declared above (e.g. plug in a
--- second screen before adding a dedicated rule for it)
+-- second screen before adding a dedicated rule for it) : au-dessus du laptop
+-- par défaut aussi.
 hl.monitor({
     output   = "",
     mode     = "preferred",
-    position = "auto",
+    position = "auto-up",
     scale    = "auto",
 })
 
@@ -78,7 +79,7 @@ hl.on("hyprland.start", function ()
     hl.exec_cmd("blueman-applet")
     hl.exec_cmd("awww-daemon")
     hl.exec_cmd("sleep 1 && awww img $HOME/Pictures/wallpapers/gruvbox-tranquility.png")
-    hl.exec_cmd("hyprsunset")
+    hl.exec_cmd("hyprsunset --temperature 3600")
 end)
 
 
