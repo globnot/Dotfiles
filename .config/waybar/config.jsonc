@@ -1,0 +1,86 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 40,
+    "spacing": 4,
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/window"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "network",
+        "pulseaudio",
+        "power-profiles-daemon",
+        "battery",
+        "tray"
+    ],
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "on-click": "activate",
+        "format-icons": {
+            "active": "\uf111",
+            "default": "\uf10c"
+        }
+    },
+    "hyprland/window": {
+        "max-length": 50,
+        "separate-outputs": true
+    },
+    "clock": {
+        "format": "{:%H:%M   %a %d %b}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+    "network": {
+        "format-wifi": "\uf1eb",
+        "format-ethernet": "\uf0c1",
+        "format-disconnected": "\uf127",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+        "tooltip-format-ethernet": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "pulseaudio": {
+        "format": "{icon}",
+        "format-muted": "\uf026",
+        "format-icons": {
+            "default": [
+                "\uf026",
+                "\uf027",
+                "\uf028"
+            ]
+        },
+        "tooltip-format": "{volume}%",
+        "on-click": "pavucontrol"
+    },
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "tooltip-format": "Profil : {profile}\nClic pour changer",
+        "format-icons": {
+            "default": "\uf013",
+            "performance": "\uf0e4",
+            "balanced": "\uf24e",
+            "power-saver": "\uf06c"
+        }
+    },
+    "battery": {
+        "bat": "BAT0",
+        "states": {
+            "warning": 25,
+            "critical": 10
+        },
+        "format": "{icon}",
+        "format-charging": "{icon}",
+        "format-icons": [
+            "\uf244",
+            "\uf243",
+            "\uf242",
+            "\uf241",
+            "\uf240"
+        ],
+        "tooltip-format": "{capacity}%"
+    },
+    "tray": {
+        "spacing": 8
+    }
+}

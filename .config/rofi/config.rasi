@@ -1,0 +1,64 @@
+configuration {
+    modi: "drun,run,window";
+    show-icons: true;
+    font: "JetBrainsMono Nerd Font Mono 11";
+    drun-display-format: "{name}";
+}
+
+* {
+    bg0:      #fbf1c7;
+    bg1:      #ebdbb2;
+    fg0:      #3c3836;
+    fg1:      #504945;
+    accent:   #af3a03;
+    urgent:   #9d0006;
+
+    background-color: transparent;
+    text-color:       @fg0;
+}
+
+window {
+    background-color: @bg0;
+    border:           2px;
+    border-color:     @accent;
+    border-radius:    8px;
+    width:            30%;
+    padding:          10px;
+}
+
+mainbox {
+    children: [ inputbar, listview ];
+    spacing:  10px;
+}
+
+inputbar {
+    background-color: @bg1;
+    border-radius:    6px;
+    padding:          8px 12px;
+    children:         [ entry ];
+}
+
+entry {
+    placeholder:       "Rechercher...";
+    placeholder-color: @fg1;
+}
+
+listview {
+    lines:    8;
+    spacing:  4px;
+    scrollbar: false;
+}
+
+element {
+    padding:       6px 10px;
+    border-radius: 6px;
+}
+
+element selected {
+    background-color: @accent;
+    text-color:        @bg0;
+}
+
+element-icon {
+    size: 1.2em;
+}
