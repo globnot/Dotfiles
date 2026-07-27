@@ -29,5 +29,13 @@ link "$REPO_DIR/.config/waybar" "$HOME/.config/waybar"
 link "$REPO_DIR/.config/kitty"  "$HOME/.config/kitty"
 link "$REPO_DIR/.config/rofi"   "$HOME/.config/rofi"
 link "$REPO_DIR/.config/dunst"  "$HOME/.config/dunst"
+link "$REPO_DIR/.config/nvim"   "$HOME/.config/nvim"
+
+link "$REPO_DIR/.zshrc"    "$HOME/.zshrc"
+link "$REPO_DIR/.p10k.zsh" "$HOME/.p10k.zsh"
+
+# Dépendances requises pour ce qui précède (zsh + Oh My Zsh + Powerlevel10k,
+# neovim + Mason/clangd, norminette). Ne les installe pas ici : à faire une
+# fois manuellement (voir README), ce script ne fait que les liens.
 
 echo "Terminé."
