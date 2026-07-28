@@ -35,6 +35,7 @@ window#waybar {
     color: #3c3836;
 }
 
+#custom-notification,
 #network,
 #pulseaudio,
 #power-profiles-daemon,
@@ -43,6 +44,11 @@ window#waybar {
     padding: 0 10px;
     font-size: 24px;
     color: #3c3836;
+}
+
+#custom-notification.dnd-notification,
+#custom-notification.dnd-none {
+    color: #928374;
 }
 
 #battery.warning {
