@@ -32,6 +32,7 @@ link "$REPO_DIR/.config/nvim"   "$HOME/.config/nvim"
 link "$REPO_DIR/.config/swaync" "$HOME/.config/swaync"
 link "$REPO_DIR/.config/swappy" "$HOME/.config/swappy"
 link "$REPO_DIR/.config/wlogout" "$HOME/.config/wlogout"
+link "$REPO_DIR/.config/atuin"  "$HOME/.config/atuin"
 
 link "$REPO_DIR/.zshrc"    "$HOME/.zshrc"
 link "$REPO_DIR/.p10k.zsh" "$HOME/.p10k.zsh"

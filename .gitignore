@@ -1,3 +1,8 @@
 **/__pycache__/
 *.pyc
 *.bak
+
+# atuin garde sa base d'historique/clé dans ~/.local/share/atuin (hors repo),
+# mais au cas où un futur fichier local finirait dans ce dossier par erreur :
+.config/atuin/*.db
+.config/atuin/key
