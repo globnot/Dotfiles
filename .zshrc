@@ -56,9 +56,10 @@ alias wnn='watch norminette srcs includes'
 # clangd (regénère la config globale après un nouveau clone dans ~/Code)
 alias clangd-refresh='"$HOME/Dotfiles/clangd/gen-config.sh"'
 
-# Listing fichiers
-alias ll='ls -l'
-alias la='ls -lha'
+# Listing fichiers (eza)
+alias ll='eza -l --icons --group-directories-first'
+alias la='eza -la --icons --group-directories-first'
+alias lt='eza --icons --tree --level=2'
 alias lc='ll *c'
 
 # Affichage
@@ -78,6 +79,41 @@ alias del='trash'
 
 # Verrouillage écran (Hyprland)
 alias lock='hyprlock'
+
+# ======================================================================================
+# Cached `<tool> init zsh` (atuin, zoxide)
+# ======================================================================================
+# Évite de relancer l'outil à chaque ouverture de terminal ; régénère le cache
+# seulement si le binaire de l'outil est plus récent (donc après une mise à jour).
+_cached_init() {
+	local bin=${commands[$1]} cache=$HOME/.cache/zsh/init-$1.zsh
+	[[ -n $bin ]] || return 1
+	if [[ ! -r $cache || $bin -nt $cache ]]; then
+		command mkdir -p ${cache:h}
+		"$bin" init zsh > $cache 2>/dev/null || { command rm -f $cache; return 1 }
+	fi
+	source $cache
+}
+
+# Zoxide (cd intelligent) + zi (sélecteur interactif fzf avec preview eza)
+_cached_init zoxide
+export _ZO_FZF_OPTS='
+--border=rounded
+--border-label=zi
+--height=100%
+--layout=default
+--info=inline
+--delimiter=[[:space:]]+
+--preview=eza\ --icons\ --group-directories-first\ --color=always\ --tree\ --level=2\ {2..}
+--preview-window=right:50%:wrap
+--color=fg:#3c3836,hl:#af3a03
+--color=fg+:#282828,hl+:#af3a03
+--color=border:#928374,prompt:#076678,pointer:#076678
+--color=marker:#af3a03,spinner:#af3a03,info:#8f3f71
+'
+
+# Atuin (historique de commandes en base SQLite, recherche floue)
+_cached_init atuin
 
 # === Header 42 ===
 export MAIL="aborda@student.42.fr"
