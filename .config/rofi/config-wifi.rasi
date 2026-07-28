@@ -1,0 +1,59 @@
+/* Menu wifi (networkmanager-dmenu) - variante compacte, ancrée en haut à droite */
+
+* {
+    bg0:      #fbf1c7;
+    bg1:      #ebdbb2;
+    fg0:      #3c3836;
+    fg1:      #504945;
+    accent:   #af3a03;
+
+    background-color: transparent;
+    text-color:       @fg0;
+}
+
+window {
+    transparency:  "real";
+    location:      north east;
+    anchor:        north east;
+    x-offset:      -20px;
+    y-offset:      50px;
+    width:         320px;
+    background-color: @bg0;
+    border:        2px;
+    border-color:  @accent;
+    border-radius: 8px;
+    padding:       10px;
+    font:          "JetBrainsMono Nerd Font Mono 11";
+}
+
+mainbox {
+    children: [ inputbar, listview ];
+    spacing:  10px;
+}
+
+inputbar {
+    background-color: @bg1;
+    border-radius:    6px;
+    padding:          8px 12px;
+    children:         [ entry ];
+}
+
+entry {
+    placeholder-color: @fg1;
+}
+
+listview {
+    lines:    8;
+    spacing:  4px;
+    scrollbar: false;
+}
+
+element {
+    padding:       6px 10px;
+    border-radius: 6px;
+}
+
+element selected {
+    background-color: @accent;
+    text-color:        @bg0;
+}

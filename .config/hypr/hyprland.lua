@@ -76,7 +76,6 @@ local menu        = "rofi -show drun"
 hl.on("hyprland.start", function ()
     hl.exec_cmd("waybar")
     hl.exec_cmd("hypridle")
-    hl.exec_cmd("blueman-applet")
     hl.exec_cmd("awww-daemon")
     hl.exec_cmd("sleep 1 && awww img $HOME/Pictures/wallpapers/gruvbox-tranquility.png")
     hl.exec_cmd("hyprsunset --temperature 3600")
@@ -325,6 +324,9 @@ hl.bind(mainMod .. " + CTRL + D", hl.dsp.exec_cmd("python3 $HOME/.config/hypr/sc
 -- Température de couleur écran (filtre lumière bleue, hyprsunset)
 hl.bind(mainMod .. " + bracketleft",  hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/adjust-temperature.sh warmer"), { repeating = true })
 hl.bind(mainMod .. " + bracketright", hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/adjust-temperature.sh cooler"), { repeating = true })
+
+-- Menu wifi (networkmanager-dmenu, thémé Rofi)
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("networkmanager_dmenu"))
 
 -- Captures d'écran (grim + slurp), annotation via swappy
 hl.bind("Print",          hl.dsp.exec_cmd("grim -g \"$(slurp)\" - | swappy -f -"))

@@ -37,6 +37,7 @@ window#waybar {
 
 #custom-notification,
 #network,
+#bluetooth,
 #pulseaudio,
 #power-profiles-daemon,
 #battery,
@@ -44,6 +45,10 @@ window#waybar {
     padding: 0 10px;
     font-size: 24px;
     color: #3c3836;
+}
+
+#bluetooth.disabled {
+    color: #928374;
 }
 
 #custom-notification.dnd-notification,

@@ -13,6 +13,7 @@
     "modules-right": [
         "custom/notification",
         "network",
+        "bluetooth",
         "pulseaudio",
         "power-profiles-daemon",
         "battery",
@@ -39,7 +40,8 @@
         "format-ethernet": "\uf0c1",
         "format-disconnected": "\uf127",
         "tooltip-format-wifi": "{essid} ({signalStrength}%)",
-        "tooltip-format-ethernet": "{ifname}: {ipaddr}/{cidr}"
+        "tooltip-format-ethernet": "{ifname}: {ipaddr}/{cidr}",
+        "on-click": "networkmanager_dmenu"
     },
     "pulseaudio": {
         "format": "{icon}",
@@ -99,5 +101,14 @@
         "on-click": "swaync-client -t -sw",
         "on-click-right": "swaync-client -d -sw",
         "escape": true
+    },
+    "bluetooth": {
+        "format": "\uf293",
+        "format-disabled": "\uf293",
+        "format-connected": "\uf293 {num_connections}",
+        "tooltip-format": "Bluetooth: {status}",
+        "tooltip-format-connected": "{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}",
+        "on-click": "blueman-manager"
     }
 }
