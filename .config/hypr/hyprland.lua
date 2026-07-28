@@ -326,6 +326,10 @@ hl.bind(mainMod .. " + CTRL + D", hl.dsp.exec_cmd("python3 $HOME/.config/hypr/sc
 hl.bind(mainMod .. " + bracketleft",  hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/adjust-temperature.sh warmer"), { repeating = true })
 hl.bind(mainMod .. " + bracketright", hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/adjust-temperature.sh cooler"), { repeating = true })
 
+-- Captures d'écran (grim + slurp), annotation via swappy
+hl.bind("Print",          hl.dsp.exec_cmd("grim -g \"$(slurp)\" - | swappy -f -"))
+hl.bind("SHIFT + Print",  hl.dsp.exec_cmd("grim - | swappy -f -"))
+
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
