@@ -80,6 +80,7 @@ hl.on("hyprland.start", function ()
     hl.exec_cmd("awww-daemon")
     hl.exec_cmd("sleep 1 && awww img $HOME/Pictures/wallpapers/gruvbox-tranquility.png")
     hl.exec_cmd("hyprsunset --temperature 3600")
+    hl.exec_cmd("/usr/lib/polkit-kde-authentication-agent-1")
 end)
 
 
