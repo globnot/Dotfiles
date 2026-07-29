@@ -1,13 +1,13 @@
 * {
     font-family: "JetBrainsMono Nerd Font Mono";
-    font-size: 15px;
+    font-size: 12px;
     min-height: 0;
 }
 
 window#waybar {
     background-color: #fbf1c7;
     color: #3c3836;
-    border-bottom: 2px solid #d5c4a1;
+    border-bottom: 2px solid #1d2021;
 }
 
 #workspaces button {
@@ -18,16 +18,11 @@ window#waybar {
 }
 
 #workspaces button.active {
-    color: #af3a03;
+    color: #e91e8c;
 }
 
 #workspaces button:hover {
     background-color: #ebdbb2;
-}
-
-#window {
-    color: #504945;
-    padding: 0 10px;
 }
 
 #clock {

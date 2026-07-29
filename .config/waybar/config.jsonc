@@ -4,8 +4,7 @@
     "height": 40,
     "spacing": 4,
     "modules-left": [
-        "hyprland/workspaces",
-        "hyprland/window"
+        "hyprland/workspaces"
     ],
     "modules-center": [
         "clock"
@@ -25,11 +24,16 @@
         "format-icons": {
             "active": "\uf111",
             "default": "\uf10c"
+        },
+        "persistent-workspaces": {
+            "*": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ]
         }
-    },
-    "hyprland/window": {
-        "max-length": 50,
-        "separate-outputs": true
     },
     "clock": {
         "format": "{:%H:%M   %a %d %b}",
