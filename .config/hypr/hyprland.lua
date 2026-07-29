@@ -434,3 +434,13 @@ hl.window_rule({
     move  = "20 monitor_h-120",
     float = true,
 })
+
+-- nm-connection-editor : bugs de clic en mode tuilé (GTK3 mal synchro avec
+-- le redimensionnement live), on le force en flottant.
+hl.window_rule({
+    name    = "float-nm-connection-editor",
+    match   = { class = "nm-connection-editor" },
+
+    float   = true,
+    center  = true,
+})
