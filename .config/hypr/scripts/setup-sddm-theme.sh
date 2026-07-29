@@ -14,7 +14,7 @@ sed -i \
     -e 's|^HaveFormBackground=.*|HaveFormBackground="true"|' \
     -e 's|^FormPosition=.*|FormPosition="center"|' \
     -e 's|^MainColor=.*|MainColor="#3c3836"|' \
-    -e 's|^AccentColor=.*|AccentColor="#af3a03"|' \
+    -e 's|^AccentColor=.*|AccentColor="#e91e8c"|' \
     -e 's|^BackgroundColor=.*|BackgroundColor="#ebdbb2"|' \
     -e 's|^Font=.*|Font="JetBrainsMono Nerd Font Mono"|' \
     -e 's|^HeaderText=.*|HeaderText="Bienvenue !"|' \

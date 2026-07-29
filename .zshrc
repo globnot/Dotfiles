@@ -106,10 +106,10 @@ export _ZO_FZF_OPTS='
 --delimiter=[[:space:]]+
 --preview=eza\ --icons\ --group-directories-first\ --color=always\ --tree\ --level=2\ {2..}
 --preview-window=right:50%:wrap
---color=fg:#3c3836,hl:#af3a03
---color=fg+:#282828,hl+:#af3a03
+--color=fg:#3c3836,hl:#e91e8c
+--color=fg+:#282828,hl+:#e91e8c
 --color=border:#928374,prompt:#076678,pointer:#076678
---color=marker:#af3a03,spinner:#af3a03,info:#8f3f71
+--color=marker:#e91e8c,spinner:#e91e8c,info:#8f3f71
 '
 
 # Atuin (historique de commandes en base SQLite, recherche floue)

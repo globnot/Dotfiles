@@ -6,12 +6,12 @@
   --noti-bg-alpha: 0.95;
   --noti-bg-darker: rgb(213, 196, 161);
   --noti-bg-hover: rgb(213, 196, 161);
-  --noti-bg-focus: rgba(175, 58, 3, 0.15);
+  --noti-bg-focus: rgba(233, 30, 140, 0.15);
   --noti-close-bg: rgb(213, 196, 161);
   --noti-close-bg-hover: rgb(157, 0, 6);
   --text-color: rgb(60, 56, 54);
   --text-color-disabled: rgb(146, 131, 116);
-  --bg-selected: rgb(175, 58, 3);
+  --bg-selected: rgb(233, 30, 140);
   --notification-icon-size: 64px;
   --notification-app-icon-size: calc(var(--notification-icon-size) / 3);
   --notification-group-icon-size: 32px;
@@ -37,12 +37,12 @@
 @define-color noti-bg-darker rgb(213, 196, 161);
 @define-color noti-bg-hover rgb(213, 196, 161);
 @define-color noti-bg-hover-opaque rgb(213, 196, 161);
-@define-color noti-bg-focus rgba(175, 58, 3, 0.15);
+@define-color noti-bg-focus rgba(233, 30, 140, 0.15);
 @define-color noti-close-bg rgba(60, 56, 54, 0.1);
 @define-color noti-close-bg-hover rgba(157, 0, 6, 0.15);
 @define-color text-color rgb(60, 56, 54);
 @define-color text-color-disabled rgb(146, 131, 116);
-@define-color bg-selected rgb(175, 58, 3);
+@define-color bg-selected rgb(233, 30, 140);
 
 * {
   font-family: "JetBrainsMono Nerd Font Mono";

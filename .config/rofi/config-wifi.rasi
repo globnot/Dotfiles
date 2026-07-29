@@ -5,7 +5,7 @@
     bg1:      #ebdbb2;
     fg0:      #3c3836;
     fg1:      #504945;
-    accent:   #af3a03;
+    accent:   #e91e8c;
 
     background-color: transparent;
     text-color:       @fg0;
