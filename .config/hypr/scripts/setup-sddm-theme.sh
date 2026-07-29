@@ -18,6 +18,7 @@ sed -i \
     -e 's|^BackgroundColor=.*|BackgroundColor="#ebdbb2"|' \
     -e 's|^Font=.*|Font="JetBrainsMono Nerd Font Mono"|' \
     -e 's|^HeaderText=.*|HeaderText="Bienvenue !"|' \
+    -e 's|^ForceHideCompletePassword=.*|ForceHideCompletePassword="true"|' \
     "$THEME_DIR/theme.conf"
 
 mkdir -p /etc/sddm.conf.d
