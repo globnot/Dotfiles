@@ -26,7 +26,7 @@ hl.monitor({
     output   = "eDP-1",
     mode     = "1920x1200@60",
     position = "0x0",
-    scale    = 1.25,
+    scale    = 1.0,
 })
 
 -- LG UltraGear, au-dessus du laptop
