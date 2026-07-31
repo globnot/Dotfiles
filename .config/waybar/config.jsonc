@@ -16,11 +16,11 @@
         "temperature",
         "custom/fan",
         "disk",
+        "battery",
         "network",
         "bluetooth",
         "pulseaudio",
         "power-profiles-daemon",
-        "battery",
         "tray"
     ],
     "hyprland/workspaces": {
@@ -77,15 +77,8 @@
             "warning": 25,
             "critical": 10
         },
-        "format": "{icon}",
-        "format-charging": "{icon}",
-        "format-icons": [
-            "\uf244",
-            "\uf243",
-            "\uf242",
-            "\uf241",
-            "\uf240"
-        ],
+        "format": "<span foreground='#928374'>BAT</span> {capacity}%",
+        "format-charging": "<span foreground='#928374'>BAT</span> {capacity}%",
         "tooltip-format": "{capacity}%"
     },
     "tray": {
@@ -93,13 +86,7 @@
     },
     "custom/notification": {
         "tooltip": true,
-        "format": "{icon}",
-        "format-icons": {
-            "notification": "\uf0f3",
-            "none": "\uf0f3",
-            "dnd-notification": "\uf1f6",
-            "dnd-none": "\uf1f6"
-        },
+        "format": " ",
         "return-type": "json",
         "exec-if": "which swaync-client",
         "exec": "swaync-client -swb",

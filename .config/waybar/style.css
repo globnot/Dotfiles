@@ -39,23 +39,36 @@ window#waybar {
     color: #3c3836;
 }
 
-#custom-notification,
 #network,
 #bluetooth,
 #pulseaudio,
 #power-profiles-daemon,
-#battery,
 #tray {
     padding: 0 10px;
     font-size: 24px;
     color: #3c3836;
 }
 
+#custom-notification {
+    margin: 8px 6px;
+    min-width: 10px;
+    min-height: 10px;
+    border-radius: 0;
+    background-color: transparent;
+    border: 1.5px solid #a89984;
+}
+
+#custom-notification.notification,
+#custom-notification.dnd-notification {
+    border-color: #e91e8c;
+}
+
 #cpu,
 #memory,
 #temperature,
 #custom-fan,
-#disk {
+#disk,
+#battery {
     padding: 0 8px;
     font-size: 13px;
     color: #3c3836;
@@ -87,11 +100,6 @@ window#waybar {
 }
 
 #bluetooth.disabled {
-    color: #928374;
-}
-
-#custom-notification.dnd-notification,
-#custom-notification.dnd-none {
     color: #928374;
 }
 

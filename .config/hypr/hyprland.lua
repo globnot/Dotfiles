@@ -325,6 +325,11 @@ hl.bind(mainMod .. " + bracketright", hl.dsp.exec_cmd("$HOME/.config/hypr/script
 -- Menu wifi (networkmanager-dmenu, thémé Rofi)
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("networkmanager_dmenu"))
 
+-- Touche Copilot (envoie SUPER+SHIFT+XF86Assistant, keycode 201 non résolu
+-- par son nom symbolique donc ciblé par code physique) : ouvre le panneau swaync
+hl.bind(mainMod .. " + SHIFT + XF86Assistant", hl.dsp.exec_cmd("swaync-client -t -sw"))
+hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -t -sw"))
+
 -- Captures d'écran (grim + slurp), annotation via swappy
 hl.bind("Print",          hl.dsp.exec_cmd("grim -g \"$(slurp)\" - | swappy -f -"))
 hl.bind("SHIFT + Print",  hl.dsp.exec_cmd("grim - | swappy -f -"))
