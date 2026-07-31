@@ -119,12 +119,20 @@
     "cpu": {
         "format": "<span foreground='#928374'>CPU</span> {usage}%",
         "tooltip-format": "CPU : {usage}% ({avg_frequency} GHz)",
-        "interval": 2
+        "interval": 2,
+        "states": {
+            "warning": 70,
+            "critical": 90
+        }
     },
     "memory": {
         "format": "<span foreground='#928374'>RAM</span> {percentage}%",
         "tooltip-format": "{used:0.1f} Go / {total:0.1f} Go ({percentage}%)",
-        "interval": 2
+        "interval": 2,
+        "states": {
+            "warning": 70,
+            "critical": 90
+        }
     },
     "temperature": {
         "hwmon-path": "/sys/class/hwmon/hwmon7/temp1_input",
@@ -146,6 +154,10 @@
         "paths": [
             "/"
         ],
-        "interval": 60
+        "interval": 60,
+        "states": {
+            "warning": 80,
+            "critical": 90
+        }
     }
 }
