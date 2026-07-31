@@ -13,8 +13,12 @@ window#waybar {
 #workspaces button {
     padding: 0 6px;
     font-size: 24px;
-    color: #7c6f64;
+    color: #1d2021;
     background-color: transparent;
+}
+
+#workspaces button.empty {
+    color: #d5c4a1;
 }
 
 #workspaces button.active {
