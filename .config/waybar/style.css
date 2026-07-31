@@ -51,6 +51,29 @@ window#waybar {
     color: #3c3836;
 }
 
+#cpu,
+#memory,
+#temperature,
+#custom-fan,
+#disk {
+    padding: 0 8px;
+    font-size: 13px;
+    color: #3c3836;
+}
+
+#temperature.critical {
+    color: #9d0006;
+}
+
+#custom-fan.warm {
+    color: #b57614;
+}
+
+#custom-fan.high,
+#custom-fan.critical {
+    color: #9d0006;
+}
+
 #bluetooth.disabled {
     color: #928374;
 }
