@@ -19,12 +19,8 @@
         "tray"
     ],
     "hyprland/workspaces": {
-        "format": "{icon}",
+        "format": "{name}",
         "on-click": "activate",
-        "format-icons": {
-            "active": "\uf111",
-            "default": "\uf10c"
-        },
         "persistent-workspaces": {
             "*": [
                 1,
