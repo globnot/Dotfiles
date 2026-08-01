@@ -125,8 +125,10 @@ hl.env("HYPRCURSOR_SIZE", "24")
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
 hl.config({
     general = {
-        gaps_in  = 4,
-        gaps_out = 8,
+        -- Plus de marge en bas/droite/entre les fenêtres pour laisser respirer
+        -- l'ombre portée neobrutalism (décalée vers le bas-droite)
+        gaps_in  = { top = 4,  right = 10, bottom = 10, left = 4 },
+        gaps_out = { top = 8,  right = 14, bottom = 14, left = 8 },
 
         border_size = 3,
 
