@@ -108,14 +108,14 @@
           "type": "toggle",
           "active": false,
           "command": "sh -c '[[ \"$SWAYNC_TOGGLE_STATE\" == \"true\" ]] && rfkill block all || rfkill unblock all'",
-          "update-command": "sh -c 'rfkill list wifi | grep -q \"Soft blocked: yes\" && echo true || echo false'"
+          "update-command": "sh -c 'rfkill list wifi | grep -q \"Soft blocked: yes\" && echo TRUE || echo FALSE'"
         },
         {
           "label": "\udb80\udcaf",
           "type": "toggle",
           "active": false,
           "command": "sh -c '[[ \"$SWAYNC_TOGGLE_STATE\" == \"true\" ]] && bluetoothctl power on || bluetoothctl power off'",
-          "update-command": "sh -c 'bluetoothctl show | grep -q \"Powered: yes\" && echo true || echo false'"
+          "update-command": "sh -c 'bluetoothctl show | grep -q \"Powered: yes\" && echo TRUE || echo FALSE'"
         }
       ]
     },
