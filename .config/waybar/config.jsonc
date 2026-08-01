@@ -39,9 +39,12 @@
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     },
     "network": {
-        "format-wifi": "\uf1eb",
+        "format-wifi": "{icon}",
         "format-ethernet": "\uf0c1",
-        "format-disconnected": "\uf127",
+        "format-disconnected": "\udb82\udd2d",
+        "format-icons": {
+            "wifi": ["\udb82\udd2f", "\udb82\udd1f", "\udb82\udd22", "\udb82\udd25", "\udb82\udd28"]
+        },
         "tooltip-format-wifi": "{essid} ({signalStrength}%)",
         "tooltip-format-ethernet": "{ifname}: {ipaddr}/{cidr}",
         "on-click": "networkmanager_dmenu"
