@@ -19,12 +19,12 @@ configuration {
 }
 
 window {
-    /* Le fond de "window" sert d'ombre dure décalée : mainbox (le vrai
-       carton crème) est excentré dedans via un padding asymétrique
-       (plus grand en bas/à droite), même principe que sur SDDM/Hyprland. */
+    /* "window" ne sert que de couche d'ombre : fond plein faux noir, SANS
+       bordure, qui dépasse derrière mainbox (le vrai carton, bordé lui) via
+       un padding asymétrique (plus grand en bas/à droite). Comme ça la
+       bordure fuchsia entoure juste le carton, l'ombre dépasse derrière —
+       même logique que swaync/Hyprland (bordure sur le contenu, ombre à part). */
     background-color: @fauxnoir;
-    border:           4px;
-    border-color:     @accent;
     border-radius:    3px;
     width:            30%;
     padding:          4px 10px 10px 4px;
@@ -32,6 +32,9 @@ window {
 
 mainbox {
     background-color: @bg0;
+    border:           4px;
+    border-color:     @accent;
+    border-radius:    3px;
     children: [ inputbar, listview ];
     spacing:  10px;
     padding:  10px;
