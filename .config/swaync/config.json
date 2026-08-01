@@ -54,9 +54,12 @@
   },
   "widgets": [
     "inhibitors",
-    "title",
     "dnd",
     "buttons-grid",
+    "volume",
+    "backlight",
+    "slider#screen-temp",
+    "title",
     "notifications"
   ],
   "widget-config": {
@@ -116,6 +119,20 @@
           "update-command": "sh -c 'bluetoothctl show | grep -q \"Powered: yes\" && echo true || echo false'"
         }
       ]
+    },
+    "volume": {
+      "label": "\udb81\udd7e"
+    },
+    "backlight": {
+      "label": "\udb80\udcdf",
+      "device": "amdgpu_bl1"
+    },
+    "slider#screen-temp": {
+      "label": "Temp",
+      "cmd_setter": "hyprctl hyprsunset temperature $value",
+      "cmd_getter": "hyprctl hyprsunset temperature",
+      "min": 3000,
+      "max": 6500
     }
   }
 }

@@ -389,13 +389,18 @@ notificationwindow, blankwindow {
 }
 
 /* Title widget */
+.widget-title {
+  padding: 0 8px;
+}
+
 .widget-title > label {
   margin-right: 8px;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
 }
 
 .widget-title > button {
   margin-left: 8px;
+  font-size: 0.85rem;
   border-radius: var(--border-radius);
 }
 
@@ -485,12 +490,42 @@ notificationwindow, blankwindow {
 }
 
 /* Buttons widget */
-.widget-buttons-grid flowboxchild > button {
+.widget-buttons-grid {
+  padding: 6px;
+  margin: 8px;
   border-radius: var(--border-radius);
+  background: var(--noti-bg-darker);
+}
+
+.widget-buttons-grid flowboxchild {
+  padding: 0;
+}
+
+/* tue le highlight moche du conteneur flowboxchild, seul le bouton doit réagir */
+.widget-buttons-grid flowboxchild:hover {
+  background: transparent;
+}
+
+.widget-buttons-grid flowboxchild > button {
+  margin: 2px;
+  padding: 8px;
+  border-radius: var(--border-radius);
+  background: rgba(var(--noti-bg), var(--noti-bg-alpha));
+  color: var(--text-color);
+  border: none;
+  box-shadow: none;
+  transition: var(--hover-tranistion);
+}
+
+.widget-buttons-grid flowboxchild > button:hover {
+  background-color: #e91e8c;
+  color: var(--cc-bg);
 }
 
 .widget-buttons-grid flowboxchild > button.toggle:checked {
   /* style given to the active toggle button */
+  background-color: #e91e8c;
+  color: var(--cc-bg);
 }
 
 /* Menubar widget */
@@ -551,13 +586,45 @@ notificationwindow, blankwindow {
   --widget-volume-row-icon-size: 24px;
 }
 
+.widget-volume,
+.widget-backlight,
+.widget-slider {
+  padding: 8px 12px;
+  margin: 8px;
+  border-radius: var(--border-radius);
+  background: var(--noti-bg-darker);
+  color: var(--text-color);
+}
+
+.widget-volume scale trough,
+.widget-backlight scale trough,
+.widget-slider scale trough {
+  background: rgba(var(--noti-bg), var(--noti-bg-alpha));
+  border-radius: var(--border-radius);
+  min-height: 6px;
+}
+
+.widget-volume scale trough highlight,
+.widget-backlight scale trough highlight,
+.widget-slider scale trough highlight {
+  background: #e91e8c;
+  border-radius: var(--border-radius);
+}
+
+.widget-volume scale slider,
+.widget-backlight scale slider,
+.widget-slider scale slider {
+  background: var(--text-color);
+  border-radius: 100%;
+}
+
 /* Each row app icon */
 .widget-volume row image {
   -gtk-icon-size: var(--widget-volume-row-icon-size);
 }
 
 .per-app-volume {
-  background-color: var(--noti-bg-alt);
+  background-color: var(--noti-bg-darker);
   margin: 8px;
   margin-bottom: 0;
   border-radius: var(--border-radius);
