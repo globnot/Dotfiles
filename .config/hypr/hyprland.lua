@@ -128,7 +128,7 @@ hl.config({
         gaps_in  = 4,
         gaps_out = 8,
 
-        border_size = 2,
+        border_size = 3,
 
         col = {
             active_border   = "rgba(e91e8cee)",
@@ -145,15 +145,20 @@ hl.config({
     },
 
     decoration = {
-        rounding       = 10,
+        rounding       = 3,
         rounding_power = 2,
 
         -- Change transparency of focused and unfocused windows
         active_opacity   = 1.0,
         inactive_opacity = 1.0,
 
+        -- Neobrutalism : ombre dure décalée en faux noir, pas de flou
         shadow = {
-            enabled      = false,
+            enabled  = true,
+            color    = "rgba(1d2021ff)",
+            offset   = { 5, 5 },
+            range    = 2,
+            sharp    = true,
         },
 
         blur = {
