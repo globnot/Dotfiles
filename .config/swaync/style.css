@@ -345,8 +345,8 @@ notificationwindow, blankwindow {
 }
 
 .control-center .control-center-list-placeholder {
-  /* The placeholder when there are no notifications */
-  opacity: 0.5;
+  /* The placeholder when there are no notifications : cloche moche masquée */
+  opacity: 0;
 }
 
 .control-center .control-center-list {
@@ -495,6 +495,7 @@ notificationwindow, blankwindow {
   margin: 8px;
   border-radius: var(--border-radius);
   background: rgba(var(--noti-bg), var(--noti-bg-alpha));
+  font-size: 1.2rem;
 }
 
 .widget-buttons-grid flowboxchild {
@@ -510,9 +511,9 @@ notificationwindow, blankwindow {
   margin: 2px;
   padding: 8px;
   border-radius: var(--border-radius);
-  background: rgba(var(--noti-bg), var(--noti-bg-alpha));
+  background: rgba(233, 30, 140, 0.08);
   color: var(--text-color);
-  border: none;
+  border: 1.5px solid #e91e8c;
   box-shadow: none;
   transition: var(--hover-tranistion);
 }
@@ -522,8 +523,9 @@ notificationwindow, blankwindow {
   color: var(--cc-bg);
 }
 
-.widget-buttons-grid flowboxchild > button.active {
-  /* style given to the active toggle button (swaync sets this class, not :checked) */
+.widget-buttons-grid flowboxchild > button:checked {
+  /* vrai GtkToggleButton : l'état "actif" est le pseudo-état natif :checked,
+     pas une classe .active (la doc du schema swaync est erronée sur ce point) */
   background-color: #e91e8c;
   color: var(--cc-bg);
 }
