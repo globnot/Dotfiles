@@ -11,6 +11,7 @@ configuration {
     fg0:      #3c3836;
     fg1:      #504945;
     accent:   #e91e8c;
+    fauxnoir: #1d2021;
     urgent:   #9d0006;
 
     background-color: transparent;
@@ -19,9 +20,9 @@ configuration {
 
 window {
     background-color: @bg0;
-    border:           2px;
+    border:           4px;
     border-color:     @accent;
-    border-radius:    8px;
+    border-radius:    3px;
     width:            30%;
     padding:          10px;
 }
@@ -33,9 +34,11 @@ mainbox {
 
 inputbar {
     background-color: @bg1;
-    border-radius:    6px;
-    padding:          8px 12px;
-    children:         [ entry ];
+    border:            2px;
+    border-color:      @fauxnoir;
+    border-radius:     3px;
+    padding:           8px 12px;
+    children:          [ entry ];
 }
 
 entry {
@@ -51,12 +54,18 @@ listview {
 
 element {
     padding:       6px 10px;
-    border-radius: 6px;
+    border:        2px;
+    border-color:  transparent;
+    border-radius: 3px;
 }
 
-element selected {
+element selected,
+element selected.normal,
+element selected.active,
+element selected.urgent {
     background-color: @accent;
     text-color:        @bg0;
+    border-color:      @fauxnoir;
 }
 
 element-icon {
