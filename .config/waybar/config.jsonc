@@ -52,6 +52,7 @@
     "battery": {
         "bat": "BAT0",
         "states": {
+            "medium": 50,
             "warning": 25,
             "critical": 10
         },
