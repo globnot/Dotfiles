@@ -616,6 +616,9 @@ notificationwindow, blankwindow {
 .widget-slider scale slider {
   background: var(--text-color);
   border-radius: 100%;
+  min-width: 16px;
+  min-height: 16px;
+  margin: -6px;
 }
 
 /* Each row app icon */
