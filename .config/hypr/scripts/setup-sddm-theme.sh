@@ -1,30 +1,21 @@
 #!/bin/bash
-# Configure sugar-candy comme thème SDDM, en Gruvbox Light avec le wallpaper
-# déjà utilisé sur le bureau. Nécessite root (écrit dans /usr/share et /etc).
+# Installe le thème SDDM "gruvbrutal" (écrit à la main, neobrutalism sur base
+# Gruvbox Light + fuchsia, voir ../sddm-theme/gruvbrutal/) et le sélectionne
+# comme thème actif. Nécessite root (écrit dans /usr/share et /etc).
 set -euo pipefail
 
-THEME_DIR="/usr/share/sddm/themes/sugar-candy"
-REAL_HOME="$(getent passwd "${SUDO_USER:-$USER}" | cut -d: -f6)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SRC_DIR="$SCRIPT_DIR/../sddm-theme/gruvbrutal"
+THEME_DIR="/usr/share/sddm/themes/gruvbrutal"
 
-cp "$REAL_HOME/Pictures/wallpapers/gruvbox-tranquility.png" "$THEME_DIR/Backgrounds/gruvbox-tranquility.png"
-
-sed -i \
-    -e 's|^Background=.*|Background="Backgrounds/gruvbox-tranquility.png"|' \
-    -e 's|^DimBackgroundImage=.*|DimBackgroundImage="0.15"|' \
-    -e 's|^HaveFormBackground=.*|HaveFormBackground="true"|' \
-    -e 's|^FormPosition=.*|FormPosition="center"|' \
-    -e 's|^MainColor=.*|MainColor="#3c3836"|' \
-    -e 's|^AccentColor=.*|AccentColor="#e91e8c"|' \
-    -e 's|^BackgroundColor=.*|BackgroundColor="#ebdbb2"|' \
-    -e 's|^Font=.*|Font="JetBrainsMono Nerd Font Mono"|' \
-    -e 's|^HeaderText=.*|HeaderText="Bienvenue !"|' \
-    -e 's|^ForceHideCompletePassword=.*|ForceHideCompletePassword="true"|' \
-    "$THEME_DIR/theme.conf"
+mkdir -p "$THEME_DIR"
+cp "$SRC_DIR/Main.qml" "$THEME_DIR/Main.qml"
+cp "$SRC_DIR/metadata.desktop" "$THEME_DIR/metadata.desktop"
 
 mkdir -p /etc/sddm.conf.d
 cat > /etc/sddm.conf.d/theme.conf <<'EOF'
 [Theme]
-Current=sugar-candy
+Current=gruvbrutal
 EOF
 
-echo "Thème SDDM configuré. Teste avec: sddm-greeter-qt6 --test-mode --theme $THEME_DIR (si dispo), ou au prochain verrouillage/redémarrage."
+echo "Thème SDDM 'gruvbrutal' installé et sélectionné. Teste avec: sddm-greeter-qt6 --test-mode --theme $THEME_DIR (si dispo), ou au prochain verrouillage/redémarrage."

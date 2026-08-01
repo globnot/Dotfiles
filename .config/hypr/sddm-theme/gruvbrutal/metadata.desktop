@@ -1,0 +1,9 @@
+[SddmGreeterTheme]
+Name=Gruvbrutal
+Description=Minimal neobrutalism theme, Gruvbox Light + fuchsia
+Author=globnot
+Type=sddm-theme
+Version=1.0
+MainScript=Main.qml
+Theme-Id=gruvbrutal
+Theme-API=2.0
