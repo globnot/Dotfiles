@@ -6,11 +6,11 @@
   "layer": "overlay",
   "control-center-layer": "top",
   "layer-shell": true,
-  "layer-shell-cover-screen": true,
+  "layer-shell-cover-screen": false,
   "cssPriority": "user",
-  "control-center-margin-top": 0,
-  "control-center-margin-bottom": 0,
-  "control-center-margin-right": 0,
+  "control-center-margin-top": 30,
+  "control-center-margin-bottom": 30,
+  "control-center-margin-right": 10,
   "control-center-margin-left": 0,
   "notification-2fa-action": true,
   "notification-inline-replies": false,
@@ -19,7 +19,7 @@
   "timeout": 10,
   "timeout-low": 5,
   "timeout-critical": 0,
-  "fit-to-screen": true,
+  "fit-to-screen": false,
   "relative-timestamps": true,
   "control-center-width": 500,
   "control-center-height": 600,
@@ -60,7 +60,7 @@
   ],
   "widget-config": {
     "notifications": {
-      "vexpand": true
+      "vexpand": false
     },
     "inhibitors": {
       "text": "Inhibitors",

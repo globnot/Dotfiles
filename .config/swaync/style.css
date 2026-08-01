@@ -337,6 +337,7 @@ notificationwindow, blankwindow {
   background: var(--cc-bg);
   color: var(--text-color);
   border-radius: var(--border-radius);
+  border: 2px solid #e91e8c;
 }
 
 .control-center .control-center-list-placeholder {
