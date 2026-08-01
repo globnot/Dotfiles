@@ -22,9 +22,9 @@ window {
     /* Le fond de "window" sert d'ombre dure décalée : mainbox (le vrai
        carton crème) est excentré dedans via un padding asymétrique
        (plus grand en bas/à droite), même principe que sur SDDM/Hyprland. */
-    background-color: @accent;
+    background-color: @fauxnoir;
     border:           4px;
-    border-color:     @fauxnoir;
+    border-color:     @accent;
     border-radius:    3px;
     width:            30%;
     padding:          4px 10px 10px 4px;
