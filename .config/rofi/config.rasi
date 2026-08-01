@@ -26,7 +26,7 @@ window {
        même logique que swaync/Hyprland (bordure sur le contenu, ombre à part). */
     background-color: @fauxnoir;
     border:           0px;
-    border-radius:    3px;
+    border-radius:    3px 0px 3px 0px;
     width:            30%;
     padding:          0px 10px 10px 0px;
 }
@@ -53,12 +53,14 @@ inputbar {
 entry {
     placeholder:       "Rechercher...";
     placeholder-color: @fg1;
+    border:            0px;
 }
 
 listview {
     lines:    8;
     spacing:  4px;
     scrollbar: false;
+    border:   0px;
 }
 
 element {
