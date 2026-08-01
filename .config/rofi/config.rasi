@@ -26,7 +26,7 @@ window {
        même logique que swaync/Hyprland (bordure sur le contenu, ombre à part). */
     background-color: @fauxnoir;
     border:           0px;
-    border-radius:    0px;
+    border-radius:    3px;
     width:            30%;
     padding:          0px 10px 10px 0px;
 }
