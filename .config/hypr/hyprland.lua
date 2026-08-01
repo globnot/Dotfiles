@@ -81,6 +81,11 @@ hl.on("hyprland.start", function ()
     hl.exec_cmd("hyprsunset --temperature 3600")
     hl.exec_cmd("/usr/lib/polkit-kde-authentication-agent-1")
     hl.exec_cmd("swaync")
+    -- Etat initial des indicateurs custom du buttons-grid swaync (voir
+    -- .config/swaync/scripts/, contournement du bug amont #739)
+    hl.exec_cmd("sleep 1 && $HOME/.config/swaync/scripts/update-bluetooth-state.sh")
+    hl.exec_cmd("sleep 1 && $HOME/.config/swaync/scripts/update-airplane-state.sh")
+    hl.exec_cmd("sleep 1 && $HOME/.config/swaync/scripts/update-powerprofile-state.sh")
 end)
 
 

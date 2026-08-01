@@ -93,29 +93,23 @@
       "actions": [
         {
           "label": "\udb80\udf2a",
-          "command": "powerprofilesctl set power-saver"
+          "command": "sh -c 'powerprofilesctl set power-saver; $HOME/.config/swaync/scripts/update-powerprofile-state.sh'"
         },
         {
           "label": "\udb83\udf85",
-          "command": "powerprofilesctl set balanced"
+          "command": "sh -c 'powerprofilesctl set balanced; $HOME/.config/swaync/scripts/update-powerprofile-state.sh'"
         },
         {
           "label": "\udb81\udcc5",
-          "command": "powerprofilesctl set performance"
+          "command": "sh -c 'powerprofilesctl set performance; $HOME/.config/swaync/scripts/update-powerprofile-state.sh'"
         },
         {
           "label": "\udb80\udc1d",
-          "type": "toggle",
-          "active": false,
-          "command": "sh -c '[[ \"$SWAYNC_TOGGLE_STATE\" == \"true\" ]] && rfkill block all || rfkill unblock all'",
-          "update-command": "sh -c 'rfkill list wifi | grep -q \"Soft blocked: yes\" && echo TRUE || echo FALSE'"
+          "command": "sh -c 'rfkill list wifi | grep -q \"Soft blocked: yes\" && rfkill unblock all || rfkill block all; $HOME/.config/swaync/scripts/update-airplane-state.sh'"
         },
         {
           "label": "\udb80\udcaf",
-          "type": "toggle",
-          "active": false,
-          "command": "sh -c '[[ \"$SWAYNC_TOGGLE_STATE\" == \"true\" ]] && bluetoothctl power on || bluetoothctl power off'",
-          "update-command": "sh -c 'bluetoothctl show | grep -q \"Powered: yes\" && echo TRUE || echo FALSE'"
+          "command": "sh -c 'bluetoothctl show | grep -q \"Powered: yes\" && bluetoothctl power off || bluetoothctl power on; $HOME/.config/swaync/scripts/update-bluetooth-state.sh'"
         }
       ]
     },

@@ -1,3 +1,10 @@
+/* Fichiers générés par scripts/update-*-state.sh (contournement du bug amont
+   ErikReider/SwayNotificationCenter#739 : les boutons toggle du buttons-grid
+   n'ont pas de retour visuel d'état fiable) */
+@import url("bluetooth-state.css");
+@import url("airplane-state.css");
+@import url("powerprofile-state.css");
+
 :root {
   /* Gruvbox Light */
   --cc-bg: rgba(251, 241, 199, 0.9);

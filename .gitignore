@@ -9,3 +9,8 @@
 # mais au cas où un futur fichier local finirait dans ce dossier par erreur :
 .config/atuin/*.db
 .config/atuin/key
+
+# CSS d'état générés à l'exécution par .config/swaync/scripts/update-*-state.sh
+.config/swaync/bluetooth-state.css
+.config/swaync/airplane-state.css
+.config/swaync/powerprofile-state.css
