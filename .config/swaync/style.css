@@ -494,7 +494,7 @@ notificationwindow, blankwindow {
   padding: 6px;
   margin: 8px;
   border-radius: var(--border-radius);
-  background: var(--noti-bg-darker);
+  background: rgba(var(--noti-bg), var(--noti-bg-alpha));
 }
 
 .widget-buttons-grid flowboxchild {
@@ -522,8 +522,8 @@ notificationwindow, blankwindow {
   color: var(--cc-bg);
 }
 
-.widget-buttons-grid flowboxchild > button.toggle:checked {
-  /* style given to the active toggle button */
+.widget-buttons-grid flowboxchild > button.active {
+  /* style given to the active toggle button (swaync sets this class, not :checked) */
   background-color: #e91e8c;
   color: var(--cc-bg);
 }
@@ -592,14 +592,14 @@ notificationwindow, blankwindow {
   padding: 8px 12px;
   margin: 8px;
   border-radius: var(--border-radius);
-  background: var(--noti-bg-darker);
+  background: rgba(60, 56, 54, 0.06);
   color: var(--text-color);
 }
 
 .widget-volume scale trough,
 .widget-backlight scale trough,
 .widget-slider scale trough {
-  background: rgba(var(--noti-bg), var(--noti-bg-alpha));
+  background: var(--noti-bg-darker);
   border-radius: var(--border-radius);
   min-height: 6px;
 }
@@ -624,7 +624,7 @@ notificationwindow, blankwindow {
 }
 
 .per-app-volume {
-  background-color: var(--noti-bg-darker);
+  background-color: rgba(60, 56, 54, 0.06);
   margin: 8px;
   margin-bottom: 0;
   border-radius: var(--border-radius);
