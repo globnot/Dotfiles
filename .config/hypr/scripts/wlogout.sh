@@ -1,5 +1,5 @@
 #!/bin/bash
-# Lance wlogout avec des boutons carrés sur une seule ligne, centrés à l'écran
+# Lance wlogout en grille (COLS x ROWS) de carrés centrés à l'écran
 # (même principe que le repo de l'ami, sans dépendance à jq).
 
 if pgrep -x "wlogout" > /dev/null; then
@@ -14,22 +14,23 @@ m = next(mon for mon in mons if mon["focused"])
 print(int(m["width"] / m["scale"]), int(m["height"] / m["scale"]))
 ')"
 
-N=6
+COLS=3
+ROWS=2
+N=$(( COLS * ROWS ))
 
-size=$(( height / 4 ))
+# Taille de carré qui tient sur les deux dimensions, clampée à une plage lisible
+size_w=$(( width / COLS ))
+size_h=$(( height / ROWS ))
+size=$(( size_w < size_h ? size_w : size_h ))
 (( size < 120 )) && size=120
 (( size > 200 )) && size=200
 
-T=$(( (height - size) / 2 ))
+T=$(( (height - ROWS * size) / 2 ))
 B=$T
-L=$(( (width - N * size) / 2 ))
+L=$(( (width - COLS * size) / 2 ))
 R=$L
 
-if (( L < 0 )); then
-    L=20; R=20
-    size=$(( (width - 40) / N ))
-    T=$(( (height - size) / 2 ))
-    B=$T
-fi
+(( L < 0 )) && L=20 R=20
+(( T < 0 )) && T=20 B=20
 
-wlogout --protocol layer-shell -b "$N" -T "$T" -B "$B" -L "$L" -R "$R" &
+wlogout --protocol layer-shell -b "$COLS" -T "$T" -B "$B" -L "$L" -R "$R" &
