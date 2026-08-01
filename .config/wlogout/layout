@@ -5,10 +5,10 @@
     "keybind": "r"
 }
 {
-    "label": "lock",
-    "action": "hyprlock",
-    "text": "  Lock",
-    "keybind": "l"
+    "label": "shutdown",
+    "action": "systemctl poweroff",
+    "text": "  Shutdown",
+    "keybind": "s"
 }
 {
     "label": "hibernate",
@@ -17,10 +17,10 @@
     "keybind": "h"
 }
 {
-    "label": "shutdown",
-    "action": "systemctl poweroff",
-    "text": "  Shutdown",
-    "keybind": "s"
+    "label": "lock",
+    "action": "hyprlock",
+    "text": "  Lock",
+    "keybind": "l"
 }
 {
     "label": "logout",
