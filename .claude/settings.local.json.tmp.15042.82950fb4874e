@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pacman -Si networkmanager-dmenu networkmanager_dmenu)",
+      "Bash(yay -Si networkmanager-dmenu-git)",
+      "Bash(pacman *)",
+      "Bash(swaync-client --help)",
+      "Bash(systemctl --user status swaync.service)",
+      "Bash(swaync-client -rs)",
+      "Bash(notify-send \"Test carte\" \"Ceci est un test de rendu\")",
+      "Bash(grim __TRACKED_VAR__/notif-popup.png)",
+      "Bash(python3 -c ' *)",
+      "Bash(ffmpeg -y -i cc-panel.png -f rawvideo -pix_fmt rgb24 cc-panel.raw)",
+      "Bash(gsettings get *)",
+      "Read(//home/globnot/.config/gtk-4.0/**)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
+    ]
+  }
+}

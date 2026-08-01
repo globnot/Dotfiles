@@ -80,7 +80,11 @@ notificationwindow, blankwindow {
 }
 
 .notification-row:focus {
-  background: var(--noti-bg-focus);
+  background: transparent;
+}
+
+.notification-row:focus .notification-background .notification {
+  border: 1.5px solid #e91e8c;
 }
 
 .notification-row .notification-background {
@@ -121,7 +125,6 @@ notificationwindow, blankwindow {
 }
 
 .notification-row .notification-background .notification .notification-default-action:hover {
-  -gtk-icon-filter: none;
   background: var(--noti-bg-hover);
 }
 
@@ -139,7 +142,8 @@ notificationwindow, blankwindow {
 
 .notification-row .notification-background .notification .notification-default-action .notification-content .image {
   /* Notification Primary Image */
-  -gtk-icon-filter: none;
+  -gtk-icon-filter: grayscale(1);
+  opacity: 0.75;
   -gtk-icon-size: var(--notification-icon-size);
   border-radius: 100px;
   /* Size in px */
@@ -148,9 +152,10 @@ notificationwindow, blankwindow {
 
 .notification-row .notification-background .notification .notification-default-action .notification-content .app-icon {
   /* Notification app icon (only visible when the primary image is set) */
-  -gtk-icon-filter: none;
+  -gtk-icon-filter: grayscale(1);
+  opacity: 0.75;
   -gtk-icon-size: var(--notification-app-icon-size);
-  -gtk-icon-shadow: 0 1px 4px black;
+  -gtk-icon-shadow: none;
   margin: 6px;
 }
 
@@ -255,8 +260,12 @@ notificationwindow, blankwindow {
   /* The groups close button */
 }
 
+.notification-group:focus .notification-row .notification-background .notification {
+  border: 1.5px solid #e91e8c;
+}
+
 .notification-group:focus {
-  background: var(--noti-bg-focus);
+  background: transparent;
 }
 
 .notification-group.low {
