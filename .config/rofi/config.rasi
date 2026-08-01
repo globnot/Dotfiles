@@ -26,9 +26,9 @@ window {
        même logique que swaync/Hyprland (bordure sur le contenu, ombre à part). */
     background-color: @fauxnoir;
     border:           0px;
-    border-radius:    3px 0px 3px 0px;
+    border-radius:    3px;
     width:            30%;
-    padding:          0px 10px 10px 0px;
+    padding:          1px 10px 10px 1px;
 }
 
 mainbox {
