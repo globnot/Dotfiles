@@ -12,15 +12,13 @@
     "modules-right": [
         "custom/notification",
         "cpu",
-        "memory",
         "temperature",
+        "memory",
         "custom/fan",
         "disk",
         "battery",
         "network",
         "bluetooth",
-        "pulseaudio",
-        "power-profiles-daemon",
         "tray"
     ],
     "hyprland/workspaces": {
@@ -47,29 +45,6 @@
         "tooltip-format-wifi": "{essid} ({signalStrength}%)",
         "tooltip-format-ethernet": "{ifname}: {ipaddr}/{cidr}",
         "on-click": "networkmanager_dmenu"
-    },
-    "pulseaudio": {
-        "format": "{icon}",
-        "format-muted": "\uf026",
-        "format-icons": {
-            "default": [
-                "\uf026",
-                "\uf027",
-                "\uf028"
-            ]
-        },
-        "tooltip-format": "{volume}%",
-        "on-click": "pavucontrol"
-    },
-    "power-profiles-daemon": {
-        "format": "{icon}",
-        "tooltip-format": "Profil : {profile}\nClic pour changer",
-        "format-icons": {
-            "default": "\uf013",
-            "performance": "\uf0e4",
-            "balanced": "\uf24e",
-            "power-saver": "\uf06c"
-        }
     },
     "battery": {
         "bat": "BAT0",
