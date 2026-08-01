@@ -26,7 +26,7 @@
   "notification-window-width": 500,
   "keyboard-shortcuts": true,
   "notification-grouping": true,
-  "image-visibility": "when-available",
+  "image-visibility": "always",
   "transition-time": 200,
   "hide-on-clear": false,
   "hide-on-action": true,
