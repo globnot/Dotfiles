@@ -2,6 +2,9 @@
 *.pyc
 *.bak
 
+# fichiers temporaires d'écriture atomique de Claude Code
+.claude/*.tmp.*
+
 # atuin garde sa base d'historique/clé dans ~/.local/share/atuin (hors repo),
 # mais au cas où un futur fichier local finirait dans ce dossier par erreur :
 .config/atuin/*.db
