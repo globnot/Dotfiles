@@ -9,6 +9,8 @@ window {
 }
 
 button {
+    min-width: 160px;
+    min-height: 160px;
     border: 3px solid #1d2021;
     border-radius: 4px;
     color: #3c3836;
