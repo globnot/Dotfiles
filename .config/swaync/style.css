@@ -149,6 +149,7 @@ notificationwindow, blankwindow {
   min-height: var(--notification-icon-size);
   border-radius: 100px;
   background-color: var(--noti-bg-darker);
+  color: var(--text-color-disabled);
   /* Size in px */
   margin: 4px;
 }
