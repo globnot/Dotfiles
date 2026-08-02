@@ -42,7 +42,7 @@ PACMAN_CORE=(
     ttf-jetbrains-mono-nerd power-profiles-daemon
     pipewire-alsa pipewire-jack pipewire-pulse wireplumber
     blueman bluez bluez-utils networkmanager wpa_supplicant xdg-utils
-    lm_sensors
+    lm_sensors desktop-file-utils
 )
 
 # Installés sur la machine actuelle mais pas appelés par une config trackée
@@ -66,7 +66,12 @@ sudo pacman -S --needed "${PACMAN_EXTRAS[@]}"
 # 3. Paquets — AUR
 # ----------------------------------------------------------------------
 AUR_CORE=(wlogout)
-AUR_EXTRAS=(brave-bin topgrade)
+# visual-studio-code-bin (build officiel Microsoft), pas le paquet officiel
+# "code" (OSS) : ce dernier n'a aucun module natif keytar/libsecret, donc
+# aucun moyen de stocker les identifiants (ex. connexion GitHub) dans un
+# vrai trousseau — vérifié en observant qu'il ne contacte jamais le
+# service D-Bus org.freedesktop.secrets. Voir .config/Code/argv.json.
+AUR_EXTRAS=(brave-bin topgrade visual-studio-code-bin)
 
 echo "== Paquets AUR (coeur) =="
 yay -S --needed "${AUR_CORE[@]}"

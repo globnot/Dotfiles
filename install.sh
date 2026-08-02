@@ -41,9 +41,15 @@ link "$REPO_DIR/.config/fastfetch" "$HOME/.config/fastfetch"
 link "$REPO_DIR/.config/qt5ct"    "$HOME/.config/qt5ct"
 link "$REPO_DIR/.config/qt6ct"    "$HOME/.config/qt6ct"
 link "$REPO_DIR/.config/environment.d" "$HOME/.config/environment.d"
+link "$REPO_DIR/.config/Code/argv.json" "$HOME/.config/Code/argv.json"
+link "$REPO_DIR/.local/share/applications/code.desktop" "$HOME/.local/share/applications/code.desktop"
 
 link "$REPO_DIR/.zshrc"    "$HOME/.zshrc"
 link "$REPO_DIR/.p10k.zsh" "$HOME/.p10k.zsh"
+
+# Pour que la surcharge de code.desktop (--no-sandbox) soit prise en
+# compte immédiatement par rofi/drun sans attendre un rescan spontané.
+update-desktop-database "$HOME/.local/share/applications" 2>/dev/null || true
 
 # Ce script ne fait que les liens. Pour installer les paquets, oh-my-zsh,
 # les services système, etc. sur une machine neuve, voir bootstrap.sh (qui

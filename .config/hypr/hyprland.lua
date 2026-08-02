@@ -79,6 +79,15 @@ local menu        = "rofi -show drun"
 -- end)
 
 hl.on("hyprland.start", function ()
+    -- Propage les variables de session vers D-Bus/systemd --user : sans ça,
+    -- les apps lancées via activation D-Bus/systemd (scopes systemd, comme
+    -- VS Code) ne voient pas forcément XDG_CURRENT_DESKTOP même si Hyprland
+    -- lui-même l'a — repéré en debuggant pourquoi VS Code ne détectait
+    -- jamais gnome-keyring malgré un trousseau qui marchait très bien par
+    -- ailleurs (testé avec Brave). Doit tourner avant tout le reste.
+    hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP DESKTOP_SESSION XDG_SESSION_TYPE HYPRLAND_INSTANCE_SIGNATURE DISPLAY SSH_AUTH_SOCK")
+    hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP DESKTOP_SESSION XDG_SESSION_TYPE HYPRLAND_INSTANCE_SIGNATURE DISPLAY SSH_AUTH_SOCK")
+
     hl.exec_cmd("waybar")
     hl.exec_cmd("hypridle")
     hl.exec_cmd("awww-daemon")

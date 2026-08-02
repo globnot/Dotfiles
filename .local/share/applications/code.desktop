@@ -1,0 +1,27 @@
+# Surcharge de /usr/share/applications/code.desktop (même nom de fichier,
+# ~/.local/share/applications a priorité) : ajoute --no-sandbox.
+# Sans ça, VS Code n'arrive jamais à parler à gnome-keyring ("An OS keyring
+# couldn't be identified") même avec un trousseau qui marche parfaitement
+# par ailleurs (testé avec Brave) et argv.json en place — le sandbox
+# Chromium isole le process d'une façon qui bloque l'accès à D-Bus. Passer
+# le flag directement (plutôt que "disable-chromium-sandbox" dans
+# argv.json, qui fait carrément planter le lancement) est la seule methode
+# qui fonctionne, vérifié empiriquement.
+[Desktop Entry]
+Name=Visual Studio Code
+Comment=Code Editing. Redefined.
+GenericName=Text Editor
+Exec=code --no-sandbox %F
+Icon=vscode
+Type=Application
+StartupNotify=false
+StartupWMClass=Code
+Categories=TextEditor;Development;IDE;
+MimeType=application/x-code-workspace;
+Actions=new-empty-window;
+Keywords=vscode;
+
+[Desktop Action new-empty-window]
+Name=New Empty Window
+Exec=code --no-sandbox --new-window %F
+Icon=vscode

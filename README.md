@@ -41,6 +41,8 @@ standard — il suffit d'installer le paquet).
 | `.config/fastfetch/` | Résumé système au lancement (alias `ff`) |
 | `.config/qt5ct/`, `qt6ct/` | Thème des rares apps Qt (surtout `polkit-kde-agent`) |
 | `.config/environment.d/` | Variables d'env session-wide (thème Qt, agent SSH gnome-keyring) |
+| `.config/Code/` | `argv.json` (VS Code, voir plus bas) |
+| `.local/share/applications/` | Surcharge `code.desktop` (VS Code + `--no-sandbox`, voir plus bas) |
 | `theme/` | Palette centralisée de la DA (`palette.sh` + `generate.sh`) |
 | `.zshrc`, `.p10k.zsh` | Shell |
 | `install.sh` | Liens symboliques uniquement |
@@ -77,6 +79,20 @@ En ligne de commande : éditer `theme/palette.sh` (7 couleurs, une seule
 source pour tout le bureau) puis lancer `theme/generate.sh`, qui propage
 le changement dans rofi, GTK, waybar, swaync, Hyprland, hyprlock, kitty,
 wlogout, btop, fastfetch, qt5ct/qt6ct et zsh.
+
+## VS Code : trousseau et sandbox
+
+VS Code (`visual-studio-code-bin`, le build officiel Microsoft — le paquet
+"code" d'Arch est un build OSS sans module keytar/libsecret, donc
+incapable d'utiliser un trousseau quel qu'il soit) refusait toujours
+d'utiliser gnome-keyring ("An OS keyring couldn't be identified"), même
+trousseau fonctionnel, `argv.json` correct et flag forcé en ligne de
+commande. Cause réelle, trouvée en testant `--no-sandbox` : le sandbox
+Chromium isole le process d'une façon qui bloque l'accès à D-Bus sur ce
+système. `"disable-chromium-sandbox": true` dans `argv.json` fait planter
+le lancement (`launch-failed`) ; passer `--no-sandbox` en argument direct
+via une surcharge de `code.desktop` (`.local/share/applications/`) est la
+seule méthode qui fonctionne.
 
 ## Raccourcis
 
