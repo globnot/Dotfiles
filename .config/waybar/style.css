@@ -41,15 +41,20 @@ window#waybar {
     color: #3c3836;
 }
 
-#network,
+#network {
+    padding: 0 6px 0 10px;
+    font-size: 24px;
+    color: #1d2021;
+}
+
 #tray {
-    padding: 0 10px;
+    padding: 0 14px 0 10px;
     font-size: 24px;
     color: #1d2021;
 }
 
 #bluetooth {
-    padding: 0 10px;
+    padding: 0 10px 0 6px;
     font-size: 17px;
     color: #1d2021;
 }
