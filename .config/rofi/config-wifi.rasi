@@ -1,6 +1,6 @@
-/* Menu wifi (networkmanager-dmenu) - variante compacte, ancrée en haut à
-   droite. Même DA neobrutalism que swaync (SUPER+N) : bordure faux noir,
-   ombre dure faux noir décalée bas/droite, fond opaque, sélection fuchsia. */
+/* Menu wifi (networkmanager-dmenu) - variante compacte, centrée à l'écran.
+   Même DA neobrutalism que swaync (SUPER+N) : bordure faux noir, ombre
+   dure faux noir décalée bas/droite, fond opaque, sélection fuchsia. */
 
 * {
     bg0:      #fbf1c7;
@@ -19,10 +19,8 @@ window {
        derrière mainbox via un padding asymétrique (bas/droite). Même
        technique que le lanceur principal (config.rasi). */
     transparency:  "real";
-    location:      north east;
-    anchor:        north east;
-    x-offset:      -20px;
-    y-offset:      50px;
+    location:      center;
+    anchor:        center;
     background-color: @fauxnoir;
     border:           0px;
     border-radius:    4px 10px 4px 10px;
