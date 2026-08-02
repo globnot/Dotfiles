@@ -3,6 +3,7 @@
 # 3=performance) qui correspond au profil actuellement actif. Même contournement que
 # update-bluetooth-state.sh (le mécanisme "active" natif de swaync ne marche pas
 # de façon fiable ici, voir issue amont ErikReider/SwayNotificationCenter#739).
+source "$HOME/Dotfiles/theme/palette.sh"
 CSS_FILE="$HOME/.config/swaync/powerprofile-state.css"
 
 current=$(powerprofilesctl get 2>/dev/null)
@@ -18,8 +19,8 @@ if [ "$n" -gt 0 ]; then
     cat > "$CSS_FILE" <<EOF
 /* Auto-généré par update-powerprofile-state.sh, ne pas éditer à la main */
 .widget-buttons-grid flowboxchild:nth-child($n) > button {
-  background-color: #e91e8c;
-  color: #fbf1c7;
+  background-color: #$ACCENT;
+  color: #$BG0;
 }
 EOF
 else

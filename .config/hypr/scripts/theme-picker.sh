@@ -60,4 +60,11 @@ hyprctl reload >/dev/null 2>&1 || true
 pkill -SIGUSR2 waybar 2>/dev/null || true
 swaync-client -rs >/dev/null 2>&1 || true
 
+# Les indicateurs d'état actif de swaync (bluetooth/avion/profils d'énergie)
+# écrivent leur propre couleur figée à l'exécution (voir ces scripts) :
+# il faut les relancer pour qu'ils reprennent le nouvel accent.
+bash "$HOME/.config/swaync/scripts/update-bluetooth-state.sh" >/dev/null 2>&1 || true
+bash "$HOME/.config/swaync/scripts/update-airplane-state.sh" >/dev/null 2>&1 || true
+bash "$HOME/.config/swaync/scripts/update-powerprofile-state.sh" >/dev/null 2>&1 || true
+
 notify-send "Thème" "Accent changé : #$hex"
