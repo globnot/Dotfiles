@@ -54,7 +54,7 @@ hl.monitor({
 
 -- Set programs that you use
 local terminal    = "kitty"
-local fileManager = "dolphin"
+local fileManager = "nautilus --new-window" -- swap for thunar, dolphin, nemo...
 local menu        = "rofi -show drun"
 
 

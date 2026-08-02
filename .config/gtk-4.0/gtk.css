@@ -1,0 +1,24 @@
+/* Recolorie les jetons sémantiques GTK4/libadwaita (pas de thème complet à
+   installer) avec la palette Gruvbox Light + fuchsia du reste du bureau.
+   Même technique que Cartoone (dotfiles-cartoon/.config/gtk-4.0/gtk.css),
+   adaptée en clair. */
+@define-color accent_bg_color #e91e8c;
+@define-color accent_color #e91e8c;
+@define-color accent_fg_color #fbf1c7;
+@define-color selected_bg_color #e91e8c;
+@define-color selected_fg_color #fbf1c7;
+@define-color window_bg_color #fbf1c7;
+@define-color window_fg_color #3c3836;
+@define-color view_bg_color #fbf1c7;
+@define-color view_fg_color #3c3836;
+@define-color headerbar_bg_color #ebdbb2;
+@define-color headerbar_fg_color #3c3836;
+@define-color card_bg_color #ebdbb2;
+@define-color card_fg_color #3c3836;
+@define-color popover_bg_color #fbf1c7;
+@define-color popover_fg_color #3c3836;
+@define-color sidebar_bg_color #ebdbb2;
+@define-color sidebar_fg_color #3c3836;
+@define-color destructive_bg_color #9d0006;
+@define-color destructive_color #9d0006;
+@define-color destructive_fg_color #fbf1c7;

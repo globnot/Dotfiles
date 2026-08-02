@@ -33,6 +33,8 @@ link "$REPO_DIR/.config/swaync" "$HOME/.config/swaync"
 link "$REPO_DIR/.config/swappy" "$HOME/.config/swappy"
 link "$REPO_DIR/.config/wlogout" "$HOME/.config/wlogout"
 link "$REPO_DIR/.config/btop"    "$HOME/.config/btop"
+link "$REPO_DIR/.config/gtk-3.0" "$HOME/.config/gtk-3.0"
+link "$REPO_DIR/.config/gtk-4.0" "$HOME/.config/gtk-4.0"
 link "$REPO_DIR/.config/atuin"  "$HOME/.config/atuin"
 link "$REPO_DIR/.config/networkmanager-dmenu" "$HOME/.config/networkmanager-dmenu"
 
