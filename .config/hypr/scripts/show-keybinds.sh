@@ -13,7 +13,8 @@ if pgrep -x rofi > /dev/null; then
     exit 0
 fi
 
-cat <<'EOF' | rofi -dmenu -i -p "Raccourcis" -mesg "Lecture seule : Échap pour fermer"
+cat <<'EOF' | rofi -dmenu -i -p "Raccourcis" -mesg "Lecture seule : Échap pour fermer" \
+    -theme-str 'window {height: 90%;} listview {lines: 20; fixed-height: false;}'
 ── Applications ──
 SUPER + Q — Terminal
 SUPER + E — Gestionnaire de fichiers
@@ -46,4 +47,13 @@ Impr écran — Capture d'une zone (annotation swappy)
 SHIFT + Impr écran — Capture plein écran
 ── Divers ──
 Touches multimédia — Volume, luminosité, lecture (gérées nativement)
+── Terminal ──
+cdf — Sélecteur flou de dossier (Code/.config), classé par fréquence d'usage
+cdw — Comme cdf, puis ouvre nvim
+cdd — Sélecteur flou parmi les dossiers déjà visités (zoxide)
+cdfa — Sélecteur flou dans tout $HOME
+zi — Sélecteur interactif zoxide (cd intelligent)
+btop — Moniteur de ressources (CPU/RAM/réseau/process)
+Ctrl+R — Historique de commandes (atuin, recherche floue)
+n / nn — Norminette (dossier courant / srcs + includes)
 EOF
