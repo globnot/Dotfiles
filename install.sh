@@ -42,7 +42,17 @@ link "$REPO_DIR/.config/qt5ct"    "$HOME/.config/qt5ct"
 link "$REPO_DIR/.config/qt6ct"    "$HOME/.config/qt6ct"
 link "$REPO_DIR/.config/environment.d" "$HOME/.config/environment.d"
 link "$REPO_DIR/.config/Code/argv.json" "$HOME/.config/Code/argv.json"
+link "$REPO_DIR/.config/Code/User/settings.json" "$HOME/.config/Code/User/settings.json"
 link "$REPO_DIR/.local/share/applications/code.desktop" "$HOME/.local/share/applications/code.desktop"
+
+# Profil VS Code "42" : le hash du dossier (-77ad35b) est propre à cette
+# machine (VS Code le génère à la création du profil). Ce lien ne sert
+# donc que tant que ce même profil existe ici ; sur une machine neuve, le
+# profil est à recréer dans VS Code puis ses réglages à recopier depuis
+# ce fichier à la main.
+if [ -d "$HOME/.config/Code/User/profiles/-77ad35b" ]; then
+    link "$REPO_DIR/.config/Code/User/profiles/-77ad35b/settings.json" "$HOME/.config/Code/User/profiles/-77ad35b/settings.json"
+fi
 
 link "$REPO_DIR/.zshrc"    "$HOME/.zshrc"
 link "$REPO_DIR/.p10k.zsh" "$HOME/.p10k.zsh"

@@ -1,0 +1,17 @@
+{
+    "editor.fontFamily": "'JetBrainsMono Nerd Font Mono', monospace",
+    "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font Mono', monospace",
+    "code-runner.runInTerminal": true,
+    "code-runner.clearPreviousOutput": true,
+    "workbench.colorTheme": "Gruvbox Light Medium",
+    "extensions.ignoreRecommendations": true,
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+
+    // On vide les listes de touches Ctrl gérées par Neovim.
+    // Cela redonne 100 % du contrôle des raccourcis Ctrl à VS Code.
+    "vscode-neovim.ctrlKeysForNormalMode": [],
+    "vscode-neovim.ctrlKeysForInsertMode": [],
+    "chat.disableAIFeatures": true
+}

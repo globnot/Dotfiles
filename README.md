@@ -41,7 +41,7 @@ standard — il suffit d'installer le paquet).
 | `.config/fastfetch/` | Résumé système au lancement (alias `ff`) |
 | `.config/qt5ct/`, `qt6ct/` | Thème des rares apps Qt (surtout `polkit-kde-agent`) |
 | `.config/environment.d/` | Variables d'env session-wide (thème Qt, agent SSH gnome-keyring) |
-| `.config/Code/` | `argv.json` (VS Code, voir plus bas) |
+| `.config/Code/` | `argv.json`, `User/settings.json` (+ profil `42`) — voir plus bas |
 | `.local/share/applications/` | Surcharge `code.desktop` (VS Code + `--no-sandbox`, voir plus bas) |
 | `theme/` | Palette centralisée de la DA (`palette.sh` + `generate.sh`) |
 | `.zshrc`, `.p10k.zsh` | Shell |
@@ -93,6 +93,13 @@ système. `"disable-chromium-sandbox": true` dans `argv.json` fait planter
 le lancement (`launch-failed`) ; passer `--no-sandbox` en argument direct
 via une surcharge de `code.desktop` (`.local/share/applications/`) est la
 seule méthode qui fonctionne.
+
+`User/settings.json` (police `JetBrainsMono Nerd Font Mono` assortie au
+reste du bureau, thème, réglages git...) est suivi, ainsi que le profil
+`42` (`User/profiles/-77ad35b/settings.json`). Le nom du dossier de ce
+profil est un hash généré par VS Code propre à cette machine : sur une
+install neuve, recréer le profil dans VS Code puis recopier les réglages
+à la main depuis ce fichier.
 
 ## Raccourcis
 

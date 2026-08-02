@@ -1,0 +1,11 @@
+{
+    "editor.fontFamily": "'JetBrainsMono Nerd Font Mono', monospace",
+    "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font Mono', monospace",
+    "git.autofetch": true,
+    "workbench.colorTheme": "Visual Studio Light",
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "workbench.settings.applyToAllProfiles": [],
+    "window.newWindowProfile": "42"
+}
