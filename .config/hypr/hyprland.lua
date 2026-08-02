@@ -103,6 +103,11 @@ end)
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
 
+-- Thème Qt (qt6ct + palette Gruvbrutal) pour les rares apps Qt du bureau,
+-- surtout polkit-kde-agent. Mirroir de .config/environment.d/50-qt-theme.conf
+-- (qui couvre en plus les process activés par systemd/D-Bus).
+hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
+
 
 -----------------------
 ----- PERMISSIONS -----

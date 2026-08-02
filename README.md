@@ -33,6 +33,9 @@ fan de waybar) et à adapter ailleurs.
 | `.config/nvim/` | Config Neovim (base NvChad) |
 | `.config/networkmanager-dmenu/` | Backend du menu wifi |
 | `.config/atuin/` | Historique shell |
+| `.config/fastfetch/` | Résumé système au lancement (alias `ff`) |
+| `.config/qt5ct/`, `qt6ct/` | Thème des rares apps Qt (surtout `polkit-kde-agent`) |
+| `.config/environment.d/` | Variables d'env session-wide (thème Qt pour les services D-Bus) |
 | `theme/` | Palette centralisée de la DA (`palette.sh` + `generate.sh`) |
 | `.zshrc`, `.p10k.zsh` | Shell |
 | `install.sh` | Liens symboliques uniquement |
@@ -68,7 +71,7 @@ met à jour la DA en direct.
 En ligne de commande : éditer `theme/palette.sh` (7 couleurs, une seule
 source pour tout le bureau) puis lancer `theme/generate.sh`, qui propage
 le changement dans rofi, GTK, waybar, swaync, Hyprland, hyprlock, kitty,
-wlogout, btop et zsh.
+wlogout, btop, fastfetch, qt5ct/qt6ct et zsh.
 
 ## Raccourcis
 
@@ -93,7 +96,9 @@ wlogout, btop et zsh.
 - [Cartoone9/dotfiles](https://github.com/Cartoone9/dotfiles) — même
   laptop, référence piochée pour plusieurs morceaux : la structure des
   fonctions `cdf`/`cdw`/`cdd`/`cdfa`, l'approche GNOME/Nautilus plutôt que
-  KDE, l'idée du menu wifi rofi, la disposition en grille de `wlogout`.
+  KDE, l'idée du menu wifi rofi, la disposition en grille de `wlogout`,
+  fastfetch au lancement du terminal, `topgrade` pour tout mettre à jour
+  d'un coup, et le thème Qt (qt5ct/qt6ct) pour les apps Qt isolées.
 - [NvChad](https://github.com/NvChad/NvChad) — base de la config Neovim,
   qui crédite elle-même [LazyVim starter](https://github.com/LazyVim/starter).
 - [Hyprland](https://hyprland.org/), [waybar](https://github.com/Alexays/Waybar),
@@ -104,7 +109,10 @@ wlogout, btop et zsh.
   [kitty](https://sw.kovidgoyal.net/kitty/), [btop](https://github.com/aristocratos/btop),
   [powerlevel10k](https://github.com/romkatv/powerlevel10k), [atuin](https://atuin.sh/),
   [zoxide](https://github.com/ajeetdsouza/zoxide), [eza](https://github.com/eza-community/eza),
-  [fzf](https://github.com/junegunn/fzf), [fd](https://github.com/sharkdp/fd)
+  [fzf](https://github.com/junegunn/fzf), [fd](https://github.com/sharkdp/fd),
+  [fastfetch](https://github.com/fastfetch-cli/fastfetch),
+  [topgrade](https://github.com/topgrade-rs/topgrade),
+  [qt5ct](https://github.com/trialuser02/qt5ct)/[qt6ct](https://github.com/trialuser02/qt6ct)
 - [Nerd Fonts](https://www.nerdfonts.com/) pour les icônes utilisées
   partout (waybar, rofi, wlogout, SDDM...)
 

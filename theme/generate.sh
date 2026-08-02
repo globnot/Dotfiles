@@ -3,7 +3,8 @@
 #
 # Deux mécanismes selon le fichier :
 # - Fichiers 100% données (rofi/colors.rasi, gtk-4.0/gtk.css, kitty
-#   theme-colors.conf, btop theme) : réécrits en entier à chaque run.
+#   theme-colors.conf, btop theme, fastfetch, qt5ct/qt6ct) : réécrits en
+#   entier à chaque run.
 # - Fichiers avec de la vraie logique (hyprland.lua, hyprlock.conf, le QML
 #   SDDM, waybar/swaync/wlogout CSS, .zshrc) : seule la ligne qui déclare
 #   chaque couleur est réécrite (repérée par sa clé, jamais par sa position
@@ -23,6 +24,11 @@ source "$REPO_DIR/theme/palette.sh"
 hex_to_rgb() { # "fbf1c7" -> "251, 241, 199"
     local h="$1"
     printf "%d, %d, %d" "0x${h:0:2}" "0x${h:2:2}" "0x${h:4:2}"
+}
+
+hex_to_ansi_rgb() { # "fbf1c7" -> "38;2;251;241;199" (couleur vraie ANSI fg)
+    local h="$1"
+    printf "38;2;%d;%d;%d" "0x${h:0:2}" "0x${h:2:2}" "0x${h:4:2}"
 }
 
 # "key: value;" / "key = value" — remplace en préservant indentation/préfixe.
@@ -97,6 +103,42 @@ active_tab_foreground      #$BG0
 inactive_tab_background    #$BG1
 EOF
 
+ACCENT_ANSI="$(hex_to_ansi_rgb "$ACCENT")"
+FAUXNOIR_ANSI="$(hex_to_ansi_rgb "$FAUXNOIR")"
+
+cat > "$REPO_DIR/.config/fastfetch/config.jsonc" <<EOF
+// Généré par theme/generate.sh à partir de theme/palette.sh, ne pas éditer
+// à la main. Lancé via l'alias \`ff\` (voir .zshrc).
+{
+    "\$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "logo": {
+        "type": "small",
+        "color": { "1": "$ACCENT_ANSI", "2": "$ACCENT_ANSI" },
+        "padding": { "top": 2, "left": 1 }
+    },
+    "modules": [
+        "break",
+        { "type": "custom", "format": "\u001b[${FAUXNOIR_ANSI}m── Matériel ──" },
+        { "type": "host",      "key": " PC",  "keyColor": "$ACCENT_ANSI" },
+        { "type": "cpu",       "key": " CPU", "keyColor": "$ACCENT_ANSI" },
+        { "type": "gpu",       "key": "󰍛 GPU", "keyColor": "$ACCENT_ANSI" },
+        { "type": "memory",    "key": " RAM", "keyColor": "$ACCENT_ANSI" },
+        { "type": "disk",      "key": " Disque", "keyColor": "$ACCENT_ANSI" },
+        "break",
+        { "type": "custom", "format": "\u001b[${FAUXNOIR_ANSI}m── Logiciel ──" },
+        { "type": "os",        "key": " OS",      "keyColor": "$ACCENT_ANSI" },
+        { "type": "kernel",    "key": " Kernel",  "keyColor": "$ACCENT_ANSI" },
+        { "type": "uptime",    "key": " Uptime",  "keyColor": "$ACCENT_ANSI" },
+        { "type": "packages",  "key": "󰏖 Paquets", "keyColor": "$ACCENT_ANSI" },
+        { "type": "shell",     "key": " Shell",   "keyColor": "$ACCENT_ANSI" },
+        { "type": "wm",        "key": " WM",      "keyColor": "$ACCENT_ANSI" },
+        { "type": "terminal",  "key": " Terminal","keyColor": "$ACCENT_ANSI" },
+        "break",
+        { "type": "colors", "paddingLeft": 2 }
+    ]
+}
+EOF
+
 cat > "$REPO_DIR/.config/btop/themes/gruvbrutal.theme" <<EOF
 # Theme: Gruvbrutal — généré par theme/generate.sh à partir de
 # theme/palette.sh, ne pas éditer à la main.
@@ -154,6 +196,23 @@ theme[upload_start]="#a89984"
 theme[upload_mid]="#$ACCENT"
 theme[upload_end]="#$URGENT"
 EOF
+
+# Palette Qt (qt5ct/qt6ct), 21 rôles QPalette dans l'ordre attendu par ces
+# apps (WindowText, Button, Light, Midlight, Dark, Mid, Text, BrightText,
+# ButtonText, Base, Window, Shadow, Highlight, HighlightedText, Link,
+# LinkVisited, AlternateBase, NoRole, ToolTipBase, ToolTipText,
+# PlaceholderText). Neutres fixes (a89984) hors palette, comme ailleurs.
+QT_COLORS="#ff$FG0, #ff$BG1, #ff$BG0, #ff$BG1, #ffa89984, #ffa89984, #ff$FG0, #ff$FG0, #ff$FG0, #ff$BG0, #ff$BG0, #ff$FAUXNOIR, #ff$ACCENT, #ff$BG0, #ff076678, #ff8f3f71, #ff$BG1, #ff$FG0, #ff$BG1, #ff$FG0, #80$FG1"
+
+for ctdir in qt5ct qt6ct; do
+    mkdir -p "$REPO_DIR/.config/$ctdir/colors"
+    cat > "$REPO_DIR/.config/$ctdir/colors/Gruvbrutal.conf" <<EOF
+[ColorScheme]
+active_colors=$QT_COLORS
+disabled_colors=$QT_COLORS
+inactive_colors=$QT_COLORS
+EOF
+done
 
 echo "== Fichiers avec logique : remplacement ciblé par clé =="
 

@@ -58,4 +58,5 @@ btop — Moniteur de ressources (CPU/RAM/réseau/process)
 Ctrl+R — Historique de commandes (atuin, recherche floue)
 n / nn — Norminette (dossier courant / srcs + includes)
 update — Tout mettre à jour (système, AUR, oh-my-zsh, plugins nvim...) via topgrade
+ff — Résumé système (fastfetch), thémé comme le reste du bureau
 EOF

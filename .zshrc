@@ -37,6 +37,9 @@ alias al='alias | grep'
 alias cl='clear'
 alias ..='cd ..'
 
+# Résumé système au lancement (voir .config/fastfetch/, thémé via theme/generate.sh)
+alias ff='cl && fastfetch'
+
 # Éditeur et code
 alias v='nvim'
 alias coco='cd && cd Code/42/git42/common-core/'
