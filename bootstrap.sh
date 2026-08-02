@@ -66,7 +66,7 @@ sudo pacman -S --needed "${PACMAN_EXTRAS[@]}"
 # 3. Paquets — AUR
 # ----------------------------------------------------------------------
 AUR_CORE=(wlogout)
-AUR_EXTRAS=(brave-bin)
+AUR_EXTRAS=(brave-bin topgrade)
 
 echo "== Paquets AUR (coeur) =="
 yay -S --needed "${AUR_CORE[@]}"
