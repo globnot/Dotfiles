@@ -1,0 +1,77 @@
+# Theme: Gruvbrutal
+# Gruvbox Light + fuchsia, assorti au reste du bureau (waybar/swaync/hyprland).
+# Rampe de dégradé : gris-tan neutre au repos -> fuchsia -> rouge en charge.
+
+# Fond principal (ignoré si theme_background = false, voir btop.conf)
+theme[main_bg]="#fbf1c7"
+
+# Texte principal
+theme[main_fg]="#3c3836"
+
+# Titres des boîtes
+theme[title]="#1d2021"
+
+# Surlignage des raccourcis clavier
+theme[hi_fg]="#e91e8c"
+
+# Fond de la ligne de process sélectionnée
+theme[selected_bg]="#ebdbb2"
+
+# Texte de la ligne sélectionnée
+theme[selected_fg]="#1d2021"
+
+# Texte inactif/désactivé, aussi le bas du dégradé des lignes de process
+theme[inactive_fg]="#a89984"
+
+# Texte dessiné sur les graphiques (uptime, échelle réseau)
+theme[graph_text]="#504945"
+
+# Mini graphiques divers dans la boîte de process
+theme[proc_misc]="#e91e8c"
+
+# Contours des boîtes (faux noir, cohérent avec les bordures neobrutalism)
+theme[cpu_box]="#1d2021"
+theme[mem_box]="#1d2021"
+theme[net_box]="#1d2021"
+theme[proc_box]="#1d2021"
+
+# Ligne de séparation entre boîtes
+theme[div_line]="#a89984"
+
+# --- Dégradés graphiques ---
+
+theme[temp_start]="#a89984"
+theme[temp_mid]="#e91e8c"
+theme[temp_end]="#9d0006"
+
+theme[cpu_start]="#ebdbb2"
+theme[cpu_mid]="#e91e8c"
+theme[cpu_end]="#9d0006"
+
+theme[process_start]="#3c3836"
+theme[process_mid]="#e91e8c"
+theme[process_end]="#9d0006"
+
+theme[free_start]="#a89984"
+theme[free_mid]="#e91e8c"
+theme[free_end]="#9d0006"
+
+theme[cached_start]="#a89984"
+theme[cached_mid]="#e91e8c"
+theme[cached_end]="#9d0006"
+
+theme[available_start]="#a89984"
+theme[available_mid]="#e91e8c"
+theme[available_end]="#9d0006"
+
+theme[used_start]="#a89984"
+theme[used_mid]="#e91e8c"
+theme[used_end]="#9d0006"
+
+theme[download_start]="#a89984"
+theme[download_mid]="#e91e8c"
+theme[download_end]="#9d0006"
+
+theme[upload_start]="#a89984"
+theme[upload_mid]="#e91e8c"
+theme[upload_end]="#9d0006"

@@ -112,6 +112,127 @@ export _ZO_FZF_OPTS='
 --color=marker:#e91e8c,spinner:#e91e8c,info:#8f3f71
 '
 
+# ======================================================================================
+# cdf/cdw/cdd/cdfa : sélecteur de dossier flou (fd + fzf + zoxide + eza)
+# ======================================================================================
+# Inspiré du repo de Cartoone (même machine). cdf liste les dossiers utiles
+# (~/Code, ~/.config) classés par fréquence d'usage (zoxide) ; cdw fait pareil
+# puis ouvre nvim ; cdd ne propose que les dossiers déjà visités (zoxide) ;
+# cdfa cherche partout dans $HOME sans restriction.
+DIR_FZF_OPTS=(
+	--border=rounded
+	--height=100%
+	--layout=default
+	--info=inline
+	--color=fg:#3c3836,hl:#e91e8c
+	--color=fg+:#282828,hl+:#e91e8c
+	--color=border:#928374,prompt:#076678,pointer:#076678
+	--color=marker:#e91e8c,spinner:#e91e8c,info:#8f3f71
+)
+
+# Dossiers/arbres bruyants ignorés par cdf/cdw/cdfa
+FD_EXCLUDES=(
+	--exclude '.cache'
+	--exclude 'node_modules'
+	--exclude '.git'
+	--exclude '.cargo'
+	--exclude '.local'
+	--exclude '.npm'
+)
+
+# Racines de recherche pour cdf/cdw (cdfa ignore ceci et cherche tout $HOME)
+setopt EXTENDED_GLOB
+BASES=(
+	$HOME/Code(N/)
+	$HOME/.config(N/)
+)
+
+# Candidats de recherche normale : les bases elles-mêmes + leurs sous-dossiers
+_cdf_candidates() {
+	{
+		print -rl -- "${BASES[@]}"
+		fd --type d --hidden --no-ignore "${FD_EXCLUDES[@]}" . "${BASES[@]}" 2>/dev/null
+	} | sed 's|/$||; /^$/d' | sort -u
+}
+
+# Réordonne l'entrée : dossiers déjà visités (zoxide) en premier, les autres
+# ensuite du moins profond au plus profond
+_cdf_frecency_rank() {
+	awk -v zlist=<(zoxide query -l 2>/dev/null) '
+		BEGIN { while ((getline line < zlist) > 0) rank[line] = ++n }
+		$0 in rank { printf "0\t%08d\t%s\n", rank[$0], $0; next }
+		           { printf "1\t%08d\t%s\n", gsub("/", "/"), $0 }
+	' | sort -t$'\t' -k1,1 -k2,2 -k3,3 | cut -f3-
+}
+
+cdf() {
+	local dir
+	dir=$(
+		_cdf_candidates \
+			| _cdf_frecency_rank \
+			| sed "s|^$HOME|~|" \
+			| fzf "${DIR_FZF_OPTS[@]}" \
+				--border-label=cdf \
+				--scheme=history \
+				--tiebreak=index \
+				--bind 'esc:abort' \
+				--query "${*:-}" \
+				--preview 'eza --icons --group-directories-first --color=always --tree --level=2 "$(echo {} | sed "s|^~|$HOME|")"' \
+				--preview-window=right:50%:wrap
+	)
+	[[ -n "$dir" ]] && cd "${dir/#\~/$HOME}"
+}
+
+cdw() {
+	local dir
+	dir=$(
+		_cdf_candidates \
+			| _cdf_frecency_rank \
+			| sed "s|^$HOME|~|" \
+			| fzf "${DIR_FZF_OPTS[@]}" \
+				--border-label=cdw \
+				--scheme=history \
+				--tiebreak=index \
+				--bind 'esc:abort' \
+				--query "${*:-}" \
+				--preview 'eza --icons --group-directories-first --color=always --tree --level=2 "$(echo {} | sed "s|^~|$HOME|")"' \
+				--preview-window=right:50%:wrap
+	)
+	[[ -n "$dir" ]] && cd "${dir/#\~/$HOME}" && nvim
+}
+
+cdd() {
+	local dir
+	dir=$(
+		zoxide query -l 2>/dev/null \
+			| sed "s|^$HOME|~|" \
+			| fzf "${DIR_FZF_OPTS[@]}" \
+				--border-label=cdd \
+				--scheme=history \
+				--tiebreak=index \
+				--bind 'esc:abort' \
+				--query "${*:-}" \
+				--preview 'eza --icons --group-directories-first --color=always --tree --level=2 "$(echo {} | sed "s|^~|$HOME|")"' \
+				--preview-window=right:50%:wrap
+	)
+	[[ -n "$dir" ]] && cd "${dir/#\~/$HOME}"
+}
+
+cdfa() {
+	local dir
+	dir=$(
+		fd . ~ --type d --hidden --no-ignore "${FD_EXCLUDES[@]}" \
+			| sed "s|^$HOME|~|" \
+			| fzf "${DIR_FZF_OPTS[@]}" \
+				--border-label=cdfa \
+				--bind 'esc:abort' \
+				--query "${*:-}" \
+				--preview 'eza --icons --group-directories-first --color=always --tree --level=2 "$(echo {} | sed "s|^~|$HOME|")"' \
+				--preview-window=right:50%:wrap
+	)
+	[[ -n "$dir" ]] && cd "${dir/#\~/$HOME}"
+}
+
 # Atuin (historique de commandes en base SQLite, recherche floue)
 _cached_init atuin
 
