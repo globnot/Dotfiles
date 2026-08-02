@@ -1,0 +1,63 @@
+#!/bin/bash
+# Sélecteur de couleur d'accent (rofi) : change ACCENT dans theme/palette.sh,
+# relance theme/generate.sh pour tout propager, puis recharge les apps
+# concernées. Les préréglages sont des teintes Gruvbox déjà présentes
+# ailleurs dans le repo (ANSI kitty, couleurs fzf), pour rester cohérent.
+set -euo pipefail
+
+REPO="$HOME/Dotfiles"
+
+PRESETS=(
+    "Fuchsia (actuel):e91e8c"
+    "Rouge:cc241d"
+    "Bleu:076678"
+    "Vert:427b58"
+    "Orange:d65d0e"
+    "Violet:8f3f71"
+)
+CUSTOM_LABEL="Personnalisé (hex)..."
+
+preset_line() {
+    printf '<span foreground="#%s">████</span>  %s' "$2" "$1"
+}
+
+menu=""
+for p in "${PRESETS[@]}"; do
+    name="${p%%:*}"
+    hex="${p##*:}"
+    menu+="$(preset_line "$name" "$hex")"$'\n'
+done
+menu+="$CUSTOM_LABEL"
+
+chosen=$(printf '%s\n' "$menu" | rofi -dmenu -i -p "Accent" -markup-rows -theme-str 'listview {lines: 7;}')
+[ -z "$chosen" ] && exit 0
+
+hex=""
+if [ "$chosen" = "$CUSTOM_LABEL" ]; then
+    input=$(rofi -dmenu -i -p "Hex (sans #)" -mesg "Ex : 1e90ff")
+    hex="${input#\#}"
+else
+    for p in "${PRESETS[@]}"; do
+        name="${p%%:*}"
+        h="${p##*:}"
+        if [ "$chosen" = "$(preset_line "$name" "$h")" ]; then
+            hex="$h"
+            break
+        fi
+    done
+fi
+
+hex="${hex,,}"
+if ! [[ "$hex" =~ ^[0-9a-f]{6}$ ]]; then
+    [ -n "$hex" ] && notify-send "Thème" "Couleur invalide : $hex"
+    exit 1
+fi
+
+sed -i -E "s/^(ACCENT=).*/\1${hex}/" "$REPO/theme/palette.sh"
+bash "$REPO/theme/generate.sh" >/dev/null
+
+hyprctl reload >/dev/null 2>&1 || true
+pkill -SIGUSR2 waybar 2>/dev/null || true
+swaync-client -rs >/dev/null 2>&1 || true
+
+notify-send "Thème" "Accent changé : #$hex"

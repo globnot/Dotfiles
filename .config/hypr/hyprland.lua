@@ -338,6 +338,9 @@ hl.bind(mainMod .. " + CTRL + D", hl.dsp.exec_cmd("python3 $HOME/.config/hypr/sc
 -- Pense-bête des raccourcis clavier (liste statique, voir le script pour le pourquoi)
 hl.bind(mainMod .. " + slash", hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/show-keybinds.sh"))
 
+-- Sélecteur de couleur d'accent (change theme/palette.sh + régénère)
+hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/theme-picker.sh"))
+
 -- Température de couleur écran (filtre lumière bleue, hyprsunset)
 hl.bind(mainMod .. " + bracketleft",  hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/adjust-temperature.sh warmer"), { repeating = true })
 hl.bind(mainMod .. " + bracketright", hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/adjust-temperature.sh cooler"), { repeating = true })
