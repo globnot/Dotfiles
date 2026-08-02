@@ -18,6 +18,11 @@ distribution. Certaines valeurs sont aussi propres à cette machine
 (résolutions d'écran dans `hyprland.lua`, capteur `fan1` lu par le module
 fan de waybar) et à adapter ailleurs.
 
+Le stockage sécurisé de secrets (VS Code, identifiants git...) et l'agent
+SSH passent par `gnome-keyring`, démarré et déverrouillé automatiquement à
+la connexion via PAM (`/etc/pam.d/sddm`, déjà prêt sur une install SDDM
+standard — il suffit d'installer le paquet).
+
 ## Contenu
 
 | Dossier/fichier | Rôle |
@@ -35,7 +40,7 @@ fan de waybar) et à adapter ailleurs.
 | `.config/atuin/` | Historique shell |
 | `.config/fastfetch/` | Résumé système au lancement (alias `ff`) |
 | `.config/qt5ct/`, `qt6ct/` | Thème des rares apps Qt (surtout `polkit-kde-agent`) |
-| `.config/environment.d/` | Variables d'env session-wide (thème Qt pour les services D-Bus) |
+| `.config/environment.d/` | Variables d'env session-wide (thème Qt, agent SSH gnome-keyring) |
 | `theme/` | Palette centralisée de la DA (`palette.sh` + `generate.sh`) |
 | `.zshrc`, `.p10k.zsh` | Shell |
 | `install.sh` | Liens symboliques uniquement |
@@ -112,7 +117,8 @@ wlogout, btop, fastfetch, qt5ct/qt6ct et zsh.
   [fzf](https://github.com/junegunn/fzf), [fd](https://github.com/sharkdp/fd),
   [fastfetch](https://github.com/fastfetch-cli/fastfetch),
   [topgrade](https://github.com/topgrade-rs/topgrade),
-  [qt5ct](https://github.com/trialuser02/qt5ct)/[qt6ct](https://github.com/trialuser02/qt6ct)
+  [qt5ct](https://github.com/trialuser02/qt5ct)/[qt6ct](https://github.com/trialuser02/qt6ct),
+  [gnome-keyring](https://gitlab.gnome.org/GNOME/gnome-keyring)
 - [Nerd Fonts](https://www.nerdfonts.com/) pour les icônes utilisées
   partout (waybar, rofi, wlogout, SDDM...)
 
