@@ -18,17 +18,6 @@ distribution. Certaines valeurs sont aussi propres à cette machine
 (résolutions d'écran dans `hyprland.lua`, capteur `fan1` lu par le module
 fan de waybar) et à adapter ailleurs.
 
-## Captures
-
-| | |
-|---|---|
-| ![waybar](assets/screenshots/waybar.png) | ![Lanceur (SUPER+R)](assets/screenshots/rofi-launcher.png) |
-| ![Menu wifi (SUPER+W)](assets/screenshots/rofi-wifi.png) | ![Sélecteur de couleur (SUPER+T)](assets/screenshots/theme-picker.png) |
-| ![Notifications (SUPER+N)](assets/screenshots/swaync.png) | ![Extinction (SUPER+M)](assets/screenshots/wlogout.png) |
-| ![Nautilus (SUPER+E)](assets/screenshots/nautilus.png) | ![btop](assets/screenshots/btop.png) |
-
-![Verrouillage (SUPER+L)](assets/screenshots/hyprlock.png)
-
 ## Contenu
 
 | Dossier/fichier | Rôle |
