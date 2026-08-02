@@ -23,6 +23,7 @@ SUPER + W — Menu wifi
 SUPER + N — Panneau de notifications
 SUPER + M — Menu extinction/verrouillage
 SUPER + L — Verrouiller l'écran
+SUPER + T — Changer la couleur d'accent
 ── Fenêtres ──
 SUPER + C — Fermer la fenêtre active
 SUPER + V — Basculer flottant/tuilé
@@ -56,4 +57,5 @@ zi — Sélecteur interactif zoxide (cd intelligent)
 btop — Moniteur de ressources (CPU/RAM/réseau/process)
 Ctrl+R — Historique de commandes (atuin, recherche floue)
 n / nn — Norminette (dossier courant / srcs + includes)
+update — Tout mettre à jour (système, AUR, oh-my-zsh, plugins nvim...) via topgrade
 EOF
