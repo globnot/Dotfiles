@@ -2,14 +2,15 @@
 # Réécrit bluetooth-state.css selon l'état réel du bluetooth (bouton 5 du buttons-grid),
 # car le mécanisme "active" natif de swaync ne fonctionne pas de façon fiable
 # (voir issue amont ErikReider/SwayNotificationCenter#739).
+source "$HOME/Dotfiles/theme/palette.sh"
 CSS_FILE="$HOME/.config/swaync/bluetooth-state.css"
 
 if bluetoothctl show 2>/dev/null | grep -q "Powered: yes"; then
-    cat > "$CSS_FILE" <<'EOF'
+    cat > "$CSS_FILE" <<EOF
 /* Auto-généré par update-bluetooth-state.sh, ne pas éditer à la main */
 .widget-buttons-grid flowboxchild:nth-child(5) > button {
-  background-color: #e91e8c;
-  color: #fbf1c7;
+  background-color: #$ACCENT;
+  color: #$BG0;
 }
 EOF
 else

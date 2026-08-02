@@ -1,14 +1,15 @@
 #!/bin/bash
 # Réécrit airplane-state.css selon l'état réel du wifi (bouton 4 du buttons-grid),
 # même contournement que update-bluetooth-state.sh (voir ce fichier pour le pourquoi).
+source "$HOME/Dotfiles/theme/palette.sh"
 CSS_FILE="$HOME/.config/swaync/airplane-state.css"
 
 if rfkill list wifi 2>/dev/null | grep -q "Soft blocked: yes"; then
-    cat > "$CSS_FILE" <<'EOF'
+    cat > "$CSS_FILE" <<EOF
 /* Auto-généré par update-airplane-state.sh, ne pas éditer à la main */
 .widget-buttons-grid flowboxchild:nth-child(4) > button {
-  background-color: #e91e8c;
-  color: #fbf1c7;
+  background-color: #$ACCENT;
+  color: #$BG0;
 }
 EOF
 else

@@ -95,9 +95,14 @@ _cached_init() {
 	source $cache
 }
 
+# Palette DA : ces deux lignes sont gérées par theme/generate.sh (voir
+# theme/palette.sh) — ne pas éditer directement, ce serait écrasé.
+THEME_FG="#3c3836"
+THEME_ACCENT="#e91e8c"
+
 # Zoxide (cd intelligent) + zi (sélecteur interactif fzf avec preview eza)
 _cached_init zoxide
-export _ZO_FZF_OPTS='
+export _ZO_FZF_OPTS="
 --border=rounded
 --border-label=zi
 --height=100%
@@ -106,11 +111,11 @@ export _ZO_FZF_OPTS='
 --delimiter=[[:space:]]+
 --preview=eza\ --icons\ --group-directories-first\ --color=always\ --tree\ --level=2\ {2..}
 --preview-window=right:50%:wrap
---color=fg:#3c3836,hl:#e91e8c
---color=fg+:#282828,hl+:#e91e8c
+--color=fg:${THEME_FG},hl:${THEME_ACCENT}
+--color=fg+:#282828,hl+:${THEME_ACCENT}
 --color=border:#928374,prompt:#076678,pointer:#076678
---color=marker:#e91e8c,spinner:#e91e8c,info:#8f3f71
-'
+--color=marker:${THEME_ACCENT},spinner:${THEME_ACCENT},info:#8f3f71
+"
 
 # ======================================================================================
 # cdf/cdw/cdd/cdfa : sélecteur de dossier flou (fd + fzf + zoxide + eza)
@@ -124,10 +129,10 @@ DIR_FZF_OPTS=(
 	--height=100%
 	--layout=default
 	--info=inline
-	--color=fg:#3c3836,hl:#e91e8c
-	--color=fg+:#282828,hl+:#e91e8c
+	--color=fg:${THEME_FG},hl:${THEME_ACCENT}
+	--color=fg+:#282828,hl+:${THEME_ACCENT}
 	--color=border:#928374,prompt:#076678,pointer:#076678
-	--color=marker:#e91e8c,spinner:#e91e8c,info:#8f3f71
+	--color=marker:${THEME_ACCENT},spinner:${THEME_ACCENT},info:#8f3f71
 )
 
 # Dossiers/arbres bruyants ignorés par cdf/cdw/cdfa

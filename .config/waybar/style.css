@@ -1,3 +1,13 @@
+/* Palette DA : lignes gérées par theme/generate.sh (voir theme/palette.sh).
+   Les autres teintes du fichier (gris neutres, nuances warning...) sont
+   fixes et ne sont pas générées. */
+@define-color bg0 #fbf1c7;
+@define-color bg1 #ebdbb2;
+@define-color fg0 #3c3836;
+@define-color fauxnoir #1d2021;
+@define-color accent #e91e8c;
+@define-color urgent #9d0006;
+
 * {
     font-family: "JetBrainsMono Nerd Font Mono";
     font-size: 12px;
@@ -5,9 +15,9 @@
 }
 
 window#waybar {
-    background-color: #fbf1c7;
-    color: #3c3836;
-    border-bottom: 3px solid #1d2021;
+    background-color: @bg0;
+    color: @fg0;
+    border-bottom: 3px solid @fauxnoir;
 }
 
 #workspaces button {
@@ -15,9 +25,9 @@ window#waybar {
     margin: 8px 2px;
     min-width: 16px;
     font-size: 11px;
-    color: #3c3836;
-    background-color: #ebdbb2;
-    border: 1.5px solid #1d2021;
+    color: @fg0;
+    background-color: @bg1;
+    border: 1.5px solid @fauxnoir;
     border-radius: 4px;
 }
 
@@ -28,8 +38,8 @@ window#waybar {
 }
 
 #workspaces button.active {
-    color: #fbf1c7;
-    background-color: #e91e8c;
+    color: @bg0;
+    background-color: @accent;
 }
 
 #workspaces button:hover {
@@ -38,25 +48,25 @@ window#waybar {
 
 #clock {
     padding: 0 10px;
-    color: #3c3836;
+    color: @fg0;
 }
 
 #network {
     padding: 0 6px 0 10px;
     font-size: 24px;
-    color: #1d2021;
+    color: @fauxnoir;
 }
 
 #tray {
     padding: 0 14px 0 10px;
     font-size: 24px;
-    color: #1d2021;
+    color: @fauxnoir;
 }
 
 #bluetooth {
     padding: 0 10px 0 6px;
     font-size: 17px;
-    color: #1d2021;
+    color: @fauxnoir;
 }
 
 button#custom-notification,
@@ -68,12 +78,12 @@ button#custom-notification,
     font-size: 0;
     border-radius: 3px;
     background-color: transparent;
-    border: 2px solid #1d2021;
+    border: 2px solid @fauxnoir;
 }
 
 #custom-notification.notification,
 #custom-notification.dnd-notification {
-    border-color: #e91e8c;
+    border-color: @accent;
 }
 
 #cpu,
@@ -84,7 +94,7 @@ button#custom-notification,
 #battery {
     padding: 0 8px;
     font-size: 13px;
-    color: #3c3836;
+    color: @fg0;
 }
 
 #cpu.warning,
@@ -96,11 +106,11 @@ button#custom-notification,
 #cpu.critical,
 #memory.critical,
 #disk.critical {
-    color: #9d0006;
+    color: @urgent;
 }
 
 #temperature.critical {
-    color: #9d0006;
+    color: @urgent;
 }
 
 #custom-fan.warm {
@@ -109,7 +119,7 @@ button#custom-notification,
 
 #custom-fan.high,
 #custom-fan.critical {
-    color: #9d0006;
+    color: @urgent;
 }
 
 #bluetooth.disabled {
@@ -125,5 +135,5 @@ button#custom-notification,
 }
 
 #battery.critical {
-    color: #9d0006;
+    color: @urgent;
 }

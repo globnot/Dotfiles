@@ -1,0 +1,11 @@
+/* Généré par theme/generate.sh à partir de theme/palette.sh, ne pas éditer
+   à la main : ce fichier serait écrasé au prochain run. */
+* {
+    bg0:      #fbf1c7;
+    bg1:      #ebdbb2;
+    fg0:      #3c3836;
+    fg1:      #504945;
+    accent:   #e91e8c;
+    fauxnoir: #1d2021;
+    urgent:   #9d0006;
+}

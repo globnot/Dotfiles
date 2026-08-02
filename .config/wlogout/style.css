@@ -1,3 +1,10 @@
+/* Palette DA : lignes gérées par theme/generate.sh (voir theme/palette.sh). */
+@define-color bg0 #fbf1c7;
+@define-color bg1 #ebdbb2;
+@define-color fg0 #3c3836;
+@define-color fauxnoir #1d2021;
+@define-color accent #e91e8c;
+
 * {
 	background-image: none;
 	box-shadow: none;
@@ -5,19 +12,19 @@
 }
 
 window {
-	background-color: #fbf1c7;
+	background-color: @bg0;
 }
 
 button {
     min-width: 160px;
     min-height: 160px;
-    border: 3px solid #1d2021;
+    border: 3px solid @fauxnoir;
     border-radius: 4px;
-    color: #3c3836;
-    background-color: #ebdbb2;
+    color: @fg0;
+    background-color: @bg1;
     outline-style: none;
     margin: 12px;
-    box-shadow: 5px 5px 0 0 #1d2021;
+    box-shadow: 5px 5px 0 0 @fauxnoir;
 }
 
 button label {
@@ -25,6 +32,6 @@ button label {
 }
 
 button:focus, button:active, button:hover {
-    color: #fbf1c7;
-    background-color: #e91e8c;
+    color: @bg0;
+    background-color: @accent;
 }

@@ -5,15 +5,9 @@ configuration {
     drun-display-format: "{name}";
 }
 
-* {
-    bg0:      #fbf1c7;
-    bg1:      #ebdbb2;
-    fg0:      #3c3836;
-    fg1:      #504945;
-    accent:   #e91e8c;
-    fauxnoir: #1d2021;
-    urgent:   #9d0006;
+@import "colors.rasi"
 
+* {
     background-color: transparent;
     text-color:       @fg0;
 }

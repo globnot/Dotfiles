@@ -1,7 +1,6 @@
-/* Recolorie les jetons sémantiques GTK4/libadwaita (pas de thème complet à
-   installer) avec la palette Gruvbox Light + fuchsia du reste du bureau.
-   Même technique que Cartoone (dotfiles-cartoon/.config/gtk-4.0/gtk.css),
-   adaptée en clair. */
+/* Généré par theme/generate.sh à partir de theme/palette.sh, ne pas éditer
+   à la main. Recolorie les jetons sémantiques GTK4/libadwaita (pas de
+   thème complet à installer). gtk-3.0/gtk.css importe ce fichier. */
 @define-color accent_bg_color #e91e8c;
 @define-color accent_color #e91e8c;
 @define-color accent_fg_color #fbf1c7;

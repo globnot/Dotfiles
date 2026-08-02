@@ -1,44 +1,22 @@
-# Theme: Gruvbrutal
-# Gruvbox Light + fuchsia, assorti au reste du bureau (waybar/swaync/hyprland).
-# Rampe de dégradé : gris-tan neutre au repos -> fuchsia -> rouge en charge.
+# Theme: Gruvbrutal — généré par theme/generate.sh à partir de
+# theme/palette.sh, ne pas éditer à la main.
+# Gruvbox Light + accent, assorti au reste du bureau (waybar/swaync/hyprland).
+# Rampe de dégradé : gris-tan neutre au repos -> accent -> rouge en charge.
 
-# Fond principal (ignoré si theme_background = false, voir btop.conf)
 theme[main_bg]="#fbf1c7"
-
-# Texte principal
 theme[main_fg]="#3c3836"
-
-# Titres des boîtes
 theme[title]="#1d2021"
-
-# Surlignage des raccourcis clavier
 theme[hi_fg]="#e91e8c"
-
-# Fond de la ligne de process sélectionnée
 theme[selected_bg]="#ebdbb2"
-
-# Texte de la ligne sélectionnée
 theme[selected_fg]="#1d2021"
-
-# Texte inactif/désactivé, aussi le bas du dégradé des lignes de process
 theme[inactive_fg]="#a89984"
-
-# Texte dessiné sur les graphiques (uptime, échelle réseau)
 theme[graph_text]="#504945"
-
-# Mini graphiques divers dans la boîte de process
 theme[proc_misc]="#e91e8c"
-
-# Contours des boîtes (faux noir, cohérent avec les bordures neobrutalism)
 theme[cpu_box]="#1d2021"
 theme[mem_box]="#1d2021"
 theme[net_box]="#1d2021"
 theme[proc_box]="#1d2021"
-
-# Ligne de séparation entre boîtes
 theme[div_line]="#a89984"
-
-# --- Dégradés graphiques ---
 
 theme[temp_start]="#a89984"
 theme[temp_mid]="#e91e8c"

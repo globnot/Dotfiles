@@ -70,7 +70,7 @@ notificationwindow, blankwindow {
   margin-top: 8px;
   margin-right: 8px;
   box-shadow: none;
-  border: 2px solid #1d2021;
+  border: 2px solid var(--noti-border-color);
   min-width: 24px;
   min-height: 24px;
 }
@@ -80,7 +80,7 @@ notificationwindow, blankwindow {
   background: var(--noti-close-bg-hover);
   color: var(--cc-bg);
   transition: var(--hover-tranistion);
-  border: 2px solid #1d2021;
+  border: 2px solid var(--noti-border-color);
 }
 
 .notification-row {
@@ -93,7 +93,7 @@ notificationwindow, blankwindow {
 }
 
 .notification-row:focus .notification-background .notification {
-  border: 1.5px solid #e91e8c;
+  border: 1.5px solid var(--bg-selected);
 }
 
 .notification-row .notification-background {
@@ -157,7 +157,7 @@ notificationwindow, blankwindow {
   min-width: var(--notification-icon-size);
   min-height: var(--notification-icon-size);
   border-radius: 100px;
-  background-color: #1d2021;
+  background-color: var(--noti-border-color);
   color: transparent;
   /* Size in px */
   margin: 4px;
@@ -274,7 +274,7 @@ notificationwindow, blankwindow {
 }
 
 .notification-group:focus .notification-row .notification-background .notification {
-  border: 1.5px solid #e91e8c;
+  border: 1.5px solid var(--bg-selected);
 }
 
 .notification-group:focus {
@@ -350,8 +350,8 @@ notificationwindow, blankwindow {
   background: var(--cc-bg);
   color: var(--text-color);
   border-radius: var(--border-radius);
-  border: 3px solid #e91e8c;
-  box-shadow: 8px 8px 0 0 #1d2021;
+  border: 3px solid var(--bg-selected);
+  box-shadow: 8px 8px 0 0 var(--noti-border-color);
 }
 
 .control-center .control-center-list-placeholder {
@@ -423,13 +423,13 @@ notificationwindow, blankwindow {
 
 .widget-dnd switch {
   border-radius: 4px;
-  border: 2px solid #1d2021;
+  border: 2px solid var(--noti-border-color);
   margin-left: 8px;
 }
 
 .widget-dnd switch slider {
   border-radius: 2px;
-  border: 1.5px solid #1d2021;
+  border: 1.5px solid var(--noti-border-color);
 }
 
 /* Label widget */
@@ -507,7 +507,7 @@ notificationwindow, blankwindow {
   margin: 8px;
   border-radius: var(--border-radius);
   background: rgba(var(--noti-bg), var(--noti-bg-alpha));
-  border: 3px solid #1d2021;
+  border: 3px solid var(--noti-border-color);
   box-shadow: var(--hard-shadow-sm);
   font-size: 1.2rem;
 }
@@ -527,20 +527,20 @@ notificationwindow, blankwindow {
   border-radius: var(--border-radius);
   background: rgba(var(--noti-bg), var(--noti-bg-alpha));
   color: var(--text-color);
-  border: 2.5px solid #1d2021;
+  border: 2.5px solid var(--noti-border-color);
   box-shadow: none;
   transition: var(--hover-tranistion);
 }
 
 .widget-buttons-grid flowboxchild > button:hover {
-  background-color: #e91e8c;
+  background-color: var(--bg-selected);
   color: var(--cc-bg);
 }
 
 .widget-buttons-grid flowboxchild > button:checked {
   /* vrai GtkToggleButton : l'état "actif" est le pseudo-état natif :checked,
      pas une classe .active (la doc du schema swaync est erronée sur ce point) */
-  background-color: #e91e8c;
+  background-color: var(--bg-selected);
   color: var(--cc-bg);
 }
 
@@ -609,7 +609,7 @@ notificationwindow, blankwindow {
   margin: 8px;
   border-radius: var(--border-radius);
   background: rgba(var(--noti-bg), var(--noti-bg-alpha));
-  border: 3px solid #1d2021;
+  border: 3px solid var(--noti-border-color);
   box-shadow: var(--hard-shadow-sm);
   color: var(--text-color);
 }
@@ -618,7 +618,7 @@ notificationwindow, blankwindow {
 .widget-backlight scale trough,
 .widget-slider scale trough {
   background: var(--noti-bg-darker);
-  border: 1.5px solid #1d2021;
+  border: 1.5px solid var(--noti-border-color);
   border-radius: var(--border-radius);
   min-height: 8px;
 }
@@ -626,7 +626,7 @@ notificationwindow, blankwindow {
 .widget-volume scale trough highlight,
 .widget-backlight scale trough highlight,
 .widget-slider scale trough highlight {
-  background: #e91e8c;
+  background: var(--bg-selected);
   border-radius: var(--border-radius);
 }
 
@@ -634,7 +634,7 @@ notificationwindow, blankwindow {
 .widget-backlight scale slider,
 .widget-slider scale slider {
   background: var(--cc-bg);
-  border: 2px solid #1d2021;
+  border: 2px solid var(--noti-border-color);
   border-radius: 3px;
   min-width: 16px;
   min-height: 16px;

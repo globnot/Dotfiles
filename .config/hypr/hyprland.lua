@@ -55,6 +55,11 @@ hl.monitor({
 -- Set programs that you use
 local terminal    = "kitty"
 local fileManager = "nautilus --new-window" -- swap for thunar, dolphin, nemo...
+
+-- Palette DA : ces deux lignes sont gérées par theme/generate.sh (voir
+-- theme/palette.sh) — ne pas éditer directement, ce serait écrasé.
+local themeAccent   = "e91e8c"
+local themeFauxnoir = "1d2021"
 local menu        = "rofi -show drun"
 
 
@@ -133,8 +138,8 @@ hl.config({
         border_size = 3,
 
         col = {
-            active_border   = "rgba(e91e8cee)",
-            inactive_border = "rgba(1d2021aa)",
+            active_border   = "rgba(" .. themeAccent .. "ee)",
+            inactive_border = "rgba(" .. themeFauxnoir .. "aa)",
         },
 
         -- Set to true to enable resizing windows by clicking and dragging on borders and gaps
@@ -157,7 +162,7 @@ hl.config({
         -- Neobrutalism : ombre dure décalée en faux noir, pas de flou
         shadow = {
             enabled  = true,
-            color    = "rgba(1d2021ff)",
+            color    = "rgba(" .. themeFauxnoir .. "ff)",
             offset   = { 5, 5 },
             range    = 2,
             sharp    = true,
