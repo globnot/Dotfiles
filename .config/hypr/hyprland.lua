@@ -337,7 +337,9 @@ hl.device({
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
-hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
+-- Nouveau terminal dans le dossier courant du terminal actif (voir le
+-- script pour le pourquoi), pas toujours $HOME.
+hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("python3 $HOME/.config/hypr/scripts/smart-terminal.py"))
 local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/wlogout.sh"))
