@@ -105,10 +105,11 @@ echo "== Activation des services =="
 sudo systemctl enable --now NetworkManager bluetooth sddm
 
 # ----------------------------------------------------------------------
-# 6. Liens symboliques + thème SDDM
+# 6. Liens symboliques + thème SDDM + règles udev
 # ----------------------------------------------------------------------
 "$REPO_DIR/install.sh"
 sudo "$REPO_DIR/.config/hypr/scripts/setup-sddm-theme.sh"
+sudo "$REPO_DIR/.config/hypr/scripts/setup-udev-rules.sh"
 
 echo
 echo "Terminé. Redémarre (ou lance une session Hyprland) pour tout voir en place."

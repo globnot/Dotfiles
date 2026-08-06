@@ -1,0 +1,9 @@
+# Désactive l'autosuspend USB pour le capteur d'empreinte Synaptics
+# (idVendor=06cb, idProduct=00f9). Sans ça, autosuspend_delay_ms=2000
+# suspend le capteur après seulement 2s d'inactivité et son réveil est
+# peu fiable -> déverrouillage par empreinte qui devient flaky après un
+# moment d'utilisation (fonctionne bien juste après boot, quand le
+# capteur vient d'être initialisé et n'a pas encore eu le temps de se
+# faire suspendre/mal réveiller). Voir setup-udev-rules.sh pour le
+# déploiement (/etc/udev/rules.d/, besoin de root).
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="06cb", ATTR{idProduct}=="00f9", TEST=="power/control", ATTR{power/control}="on"

@@ -27,7 +27,7 @@ standard — il suffit d'installer le paquet).
 
 | Dossier/fichier | Rôle |
 |---|---|
-| `.config/hypr/` | `hyprland.lua`, scripts (screenshots, wlogout...), thème SDDM `gruvbrutal` (`sddm-theme/`) |
+| `.config/hypr/` | `hyprland.lua`, scripts (screenshots, wlogout...), thème SDDM `gruvbrutal` (`sddm-theme/`), règles udev (`udev-rules/`) |
 | `.config/waybar/` | Barre de status |
 | `.config/rofi/` | Lanceur (`config.rasi`) et menu wifi (`config-wifi.rasi`) |
 | `.config/swaync/` | Centre de notifications + scripts d'état |
@@ -100,6 +100,17 @@ reste du bureau, thème, réglages git...) est suivi, ainsi que le profil
 profil est un hash généré par VS Code propre à cette machine : sur une
 install neuve, recréer le profil dans VS Code puis recopier les réglages
 à la main depuis ce fichier.
+
+## Empreinte digitale peu fiable après un moment
+
+Symptôme : le déverrouillage par empreinte marche parfaitement juste après
+le boot, puis devient capricieux après avoir utilisé la machine un
+moment. Cause : le capteur (Synaptics, `06cb:00f9`) a l'autosuspend USB
+activé avec un délai de seulement 2s (`power/autosuspend_delay_ms`) — il
+se fait suspendre en permanence, et son réveil n'est pas fiable. Réglé
+via une règle udev (`.config/hypr/udev-rules/`, déployée par
+`setup-udev-rules.sh`) qui force `power/control=on` pour ce périphérique
+précis (pas d'impact sur l'autosuspend des autres périphériques USB).
 
 ## Raccourcis
 
