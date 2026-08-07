@@ -262,6 +262,7 @@ replace_value "$f" '\$bg1' "$BG1" ""
 replace_value "$f" '\$fg0' "$FG0" ""
 replace_value "$f" '\$fg1' "$FG1" ""
 replace_value "$f" '\$accent' "$ACCENT" ""
+replace_value "$f" '\$fauxnoir' "$FAUXNOIR" ""
 
 # --- QML SDDM : property color en tête de fichier ---
 f="$REPO_DIR/.config/hypr/sddm-theme/gruvbrutal/Main.qml"
