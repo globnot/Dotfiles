@@ -27,7 +27,7 @@ standard — il suffit d'installer le paquet).
 
 | Dossier/fichier | Rôle |
 |---|---|
-| `.config/hypr/` | `hyprland.lua`, scripts (screenshots, wlogout...), thème SDDM `gruvbrutal` (`sddm-theme/`), règles udev (`udev-rules/`) |
+| `.config/hypr/` | `hyprland.lua`, scripts (screenshots, wlogout...), thème SDDM `gruvbrutal` (`sddm-theme/`), règles udev (`udev-rules/`), surcharges systemd (`systemd-overrides/`) |
 | `.config/waybar/` | Barre de status |
 | `.config/rofi/` | Lanceur (`config.rasi`) et menu wifi (`config-wifi.rasi`) |
 | `.config/swaync/` | Centre de notifications + scripts d'état |
@@ -105,12 +105,28 @@ install neuve, recréer le profil dans VS Code puis recopier les réglages
 
 Symptôme : le déverrouillage par empreinte marche parfaitement juste après
 le boot, puis devient capricieux après avoir utilisé la machine un
-moment. Cause : le capteur (Synaptics, `06cb:00f9`) a l'autosuspend USB
-activé avec un délai de seulement 2s (`power/autosuspend_delay_ms`) — il
-se fait suspendre en permanence, et son réveil n'est pas fiable. Réglé
-via une règle udev (`.config/hypr/udev-rules/`, déployée par
-`setup-udev-rules.sh`) qui force `power/control=on` pour ce périphérique
-précis (pas d'impact sur l'autosuspend des autres périphériques USB).
+moment. Deux causes cumulées :
+
+1. Le capteur (Synaptics, `06cb:00f9`) a l'autosuspend USB activé avec un
+   délai de seulement 2s (`power/autosuspend_delay_ms`) — il se fait
+   suspendre en permanence, et son réveil n'est pas fiable. Réglé via une
+   règle udev (`.config/hypr/udev-rules/`, déployée par
+   `setup-udev-rules.sh`) qui force `power/control=on` pour ce
+   périphérique précis (pas d'impact sur l'autosuspend des autres
+   périphériques USB).
+2. Plus fondamental : `fprintd.service` s'active à la demande via D-Bus
+   et s'arrête après quelques secondes d'inactivité (`Type=dbus`, pas de
+   `[Install]`, donc pas activable au boot). Chaque redémarrage à froid
+   déclenche un vrai reset USB du capteur (`kernel: usb 1-5: reset
+   full-speed USB device`, vu dans `journalctl`), qui n'a pas le temps de
+   finir avant le prompt d'empreinte — d'où un déverrouillage fiable
+   juste après boot (fprintd encore chaud depuis la connexion) mais pas
+   ensuite. Réglé par une surcharge systemd
+   (`.config/hypr/systemd-overrides/fprintd.service.d/`, déployée par
+   `setup-fprintd.sh`) qui lance `fprintd -t`/`--no-timeout` pour qu'il
+   reste actif en permanence une fois démarré, combinée à un réveil du
+   service dès le lancement de la session (`hyprland.lua`, appel
+   `fprintd-list` qui déclenche l'activation D-Bus sans droits root).
 
 ## Raccourcis
 

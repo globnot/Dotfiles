@@ -88,6 +88,16 @@ hl.on("hyprland.start", function ()
     hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP DESKTOP_SESSION XDG_SESSION_TYPE HYPRLAND_INSTANCE_SIGNATURE DISPLAY SSH_AUTH_SOCK")
     hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP DESKTOP_SESSION XDG_SESSION_TYPE HYPRLAND_INSTANCE_SIGNATURE DISPLAY SSH_AUTH_SOCK")
 
+    -- Réveille fprintd dès la session plutôt que d'attendre le premier
+    -- déverrouillage : il tourne en activation D-Bus à la demande et
+    -- s'arrête après inactivité, or le redémarrer à froid déclenche un
+    -- reset USB du capteur (voir systemd-overrides/fprintd.service.d/)
+    -- qui n'a pas le temps de finir avant le prompt d'empreinte. Un appel
+    -- D-Bus normal (via fprintd-list) déclenche l'activation sans les
+    -- droits root qu'exigerait un "systemctl start" direct sur ce service
+    -- système.
+    hl.exec_cmd("fprintd-list \"$USER\" >/dev/null 2>&1")
+
     hl.exec_cmd("waybar")
     hl.exec_cmd("hypridle")
     hl.exec_cmd("awww-daemon")
