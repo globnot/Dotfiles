@@ -81,9 +81,9 @@ notificationwindow, blankwindow {
   background: transparent;
 }
 
-.notification-row:focus .notification-background .notification {
-  border: 1.5px solid var(--bg-selected);
-}
+/* Pas de liseré sur la 1ère notif : swaync lui donne le focus clavier dès
+   l'ouverture du panneau (jamais demandé à la souris), inutile de le
+   montrer visuellement — garde juste la bordure normale. */
 
 .notification-row .notification-background {
   padding: 6px 12px;
@@ -262,9 +262,8 @@ notificationwindow, blankwindow {
   /* The groups close button */
 }
 
-.notification-group:focus .notification-row .notification-background .notification {
-  border: 1.5px solid var(--bg-selected);
-}
+/* Même chose que .notification-row:focus plus haut : pas de liseré sur le
+   groupe qui reçoit le focus clavier initial à l'ouverture. */
 
 .notification-group:focus {
   background: transparent;
