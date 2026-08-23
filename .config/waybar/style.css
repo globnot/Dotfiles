@@ -63,9 +63,13 @@ window#waybar {
     color: @fauxnoir;
 }
 
-#bluetooth {
+#custom-bluetooth {
     padding: 0 10px 0 6px;
     font-size: 17px;
+    color: #928374;
+}
+
+#custom-bluetooth.connected {
     color: @fauxnoir;
 }
 

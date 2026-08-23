@@ -19,7 +19,7 @@
         "battery",
         "network",
         "custom/vpn",
-        "bluetooth",
+        "custom/bluetooth",
         "tray"
     ],
     "hyprland/workspaces": {
@@ -48,6 +48,11 @@
         // physique (débranché, donc vu comme déconnecté), ce qui masquait
         // le wifi réellement actif.
         "interface": "wl*",
+        // Filet de s\u00e9curit\u00e9 g\u00e9n\u00e9rique : si l'interface wifi existe mais
+        // que waybar n'arrive pas \u00e0 la classer proprement (ex. radio
+        // coup\u00e9e par rfkill/mode avion), il retombe sinon sur le nom brut
+        // de l'interface au lieu d'une des ic\u00f4nes ci-dessous.
+        "format": "\udb82\udd2d",
         "format-wifi": "{icon}",
         "format-ethernet": "\uf0c1",
         "format-disconnected": "\udb82\udd2d",
@@ -88,13 +93,10 @@
         "on-click-right": "swaync-client -d -sw",
         "escape": true
     },
-    "bluetooth": {
-        "format": "\uf293",
-        "format-disabled": "\uf293",
-        "format-connected": "\uf293",
-        "tooltip-format": "Bluetooth: {status}",
-        "tooltip-format-connected": "{device_enumerate}",
-        "tooltip-format-enumerate-connected": "{device_alias}",
+    "custom/bluetooth": {
+        "exec": "$HOME/.config/waybar/scripts/bluetooth-status.sh",
+        "return-type": "json",
+        "interval": 5,
         "on-click": "blueman-manager"
     },
     "cpu": {
