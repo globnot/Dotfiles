@@ -61,26 +61,15 @@ notificationwindow, blankwindow {
 }
 
 .close-button {
-  /* The notification Close Button */
-  background: var(--noti-close-bg);
-  color: var(--text-color);
-  text-shadow: none;
+  /* Masquée : redondante avec le clic sur la notif / Clear All / la croix
+     de groupe, et ne suivait pas l'accent du thème (couleur figée). */
+  opacity: 0;
+  min-width: 0;
+  min-height: 0;
   padding: 0;
-  border-radius: var(--border-radius);
-  margin-top: 8px;
-  margin-right: 8px;
-  box-shadow: none;
-  border: 2px solid var(--noti-border-color);
-  min-width: 24px;
-  min-height: 24px;
-}
-
-.close-button:hover {
-  box-shadow: none;
-  background: var(--noti-close-bg-hover);
-  color: var(--cc-bg);
-  transition: var(--hover-tranistion);
-  border: 2px solid var(--noti-border-color);
+  margin: 0;
+  border: none;
+  background: none;
 }
 
 .notification-row {
@@ -293,8 +282,32 @@ notificationwindow, blankwindow {
   /* Low Priority Group */
 }
 
-.notification-group .notification-group-close-button .close-button {
-  margin: 12px 20px;
+/* La vraie croix "tout fermer" du groupe porte la classe
+   notification-group-close-all-button (pas notification-group-close-button,
+   qui semble être le conteneur) — trouvé en inspectant les chaînes du
+   binaire swaync (grep "notification-group" dans /usr/bin/swaync), faute
+   d'inspecteur GTK utilisable ici. Sans le bon nom, le bouton gardait le
+   style GTK par défaut (carré noir) au lieu de suivre l'accent. Le bouton
+   collapse (chevron) est stylé pareil pour la cohérence visuelle.
+   Marges réduites : les valeurs par défaut faisaient chevaucher la croix
+   avec le texte "X mins ago" du groupe. */
+.notification-group-close-all-button,
+.notification-group-collapse-button {
+  background: rgba(var(--noti-bg), var(--noti-bg-alpha));
+  color: var(--text-color);
+  border: 2px solid var(--noti-border-color);
+  border-radius: var(--border-radius);
+  box-shadow: none;
+  min-width: 18px;
+  min-height: 18px;
+  padding: 2px;
+  margin: 4px 4px;
+}
+
+.notification-group-close-all-button:hover,
+.notification-group-collapse-button:hover {
+  background: var(--bg-selected);
+  color: var(--cc-bg);
 }
 
 .notification-group .notification-group-buttons, .notification-group .notification-group-headers {
