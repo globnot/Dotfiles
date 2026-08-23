@@ -105,11 +105,11 @@
         },
         {
           "label": "\udb80\udc1d",
-          "command": "sh -c 'rfkill list wifi | grep -q \"Soft blocked: yes\" && rfkill unblock all || rfkill block all; $HOME/.config/swaync/scripts/update-airplane-state.sh'"
+          "command": "$HOME/.config/swaync/scripts/toggle-airplane.sh"
         },
         {
           "label": "\udb80\udcaf",
-          "command": "sh -c 'bluetoothctl show | grep -q \"Powered: yes\" && bluetoothctl power off || bluetoothctl power on; $HOME/.config/swaync/scripts/update-bluetooth-state.sh'"
+          "command": "$HOME/.config/swaync/scripts/toggle-bluetooth.sh"
         }
       ]
     },
