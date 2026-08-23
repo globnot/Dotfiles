@@ -18,6 +18,7 @@
         "disk",
         "battery",
         "network",
+        "custom/vpn",
         "bluetooth",
         "tray"
     ],
@@ -39,6 +40,14 @@
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     },
     "network": {
+        // Épingle le module sur l'interface wifi : sans ça, la fausse
+        // interface créée par ProtonVPN pour bloquer les fuites IPv6
+        // ("ipv6leakintrf0", pas classée wifi/ethernet) devient
+        // l'interface suivie et son nom brut s'affiche tel quel. Un glob
+        // "[ew]*" (wifi + ethernet) matchait aussi le port ethernet
+        // physique (débranché, donc vu comme déconnecté), ce qui masquait
+        // le wifi réellement actif.
+        "interface": "wl*",
         "format-wifi": "{icon}",
         "format-ethernet": "\uf0c1",
         "format-disconnected": "\udb82\udd2d",
@@ -48,6 +57,12 @@
         "tooltip-format-wifi": "{essid} ({signalStrength}%)",
         "tooltip-format-ethernet": "{ifname}: {ipaddr}/{cidr}",
         "on-click": "networkmanager_dmenu"
+    },
+    "custom/vpn": {
+        "exec": "$HOME/.config/waybar/scripts/vpn-status.sh",
+        "return-type": "json",
+        "interval": 5,
+        "on-click": "protonvpn-app"
     },
     "battery": {
         "bat": "BAT0",

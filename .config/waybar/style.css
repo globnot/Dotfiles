@@ -69,6 +69,16 @@ window#waybar {
     color: @fauxnoir;
 }
 
+#custom-vpn {
+    padding: 0 6px 0 6px;
+    font-size: 17px;
+    color: #928374;
+}
+
+#custom-vpn.connected {
+    color: @accent;
+}
+
 button#custom-notification,
 #custom-notification {
     margin: 14px 6px;
