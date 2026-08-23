@@ -71,7 +71,7 @@ AUR_CORE=(wlogout)
 # aucun moyen de stocker les identifiants (ex. connexion GitHub) dans un
 # vrai trousseau — vérifié en observant qu'il ne contacte jamais le
 # service D-Bus org.freedesktop.secrets. Voir .config/Code/argv.json.
-AUR_EXTRAS=(brave-bin topgrade visual-studio-code-bin)
+AUR_EXTRAS=(brave-bin topgrade visual-studio-code-bin proton-vpn-gtk-app)
 
 echo "== Paquets AUR (coeur) =="
 yay -S --needed "${AUR_CORE[@]}"
