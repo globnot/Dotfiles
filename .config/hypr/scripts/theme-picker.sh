@@ -60,6 +60,14 @@ hyprctl reload >/dev/null 2>&1 || true
 pkill -SIGUSR2 waybar 2>/dev/null || true
 swaync-client -rs >/dev/null 2>&1 || true
 
+# Pousse les nouvelles couleurs aux fenêtres kitty déjà ouvertes via son
+# contrôle à distance (voir kitty.conf : auto_reload_config est désactivé
+# exprès, un reload complet aurait remis leur taille de police par défaut,
+# annulant un zoom fait avec ctrl+shift+plus/minus).
+for pid in $(pgrep -x kitty); do
+    kitty @ --to "unix:@mykitty-$pid" set-colors --all --configured "$REPO/.config/kitty/theme-colors.conf" >/dev/null 2>&1 || true
+done
+
 # Les indicateurs d'état actif de swaync (bluetooth/avion/profils d'énergie)
 # écrivent leur propre couleur figée à l'exécution (voir ces scripts) :
 # il faut les relancer pour qu'ils reprennent le nouvel accent.
