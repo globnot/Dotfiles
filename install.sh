@@ -44,6 +44,7 @@ link "$REPO_DIR/.config/environment.d" "$HOME/.config/environment.d"
 link "$REPO_DIR/.config/Code/argv.json" "$HOME/.config/Code/argv.json"
 link "$REPO_DIR/.config/Code/User/settings.json" "$HOME/.config/Code/User/settings.json"
 link "$REPO_DIR/.local/share/applications/code.desktop" "$HOME/.local/share/applications/code.desktop"
+link "$REPO_DIR/.local/share/applications/brave-browser.desktop" "$HOME/.local/share/applications/brave-browser.desktop"
 
 # Profil VS Code "42" : le hash du dossier (-77ad35b) est propre à cette
 # machine (VS Code le génère à la création du profil). Ce lien ne sert
@@ -57,8 +58,9 @@ fi
 link "$REPO_DIR/.zshrc"    "$HOME/.zshrc"
 link "$REPO_DIR/.p10k.zsh" "$HOME/.p10k.zsh"
 
-# Pour que la surcharge de code.desktop (--no-sandbox) soit prise en
-# compte immédiatement par rofi/drun sans attendre un rescan spontané.
+# Pour que les surcharges .desktop (code.desktop --no-sandbox,
+# brave-browser.desktop en français) soient prises en compte immédiatement
+# par rofi/drun sans attendre un rescan spontané.
 update-desktop-database "$HOME/.local/share/applications" 2>/dev/null || true
 
 # Ce script ne fait que les liens. Pour installer les paquets, oh-my-zsh,

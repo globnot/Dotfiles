@@ -42,7 +42,7 @@ standard — il suffit d'installer le paquet).
 | `.config/qt5ct/`, `qt6ct/` | Thème des rares apps Qt (surtout `polkit-kde-agent`) |
 | `.config/environment.d/` | Variables d'env session-wide (thème Qt, agent SSH gnome-keyring) |
 | `.config/Code/` | `argv.json`, `User/settings.json` (+ profil `42`) — voir plus bas |
-| `.local/share/applications/` | Surcharge `code.desktop` (VS Code + `--no-sandbox`, voir plus bas) |
+| `.local/share/applications/` | Surcharges `code.desktop` (VS Code + `--no-sandbox`) et `brave-browser.desktop` (interface en français) — voir plus bas |
 | `theme/` | Palette centralisée de la DA (`palette.sh` + `generate.sh`) |
 | `.zshrc`, `.p10k.zsh` | Shell |
 | `install.sh` | Liens symboliques uniquement |
@@ -100,6 +100,19 @@ reste du bureau, thème, réglages git...) est suivi, ainsi que le profil
 profil est un hash généré par VS Code propre à cette machine : sur une
 install neuve, recréer le profil dans VS Code puis recopier les réglages
 à la main depuis ce fichier.
+
+## Brave en français
+
+Système gardé en anglais (`en_US.UTF-8`, convention dev : messages
+d'erreur/docs/Stack Overflow en anglais), mais Brave en français. Sous
+Linux, Chromium n'a pas le sélecteur "Afficher dans cette langue" des
+réglages (Windows/macOS seulement), et le flag `--lang=fr` seul ne fait
+rien — vérifié empiriquement (process lancé avec, toujours affiché en
+anglais). Chromium suit la vraie locale du process, qu'il faut donc avoir
+générée sur le système (`fr_FR.UTF-8` dans `/etc/locale.gen`, fait par
+`bootstrap.sh`) puis passer explicitement à Brave via une surcharge de
+`brave-browser.desktop` (`env LANGUAGE=fr_FR.UTF-8 brave`), sans toucher à
+la locale par défaut de la session.
 
 ## Empreinte digitale peu fiable après un moment
 

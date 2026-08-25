@@ -99,10 +99,16 @@ if [ "$(getent passwd "$USER" | cut -d: -f7)" != "$(command -v zsh)" ]; then
 fi
 
 # ----------------------------------------------------------------------
-# 5. Services système
+# 5. Services système + locale française (pour Brave, voir son .desktop)
 # ----------------------------------------------------------------------
 echo "== Activation des services =="
 sudo systemctl enable --now NetworkManager bluetooth sddm
+
+if ! locale -a | grep -qi '^fr_FR.utf8$'; then
+    echo "== Génération de la locale fr_FR.UTF-8 (système reste en_US.UTF-8) =="
+    sudo sed -i -E 's/^#(fr_FR\.UTF-8 UTF-8)/\1/' /etc/locale.gen
+    sudo locale-gen
+fi
 
 # ----------------------------------------------------------------------
 # 6. Liens symboliques + thème SDDM + règles udev + surcharge fprintd

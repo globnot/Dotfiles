@@ -1,0 +1,32 @@
+# Surcharge de /usr/share/applications/brave-browser.desktop (même nom de
+# fichier, ~/.local/share/applications a priorité) : force le français.
+# Sous Linux, Brave/Chromium n'ont pas le sélecteur "Afficher dans cette
+# langue" des réglages (Windows/macOS seulement), et le flag --lang=fr seul
+# ne fait rien — vérifié empiriquement (process lancé avec --lang=fr,
+# toujours affiché en anglais). Chromium suit la vraie locale du process
+# (LANGUAGE/LC_ALL), qu'il faut donc générer sur le système (fr_FR.UTF-8
+# dans /etc/locale.gen, voir README) puis passer explicitement ici, sans
+# changer la locale de session par défaut (qui reste en_US.UTF-8).
+[Desktop Entry]
+Version=1.0
+Name=Brave
+GenericName=Web Browser
+Comment=Access the Internet
+StartupNotify=true
+StartupWMClass=brave-browser
+TryExec=brave
+Exec=env LANGUAGE=fr_FR.UTF-8 brave %U
+Terminal=false
+Icon=brave-desktop
+Type=Application
+Categories=Network;WebBrowser;
+MimeType=application/pdf;application/rdf+xml;application/rss+xml;application/xhtml+xml;application/xhtml_xml;application/xml;image/gif;image/jpeg;image/png;image/webp;text/html;text/xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ipfs;x-scheme-handler/ipns;
+Actions=new-window;new-private-window;
+
+[Desktop Action new-window]
+Name=Nouvelle fenêtre
+Exec=env LANGUAGE=fr_FR.UTF-8 brave
+
+[Desktop Action new-private-window]
+Name=Nouvelle fenêtre de navigation privée
+Exec=env LANGUAGE=fr_FR.UTF-8 brave --incognito
