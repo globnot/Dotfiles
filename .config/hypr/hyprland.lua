@@ -302,7 +302,7 @@ hl.config({
         kb_layout  = "us",
         kb_variant = "altgr-intl",
         kb_model   = "",
-        kb_options = "caps:escape", -- Caps Lock -> Echap (pratique pour Neovim)
+        kb_options = "caps:menu", -- Caps Lock -> touche Menu (bindée plus bas), voir pourquoi dans le bind
         kb_rules   = "",
 
         follow_mouse = 1,
@@ -359,6 +359,14 @@ hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
+
+-- Caps Lock ne fait plus Echap (voir input.kb_options) : bascule entre le
+-- workspace 6 et le workspace 1. Binder "Caps_Lock" directement ne marche
+-- pas de façon fiable sous Wayland/Hyprland (c'est une touche "lock" au
+-- sens XKB, traitée différemment des touches normales) — remappée en
+-- "Menu" (touche quasi jamais utilisée) via kb_options, qui elle se bind
+-- normalement.
+hl.bind("Menu", hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/toggle-workspace-6.sh"))
 hl.bind(mainMod .. " + CTRL + D", hl.dsp.exec_cmd("python3 $HOME/.config/hypr/scripts/arrange-monitor.py"))
 
 -- Pense-bête des raccourcis clavier (liste statique, voir le script pour le pourquoi)
