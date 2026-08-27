@@ -39,7 +39,7 @@ PACMAN_CORE=(
     qt5-wayland qt6-wayland qt5ct qt6ct gnome-keyring
     zsh git neovim atuin zoxide eza fd fzf python
     grim slurp swappy libnotify brightnessctl trash-cli playerctl
-    ttf-jetbrains-mono-nerd power-profiles-daemon
+    ttf-jetbrains-mono-nerd noto-fonts-emoji power-profiles-daemon
     pipewire-alsa pipewire-jack pipewire-pulse wireplumber
     blueman bluez bluez-utils networkmanager wpa_supplicant xdg-utils
     lm_sensors desktop-file-utils
