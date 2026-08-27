@@ -53,7 +53,7 @@ PACMAN_CORE=(
 PACMAN_EXTRAS=(
     discord gimp spotify-launcher pavucontrol htop nano vim wev
     lazygit unzip wget smartmontools fprintd python-pipx
-    rofi-emoji network-manager-applet
+    rofi-emoji network-manager-applet valgrind clang
 )
 
 echo "== Paquets officiels (coeur) =="
@@ -96,6 +96,19 @@ fi
 if [ "$(getent passwd "$USER" | cut -d: -f7)" != "$(command -v zsh)" ]; then
     echo "== zsh comme shell par défaut =="
     chsh -s "$(command -v zsh)"
+fi
+
+# funcheck (outil 42 : injection de fautes sur les appels systèmes/malloc
+# pour vérifier la gestion d'erreurs) : pas de paquet, cloné et compilé à
+# l'emplacement que .zshrc met déjà dans le PATH. -std=gnu17 explicite car
+# son bool.h maison définit "false"/"true" comme valeurs d'enum, qui sont
+# devenus des mots-clés réels en C23 (le standard par défaut depuis GCC 15)
+# et cassent la compilation sans ça.
+if [ ! -d "$HOME/.local/funcheck" ]; then
+    echo "== Installation de funcheck =="
+    git clone https://github.com/froz42/funcheck.git "$HOME/.local/funcheck"
+    make -C "$HOME/.local/funcheck/library"
+    make -C "$HOME/.local/funcheck/host" CFLAGS="-Wall -Wextra -Werror -g -std=gnu17"
 fi
 
 # ----------------------------------------------------------------------

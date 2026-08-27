@@ -141,6 +141,15 @@ moment. Deux causes cumulées :
    service dès le lancement de la session (`hyprland.lua`, appel
    `fprintd-list` qui déclenche l'activation D-Bus sans droits root).
 
+## funcheck (outil 42)
+
+[funcheck](https://github.com/froz42/funcheck) n'a pas de paquet — cloné
+et compilé par `bootstrap.sh` dans `~/.local/funcheck` (déjà dans le
+`PATH` via `.zshrc`). Le build de `host/` force `-std=gnu17` : son
+`bool.h` maison définit `false`/`true` comme valeurs d'enum, or ce sont
+des mots-clés réels en C23 (standard par défaut depuis GCC 15), ce qui
+casse la compilation sans ce flag.
+
 ## Raccourcis
 
 `SUPER + /` ouvre un pense-bête complet et à jour de tous les raccourcis
