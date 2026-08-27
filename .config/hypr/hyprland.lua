@@ -302,7 +302,7 @@ hl.config({
         kb_layout  = "us",
         kb_variant = "altgr-intl",
         kb_model   = "",
-        kb_options = "caps:menu", -- Caps Lock -> touche Menu (bindée plus bas), voir pourquoi dans le bind
+        kb_options = "caps:menu", -- Caps Lock -> touche Menu (voir le bind SUPER + Menu plus bas)
         kb_rules   = "",
 
         follow_mouse = 1,
@@ -360,14 +360,22 @@ hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
 
--- Caps Lock ne fait plus Echap (voir input.kb_options) : bascule entre le
--- workspace 6 et le workspace 1. Binder "Caps_Lock" directement ne marche
--- pas de façon fiable sous Wayland/Hyprland (c'est une touche "lock" au
--- sens XKB, traitée différemment des touches normales) — remappée en
--- "Menu" (touche quasi jamais utilisée) via kb_options, qui elle se bind
--- normalement.
-hl.bind("Menu", hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/toggle-workspace-6.sh"))
+-- Caps Lock ne fait plus Echap (voir input.kb_options) : ALT + Caps Lock
+-- (remappée en "Menu") déplace le focus clavier vers l'autre écran. Deux
+-- essais précédents en tap simple ont échoué : binder "Caps_Lock"
+-- directement ne marche pas (touche "lock" au sens XKB, traitée
+-- différemment des touches normales), et même une fois remappée en
+-- "Menu" (un vrai ONE_LEVEL comme Escape, LED de verrouillage confirmée
+-- éteinte), Hyprland ne déclenchait quand même pas le bind en tap seul —
+-- limite propre à ce fork. "HYPER" en modificateur de bind échoue aussi
+-- ("Unknown keysym", seuls SUPER/SHIFT/CTRL/ALT sont reconnus) :
+-- modificateur classique + touche normale est ce qui reste.
+hl.bind("ALT + Menu", hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/focus-other-monitor.sh"))
 hl.bind(mainMod .. " + CTRL + D", hl.dsp.exec_cmd("python3 $HOME/.config/hypr/scripts/arrange-monitor.py"))
+
+-- Alt+Tab : cycle entre les fenêtres du bureau actuel (jamais entre workspaces)
+hl.bind("ALT + Tab", hl.dsp.window.cycle_next())
+hl.bind("ALT + Tab", hl.dsp.window.bring_to_top())
 
 -- Pense-bête des raccourcis clavier (liste statique, voir le script pour le pourquoi)
 hl.bind(mainMod .. " + slash", hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/show-keybinds.sh"))
