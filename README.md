@@ -32,6 +32,7 @@ standard — il suffit d'installer le paquet).
 | `.config/rofi/` | Lanceur (`config.rasi`) et menu wifi (`config-wifi.rasi`) |
 | `.config/swaync/` | Centre de notifications + scripts d'état |
 | `.config/wlogout/` | Menu extinction/verrouillage |
+| `.config/swappy/` | Annotation des captures d'écran |
 | `.config/kitty/` | Terminal |
 | `.config/btop/` | Moniteur de ressources |
 | `.config/gtk-3.0/`, `gtk-4.0/` | Thème GTK (Nautilus, apps GTK) |
@@ -44,6 +45,7 @@ standard — il suffit d'installer le paquet).
 | `.config/Code/` | `argv.json`, `User/settings.json` (+ profil `42`) — voir plus bas |
 | `.local/share/applications/` | Surcharges `code.desktop` (VS Code + `--no-sandbox`) et `brave-browser.desktop` (interface en français) — voir plus bas |
 | `theme/` | Palette centralisée de la DA (`palette.sh` + `generate.sh`) |
+| `clangd/` | `gen-config.sh` — génère `~/.config/clangd/config.yaml` pour les projets C (`$HOME/Code`), alias `clangd-refresh` |
 | `.zshrc`, `.p10k.zsh` | Shell |
 | `install.sh` | Liens symboliques uniquement |
 | `bootstrap.sh` | Installation complète (paquets + liens + services) |
@@ -82,64 +84,36 @@ wlogout, btop, fastfetch, qt5ct/qt6ct et zsh.
 
 ## VS Code : trousseau et sandbox
 
-VS Code (`visual-studio-code-bin`, le build officiel Microsoft — le paquet
-"code" d'Arch est un build OSS sans module keytar/libsecret, donc
-incapable d'utiliser un trousseau quel qu'il soit) refusait toujours
-d'utiliser gnome-keyring ("An OS keyring couldn't be identified"), même
-trousseau fonctionnel, `argv.json` correct et flag forcé en ligne de
-commande. Cause réelle, trouvée en testant `--no-sandbox` : le sandbox
-Chromium isole le process d'une façon qui bloque l'accès à D-Bus sur ce
-système. `"disable-chromium-sandbox": true` dans `argv.json` fait planter
-le lancement (`launch-failed`) ; passer `--no-sandbox` en argument direct
-via une surcharge de `code.desktop` (`.local/share/applications/`) est la
-seule méthode qui fonctionne.
+Le paquet `visual-studio-code-bin` (build officiel Microsoft — requis pour
+gnome-keyring, le paquet "code" d'Arch n'a pas keytar/libsecret) a besoin
+d'une surcharge `--no-sandbox` pour parler à gnome-keyring : voir le
+commentaire de `.local/share/applications/code.desktop` pour la cause
+réelle (isolation D-Bus par le sandbox Chromium) et pourquoi `argv.json`
+seul ne suffit pas.
 
-`User/settings.json` (police `JetBrainsMono Nerd Font Mono` assortie au
-reste du bureau, thème, réglages git...) est suivi, ainsi que le profil
-`42` (`User/profiles/-77ad35b/settings.json`). Le nom du dossier de ce
-profil est un hash généré par VS Code propre à cette machine : sur une
-install neuve, recréer le profil dans VS Code puis recopier les réglages
-à la main depuis ce fichier.
+`User/settings.json` est suivi, ainsi que le profil `42`
+(`User/profiles/-77ad35b/settings.json`) — nom de dossier propre à cette
+machine (hash généré par VS Code) : sur une install neuve, recréer le
+profil dans VS Code puis recopier les réglages à la main depuis ce
+fichier.
 
 ## Brave en français
 
-Système gardé en anglais (`en_US.UTF-8`, convention dev : messages
-d'erreur/docs/Stack Overflow en anglais), mais Brave en français. Sous
-Linux, Chromium n'a pas le sélecteur "Afficher dans cette langue" des
-réglages (Windows/macOS seulement), et le flag `--lang=fr` seul ne fait
-rien — vérifié empiriquement (process lancé avec, toujours affiché en
-anglais). Chromium suit la vraie locale du process, qu'il faut donc avoir
-générée sur le système (`fr_FR.UTF-8` dans `/etc/locale.gen`, fait par
-`bootstrap.sh`) puis passer explicitement à Brave via une surcharge de
-`brave-browser.desktop` (`env LANGUAGE=fr_FR.UTF-8 brave`), sans toucher à
-la locale par défaut de la session.
+Système gardé en anglais (convention dev), mais Brave en français via une
+surcharge de `brave-browser.desktop` (`LANGUAGE=fr_FR.UTF-8`) — voir le
+commentaire de ce fichier pour le détail (pourquoi `--lang=fr` seul ne
+suffit pas, locale `fr_FR.UTF-8` générée par `bootstrap.sh`).
 
 ## Empreinte digitale peu fiable après un moment
 
-Symptôme : le déverrouillage par empreinte marche parfaitement juste après
-le boot, puis devient capricieux après avoir utilisé la machine un
-moment. Deux causes cumulées :
-
-1. Le capteur (Synaptics, `06cb:00f9`) a l'autosuspend USB activé avec un
-   délai de seulement 2s (`power/autosuspend_delay_ms`) — il se fait
-   suspendre en permanence, et son réveil n'est pas fiable. Réglé via une
-   règle udev (`.config/hypr/udev-rules/`, déployée par
-   `setup-udev-rules.sh`) qui force `power/control=on` pour ce
-   périphérique précis (pas d'impact sur l'autosuspend des autres
-   périphériques USB).
-2. Plus fondamental : `fprintd.service` s'active à la demande via D-Bus
-   et s'arrête après quelques secondes d'inactivité (`Type=dbus`, pas de
-   `[Install]`, donc pas activable au boot). Chaque redémarrage à froid
-   déclenche un vrai reset USB du capteur (`kernel: usb 1-5: reset
-   full-speed USB device`, vu dans `journalctl`), qui n'a pas le temps de
-   finir avant le prompt d'empreinte — d'où un déverrouillage fiable
-   juste après boot (fprintd encore chaud depuis la connexion) mais pas
-   ensuite. Réglé par une surcharge systemd
-   (`.config/hypr/systemd-overrides/fprintd.service.d/`, déployée par
-   `setup-fprintd.sh`) qui lance `fprintd -t`/`--no-timeout` pour qu'il
-   reste actif en permanence une fois démarré, combinée à un réveil du
-   service dès le lancement de la session (`hyprland.lua`, appel
-   `fprintd-list` qui déclenche l'activation D-Bus sans droits root).
+Symptôme : fiable juste après le boot, capricieux ensuite. Deux causes
+cumulées, réglées par une règle udev
+(`.config/hypr/udev-rules/60-fingerprint-no-autosuspend.rules`, empêche le
+capteur de se faire suspendre par USB autosuspend) et une surcharge
+systemd (`.config/hypr/systemd-overrides/fprintd.service.d/`, garde
+`fprintd` actif en permanence au lieu d'un reset USB à froid à chaque
+tentative) — voir les commentaires de ces deux fichiers pour le détail
+complet.
 
 ## funcheck (outil 42)
 
