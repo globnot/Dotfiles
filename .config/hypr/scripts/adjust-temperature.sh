@@ -7,6 +7,11 @@ MAX=6500
 
 current=$(hyprctl hyprsunset temperature)
 
+if ! [[ "$current" =~ ^[0-9]+$ ]]; then
+    notify-send -t 1500 "Température écran" "hyprsunset indisponible"
+    exit 1
+fi
+
 if [ "$1" = "warmer" ]; then
     new=$((current - STEP))
 else

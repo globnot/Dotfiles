@@ -5,7 +5,7 @@
 # ailleurs dans le repo (ANSI kitty, couleurs fzf), pour rester cohérent.
 set -euo pipefail
 
-REPO="$HOME/Dotfiles"
+REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 
 PRESETS=(
     "Fuchsia (actuel):e91e8c"

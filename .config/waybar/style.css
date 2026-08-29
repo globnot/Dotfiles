@@ -136,7 +136,7 @@ button#custom-notification,
     color: @urgent;
 }
 
-#bluetooth.disabled {
+#custom-bluetooth.disabled {
     color: #928374;
 }
 

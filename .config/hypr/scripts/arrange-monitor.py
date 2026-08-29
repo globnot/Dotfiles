@@ -33,7 +33,12 @@ def logical_size(mon):
 
 
 def main():
-    monitors = hyprctl_json(["monitors"])
+    try:
+        monitors = hyprctl_json(["monitors"])
+    except (subprocess.CalledProcessError, json.JSONDecodeError, FileNotFoundError) as e:
+        notify(f"hyprctl indisponible : {e}")
+        return
+
     if len(monitors) < 2:
         notify("Un seul écran détecté, rien à faire.")
         return
@@ -83,7 +88,11 @@ def main():
         f'hl.monitor({{output="{target_name}", mode="{mode}", '
         f'position="{x}x{y}", scale={scale}}})'
     )
-    subprocess.run(["hyprctl", "eval", expr], check=True)
+    try:
+        subprocess.run(["hyprctl", "eval", expr], check=True)
+    except subprocess.CalledProcessError as e:
+        notify(f"Échec de l'application : {e}")
+        return
     notify(f"{target_name} placé à côté de {ref_name} ({direction.lower()})")
 
 

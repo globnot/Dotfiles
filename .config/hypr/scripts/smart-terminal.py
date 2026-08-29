@@ -36,7 +36,7 @@ try:
     active = json.loads(
         subprocess.run(["hyprctl", "activewindow", "-j"], capture_output=True, text=True).stdout
     )
-    if active.get("class") == "kitty":
+    if active and active.get("class") == "kitty":
         found = focused_kitty_cwd(active["pid"])
         if found:
             cwd = found

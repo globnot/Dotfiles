@@ -118,6 +118,15 @@
         }
     },
     "temperature": {
+        // Capteur k10temp (Tctl). Le numéro hwmonN n'est pas garanti stable
+        // (ordre de sondage du noyau) : si ce module se désactive après un
+        // reboot/update noyau, vérifier le bon index avec
+        // `sensors` (section k10temp-pci-*) et `cat /sys/class/hwmon/hwmon*/name`.
+        // hwmon-path-abs (chemin PCI, sensé être stable) a été testé ici et
+        // ne marche pas avec cette version de waybar (le module se
+        // désactive, "Can't open .../hwmon/temp1_input" : waybar ne résout
+        // pas le sous-dossier hwmonN malgré ce que dit sa doc), d'où le
+        // retour à hwmon-path.
         "hwmon-path": "/sys/class/hwmon/hwmon7/temp1_input",
         "format": "<span foreground='#928374'>TEMP</span> {temperatureC}\u00b0C",
         "critical-threshold": 85,

@@ -2,7 +2,7 @@
 # Vitesse du ventilateur ThinkPad (fan1, via lm_sensors) pour le module
 # custom/fan de Waybar. Seuils calqués sur le repo de l'ami (voir Dotfiles).
 rpm=$(sensors 2>/dev/null | awk '/fan1/{print $2; exit}')
-rpm=${rpm:-0}
+[[ "$rpm" =~ ^[0-9]+$ ]] || rpm=0
 
 if [ "$rpm" -ge 4000 ]; then
     class="critical"

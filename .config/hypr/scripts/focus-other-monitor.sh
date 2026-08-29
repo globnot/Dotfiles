@@ -6,10 +6,13 @@
 other=$(hyprctl monitors -j | python3 -c "
 import json, sys
 mons = json.load(sys.stdin)
-current = next(m for m in mons if m['focused'])
-other = next(m for m in mons if m['name'] != current['name'])
-print(other['name'])
+current = next((m for m in mons if m['focused']), None)
+other = next((m for m in mons if current and m['name'] != current['name']), None)
+print(other['name'] if other else '')
 ")
+
+# Un seul écran connecté (ou détection ratée) : rien à basculer.
+[ -z "$other" ] && exit 0
 
 # "hyprctl dispatch <args>" est sucré en hl.dispatch(<args>) et évalué
 # comme du Lua sur ce build (voir toggle-workspace-6.sh) : "eval" + l'API
