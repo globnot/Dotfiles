@@ -32,6 +32,8 @@ SUPER + J — Alterner le sens du split (dwindle)
 SUPER + flèches — Déplacer le focus
 SUPER + SHIFT + flèches — Échanger la fenêtre avec sa voisine
 SUPER + CTRL + flèches — Redimensionner (maintenir pour continuer)
+ALT + Tab — Cycler les fenêtres du bureau actuel
+ALT + Caps Lock — Déplacer le focus clavier vers l'autre écran
 SUPER + clic gauche + glisser — Déplacer la fenêtre
 SUPER + clic droit + glisser — Redimensionner la fenêtre
 ── Workspaces ──
@@ -48,6 +50,7 @@ Impr écran — Capture d'une zone (annotation swappy)
 SHIFT + Impr écran — Capture plein écran
 ── Divers ──
 Touches multimédia — Volume, luminosité, lecture (gérées nativement)
+SUPER + SHIFT + F23 (touche Copilot) — Envoie <space>/ dans Neovim (commentaire)
 ── Terminal ──
 cdf — Sélecteur flou de dossier (Code/.config), classé par fréquence d'usage
 cdw — Comme cdf, puis ouvre nvim

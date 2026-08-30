@@ -390,9 +390,12 @@ hl.bind(mainMod .. " + bracketright", hl.dsp.exec_cmd("$HOME/.config/hypr/script
 -- Menu wifi (networkmanager-dmenu, thémé Rofi)
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("networkmanager_dmenu"))
 
--- Touche Copilot (envoie SUPER+SHIFT+XF86Assistant, keycode 201 non résolu
--- par son nom symbolique donc ciblé par code physique) : ouvre le panneau swaync
-hl.bind(mainMod .. " + SHIFT + XF86Assistant", hl.dsp.exec_cmd("swaync-client -t -sw"))
+-- Touche Copilot : envoie SUPER+SHIFT+F23 au niveau matériel (norme
+-- Microsoft), confirmé via `keyd monitor` — XF86Assistant/keycode 201
+-- (essayé précédemment) était une fausse piste, probablement une autre
+-- touche testée par erreur avec wev.
+-- Envoie <space> puis / pour déclencher le mapping <leader>/ (commentaire) dans Neovim.
+hl.bind(mainMod .. " + SHIFT + F23", hl.dsp.exec_cmd("sh -c 'sleep 0.05 && wtype -s 15 -k space -k slash'"))
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -t -sw"))
 
 -- Captures d'écran (grim + slurp), annotation via swappy

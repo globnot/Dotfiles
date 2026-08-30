@@ -115,6 +115,13 @@ systemd (`.config/hypr/systemd-overrides/fprintd.service.d/`, garde
 tentative) — voir les commentaires de ces deux fichiers pour le détail
 complet.
 
+`SUPER + L` (verrouillage, `hyprlock`) accepte l'empreinte en plus du mot
+de passe, via le client D-Bus asynchrone natif de hyprlock (voir le
+commentaire de `hyprlock.conf`) — `pam_fprintd.so` dans
+`/etc/pam.d/hyprlock` (fichier système, non suivi ici) ne doit **pas**
+être présent, il entre en conflit avec la saisie du mot de passe sur
+hyprlock 0.9.6.
+
 ## funcheck (outil 42)
 
 [funcheck](https://github.com/froz42/funcheck) n'a pas de paquet — cloné
