@@ -50,7 +50,7 @@ Impr écran — Capture d'une zone (annotation swappy)
 SHIFT + Impr écran — Capture plein écran
 ── Divers ──
 Touches multimédia — Volume, luminosité, lecture (gérées nativement)
-SUPER + SHIFT + F23 (touche Copilot) — Envoie <space>/ dans Neovim (commentaire)
+SUPER + SHIFT + F23 (touche Copilot) — Toggle commentaire dans Neovim (leader-/)
 ── Terminal ──
 cdf — Sélecteur flou de dossier (Code/.config), classé par fréquence d'usage
 cdw — Comme cdf, puis ouvre nvim

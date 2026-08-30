@@ -394,8 +394,11 @@ hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("networkmanager_dmenu"))
 -- Microsoft), confirmé via `keyd monitor` — XF86Assistant/keycode 201
 -- (essayé précédemment) était une fausse piste, probablement une autre
 -- touche testée par erreur avec wev.
--- Envoie <space> puis / pour déclencher le mapping <leader>/ (commentaire) dans Neovim.
-hl.bind(mainMod .. " + SHIFT + F23", hl.dsp.exec_cmd("sh -c 'sleep 0.05 && wtype -s 15 -k space -k slash'"))
+-- Envoie <F13> (touche neuve, jamais utilisée par le clavier physique) :
+-- mappée dans mappings.lua vers <leader>/ (commentaire). Un seul keycode
+-- plutôt qu'espace+/ séparés — plus de dépendance au timing du leader
+-- Neovim, qui s'est révélé peu fiable.
+hl.bind(mainMod .. " + SHIFT + F23", hl.dsp.exec_cmd("sh -c 'sleep 0.05 && wtype -k F13'"))
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -t -sw"))
 
 -- Captures d'écran (grim + slurp), annotation via swappy

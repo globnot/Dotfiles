@@ -83,3 +83,9 @@ map("v", "<leader>/", function()
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "nx", false)
   toggle_42_block_comment(s, e)
 end, { desc = "Toggle 42 block comment" })
+
+-- Touche Copilot (Hyprland envoie <F13> via wtype) : rejoue <leader>/ en une
+-- seule touche, sans dépendre du timing du leader (espace puis / séparés
+-- s'est révélé peu fiable, cf. hyprland.lua).
+map("n", "<F13>", "<leader>/", { remap = true, desc = "Toggle comment (touche Copilot)" })
+map("v", "<F13>", "<leader>/", { remap = true, desc = "Toggle comment (touche Copilot)" })
