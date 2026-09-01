@@ -5,7 +5,11 @@
 # ailleurs dans le repo (ANSI kitty, couleurs fzf), pour rester cohérent.
 set -euo pipefail
 
-REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
+# readlink -f résout le symlink ~/.config/hypr -> Dotfiles/.config/hypr
+# d'abord : sans ça, quand ce script est lancé via ce chemin lié (le cas
+# réel, le bind SUPER+T l'appelle via $HOME/.config/hypr/...), cd ../../..
+# remonte dans l'arborescence de ~/.config au lieu de celle du repo.
+REPO="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/../../.." && pwd)"
 
 PRESETS=(
     "Fuchsia (actuel):e91e8c"

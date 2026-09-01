@@ -3,7 +3,11 @@
 # pour surligner le bouton actif du buttons-grid, car le mécanisme "active"
 # natif de swaync ne fonctionne pas de façon fiable (voir issue amont
 # ErikReider/SwayNotificationCenter#739).
-REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
+# readlink -f résout le symlink ~/.config/swaync -> Dotfiles/.config/swaync
+# d'abord : sans ça, quand ce script est sourcé via ce chemin lié (le cas
+# réel, swaync appelle les scripts via $HOME/.config/swaync/...), cd ../../..
+# remonte dans l'arborescence de ~/.config au lieu de celle du repo.
+REPO_DIR="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/../../.." && pwd)"
 source "$REPO_DIR/theme/palette.sh"
 
 # write_state_css <name> <n> : écrit ~/.config/swaync/<name>-state.css.
