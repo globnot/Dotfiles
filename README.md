@@ -1,9 +1,14 @@
 # Dotfiles
 
-*Configuration de bureau Hyprland — style neobrutalism sur base Gruvbox
-Light + fuchsia, pensée pour un ThinkPad P14s Gen 5 AMD sous Arch Linux.*
+**Hyprland, style neobrutalism — Gruvbox Light + accent, sur Arch Linux.**
+Daily driven sur un ThinkPad P14s Gen 5 AMD.
 
----
+[Gallery](#gallery) ·
+[Contenu](#contenu) ·
+[Installation](#installation) ·
+[Highlights](#highlights) ·
+[Raccourcis](#raccourcis) ·
+[Crédits](#crédits)
 
 ## Description
 
@@ -12,16 +17,79 @@ peu arrondis, fonds opaques. Le compositeur est Hyprland (config Lua
 native), avec waybar, rofi, SwayNotificationCenter, wlogout, un thème SDDM
 écrit à la main, et Nautilus/GTK plutôt que Dolphin/KDE.
 
-Testé sur Arch Linux uniquement — `bootstrap.sh` installe les paquets via
-`pacman`/`yay`, donc rien de tout ça ne s'installera tel quel sur une autre
-distribution. Certaines valeurs sont aussi propres à cette machine
-(résolutions d'écran dans `hyprland.lua`, capteur `fan1` lu par le module
-fan de waybar) et à adapter ailleurs.
-
 Le stockage sécurisé de secrets (VS Code, identifiants git...) et l'agent
 SSH passent par `gnome-keyring`, démarré et déverrouillé automatiquement à
 la connexion via PAM (`/etc/pam.d/sddm`, déjà prêt sur une install SDDM
-standard — il suffit d'installer le paquet).
+standard).
+
+> [!WARNING]
+> **Testé sur Arch Linux uniquement**, propre à cette machine par endroits :
+> `bootstrap.sh` installe via `pacman`/`yay`, donc rien de tout ça ne
+> s'installera tel quel sur une autre distribution. Quelques valeurs à
+> vérifier/adapter avant de réutiliser ailleurs :
+> - **Écrans** : `hyprland.lua` déclare le panneau laptop en `eDP-1` et un
+>   externe sur `HDMI-A-1` — lance `hyprctl monitors` et corrige les noms.
+> - **Capteurs** : le module ventilateur de waybar lit `fan1` via
+>   `sensors` (`waybar/scripts/fan-status.sh`), et la température CPU lit
+>   `/sys/class/hwmon/hwmon7/temp1_input` avec un seuil critique à 85°C
+>   (`waybar/config.jsonc`) — le numéro `hwmonN` n'est pas garanti stable
+>   d'une machine à l'autre.
+> - **Capteur d'empreinte** : la règle udev anti-autosuspend
+>   (`.config/hypr/udev-rules/`) cible un Synaptics précis
+>   (`idVendor=06cb`, `idProduct=00f9`) — à adapter au tien (`lsusb`).
+> - **funcheck** (outil 42, voir [Highlights](#highlights)) suppose GCC ≥15
+>   pour le flag `-std=gnu17` dont son build a besoin.
+
+## Gallery
+
+<details open>
+<summary><b>Waybar</b> — workspaces, CPU/TEMP/RAM/FAN/DISK/BAT, indicateurs réseau/VPN/bluetooth</summary>
+
+![waybar](assets/screenshots/waybar.png)
+
+</details>
+
+<details>
+<summary><b>Rofi</b> — lanceur d'applications</summary>
+
+![rofi launcher](assets/screenshots/rofi-launcher.png)
+
+</details>
+
+<details>
+<summary><b>Rofi</b> — menu wifi</summary>
+
+![rofi wifi](assets/screenshots/rofi-wifi.png)
+
+</details>
+
+<details>
+<summary><b>hyprlock</b> — écran de verrouillage</summary>
+
+![hyprlock](assets/screenshots/hyprlock.png)
+
+</details>
+
+<details>
+<summary><b>wlogout</b> — menu extinction/verrouillage en grille</summary>
+
+![wlogout](assets/screenshots/wlogout.png)
+
+</details>
+
+<details>
+<summary><b>Sélecteur d'accent</b> — SUPER+T, préréglages + hex personnalisé</summary>
+
+![theme picker](assets/screenshots/theme-picker.png)
+
+</details>
+
+<details>
+<summary><b>btop</b> — moniteur de ressources, thème assorti à la DA</summary>
+
+![btop](assets/screenshots/btop.png)
+
+</details>
 
 ## Contenu
 
@@ -42,8 +110,8 @@ standard — il suffit d'installer le paquet).
 | `.config/fastfetch/` | Résumé système au lancement (alias `ff`) |
 | `.config/qt5ct/`, `qt6ct/` | Thème des rares apps Qt (surtout `polkit-kde-agent`) |
 | `.config/environment.d/` | Variables d'env session-wide (thème Qt, agent SSH gnome-keyring) |
-| `.config/Code/` | `argv.json`, `User/settings.json` (+ profil `42`) — voir plus bas |
-| `.local/share/applications/` | Surcharges `code.desktop` (VS Code + `--no-sandbox`) et `brave-browser.desktop` (interface en français) — voir plus bas |
+| `.config/Code/` | `argv.json`, `User/settings.json` (+ profil `42`) |
+| `.local/share/applications/` | Surcharges `code.desktop` (VS Code) et `brave-browser.desktop` (Brave en français) |
 | `theme/` | Palette centralisée de la DA (`palette.sh` + `generate.sh`) |
 | `clangd/` | `gen-config.sh` — génère `~/.config/clangd/config.yaml` pour les projets C (`$HOME/Code`), alias `clangd-refresh` |
 | `.zshrc`, `.p10k.zsh` | Shell |
@@ -72,64 +140,68 @@ Si les paquets sont déjà installés (ou juste pour relier après une modif),
 Les deux scripts sont idempotents, relançables sans risque. Voir les
 commentaires en tête de chaque fichier pour le détail.
 
-## Personnaliser la couleur d'accent
+## Highlights
 
-`SUPER + T` ouvre un sélecteur rofi (préréglages + hex personnalisé) qui
-met à jour la DA en direct.
+Quelques trucs moins évidents que "voici un fichier de config".
 
-En ligne de commande : éditer `theme/palette.sh` (7 couleurs, une seule
-source pour tout le bureau) puis lancer `theme/generate.sh`, qui propage
-le changement dans rofi, GTK, waybar, swaync, Hyprland, hyprlock, kitty,
-wlogout, btop, fastfetch, qt5ct/qt6ct et zsh.
+### Une seule source pour toute la couleur d'accent
 
-## VS Code : trousseau et sandbox
+`theme/palette.sh` définit 7 couleurs pour tout le bureau. `SUPER + T`
+ouvre un sélecteur rofi (préréglages + hex personnalisé) qui édite ce
+fichier et relance `theme/generate.sh`, qui propage le changement en
+direct dans rofi, GTK, waybar, swaync, Hyprland, hyprlock, kitty, wlogout,
+btop, fastfetch et qt5ct/qt6ct — un seul endroit à changer, jamais une
+couleur oubliée quelque part.
 
-Le paquet `visual-studio-code-bin` (build officiel Microsoft — requis pour
-gnome-keyring, le paquet "code" d'Arch n'a pas keytar/libsecret) a besoin
-d'une surcharge `--no-sandbox` pour parler à gnome-keyring : voir le
-commentaire de `.local/share/applications/code.desktop` pour la cause
-réelle (isolation D-Bus par le sandbox Chromium) et pourquoi `argv.json`
-seul ne suffit pas.
+### Le terminal suit le dossier courant
 
-`User/settings.json` est suivi, ainsi que le profil `42`
-(`User/profiles/-77ad35b/settings.json`) — nom de dossier propre à cette
-machine (hash généré par VS Code) : sur une install neuve, recréer le
-profil dans VS Code puis recopier les réglages à la main depuis ce
-fichier.
+`SUPER + Q` ouvre un nouveau terminal dans le dossier où tu te trouves
+déjà, pas toujours `$HOME`. Le champ `cwd` propre à une fenêtre kitty ne
+bouge jamais après un `cd` (c'est le dossier de lancement) ; le script
+(`smart-terminal.py`) interroge plutôt le contrôle à distance de kitty
+(`kitty @ ls`), qui connaît le vrai process au premier plan de chaque
+fenêtre — fiable, contrairement à parcourir `/proc` à la main.
 
-## Brave en français
+### Empreinte digitale fiable au quotidien
 
-Système gardé en anglais (convention dev), mais Brave en français via une
-surcharge de `brave-browser.desktop` (`LANGUAGE=fr_FR.UTF-8`) — voir le
-commentaire de ce fichier pour le détail (pourquoi `--lang=fr` seul ne
-suffit pas, locale `fr_FR.UTF-8` générée par `bootstrap.sh`).
+Trois couches, chacune réglant un problème réel :
+- une règle udev désactive l'autosuspend USB du capteur (`udev-rules/`),
+  qui se faisait suspendre après 2s d'inactivité et se réveillait mal ;
+- une surcharge systemd garde `fprintd` actif en permanence
+  (`systemd-overrides/`) au lieu d'un reset USB à froid à chaque
+  réactivation D-Bus ;
+- `hyprlock` accepte l'empreinte via son propre client D-Bus asynchrone
+  plutôt que `pam_fprintd.so` : les deux en même temps font geler la
+  saisie du mot de passe sur hyprlock 0.9.6 (aucun combo PAM ne marche
+  pour les deux méthodes à la fois côté hyprlock, doit tourner seul).
 
-## Empreinte digitale peu fiable après un moment
+### VS Code et le trousseau
 
-Symptôme : fiable juste après le boot, capricieux ensuite. Deux causes
-cumulées, réglées par une règle udev
-(`.config/hypr/udev-rules/60-fingerprint-no-autosuspend.rules`, empêche le
-capteur de se faire suspendre par USB autosuspend) et une surcharge
-systemd (`.config/hypr/systemd-overrides/fprintd.service.d/`, garde
-`fprintd` actif en permanence au lieu d'un reset USB à froid à chaque
-tentative) — voir les commentaires de ces deux fichiers pour le détail
-complet.
+Le paquet officiel `visual-studio-code-bin` refusait de parler à
+`gnome-keyring` ("An OS keyring couldn't be identified") même trousseau
+fonctionnel et `argv.json` correct. Cause réelle : le sandbox Chromium
+isole le process d'une façon qui bloque l'accès à D-Bus. Passer
+`--no-sandbox` via une surcharge de `code.desktop` est la seule méthode
+qui fonctionne (`"disable-chromium-sandbox"` dans `argv.json` fait
+planter le lancement).
 
-`SUPER + L` (verrouillage, `hyprlock`) accepte l'empreinte en plus du mot
-de passe, via le client D-Bus asynchrone natif de hyprlock (voir le
-commentaire de `hyprlock.conf`) — `pam_fprintd.so` dans
-`/etc/pam.d/hyprlock` (fichier système, non suivi ici) ne doit **pas**
-être présent, il entre en conflit avec la saisie du mot de passe sur
-hyprlock 0.9.6.
+### Brave en français, système en anglais
 
-## funcheck (outil 42)
+Chromium sous Linux n'a pas le sélecteur "Afficher dans cette langue" des
+réglages (Windows/macOS seulement), et `--lang=fr` seul ne fait rien —
+il faut une vraie locale système. `bootstrap.sh` génère `fr_FR.UTF-8` sans
+toucher à `LANG` (qui reste `en_US.UTF-8`, pratique pour chercher des
+messages d'erreur), et une surcharge de `brave-browser.desktop` passe
+`LANGUAGE=fr_FR.UTF-8` seulement à Brave.
 
-[funcheck](https://github.com/froz42/funcheck) n'a pas de paquet — cloné
-et compilé par `bootstrap.sh` dans `~/.local/funcheck` (déjà dans le
-`PATH` via `.zshrc`). Le build de `host/` force `-std=gnu17` : son
-`bool.h` maison définit `false`/`true` comme valeurs d'enum, or ce sont
-des mots-clés réels en C23 (standard par défaut depuis GCC 15), ce qui
-casse la compilation sans ce flag.
+### Alt+Tab et Caps Lock, conscients du multi-écran
+
+`Alt+Tab` cycle les fenêtres du bureau actuel (`hl.dsp.window.cycle_next`).
+Caps Lock ne fait plus office de verrou (remappée en touche `Menu` via
+`kb_options`, une touche "lock" au sens XKB ne se bind pas de façon fiable
+en tap seul dans ce fork Hyprland) : `ALT + Caps Lock` bascule le focus
+clavier vers l'écran externe, en détectant dynamiquement lequel est
+"l'autre" plutôt qu'un nom d'écran figé.
 
 ## Raccourcis
 
@@ -137,17 +209,21 @@ casse la compilation sans ce flag.
 (liste maintenue à la main dans `.config/hypr/scripts/show-keybinds.sh` —
 `hyprctl binds` ne permet pas de la générer automatiquement sur ce build).
 
+L'essentiel :
+
 | Raccourci | Action |
 |---|---|
-| `SUPER + Q` | Terminal |
+| `SUPER + Q` | Terminal (dans le dossier courant) |
 | `SUPER + E` | Gestionnaire de fichiers |
 | `SUPER + R` | Lanceur d'applications |
 | `SUPER + W` | Menu wifi |
 | `SUPER + N` | Notifications |
 | `SUPER + M` | Extinction/verrouillage |
-| `SUPER + L` | Verrouiller l'écran |
+| `SUPER + L` | Verrouiller l'écran (mot de passe ou empreinte) |
 | `SUPER + T` | Changer la couleur d'accent |
-| `SUPER + /` | Pense-bête des raccourcis |
+| `ALT + Tab` | Cycler les fenêtres du bureau actuel |
+| `ALT + Caps Lock` | Focus clavier vers l'autre écran |
+| `SUPER + /` | Ce pense-bête |
 
 ## Crédits
 
@@ -159,6 +235,9 @@ casse la compilation sans ce flag.
   d'un coup, et le thème Qt (qt5ct/qt6ct) pour les apps Qt isolées.
 - [NvChad](https://github.com/NvChad/NvChad) — base de la config Neovim,
   qui crédite elle-même [LazyVim starter](https://github.com/LazyVim/starter).
+- [funcheck](https://github.com/froz42/funcheck) — outil 42 d'injection
+  de fautes sur les appels systèmes/malloc pour vérifier la gestion
+  d'erreurs, cloné et compilé par `bootstrap.sh`.
 - [Hyprland](https://hyprland.org/), [waybar](https://github.com/Alexays/Waybar),
   [rofi](https://github.com/davatorium/rofi),
   [networkmanager-dmenu](https://github.com/firecat53/networkmanager-dmenu),
