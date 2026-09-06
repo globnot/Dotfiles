@@ -97,7 +97,7 @@ standard).
 |---|---|
 | `.config/hypr/` | `hyprland.lua`, scripts (screenshots, wlogout...), thème SDDM `gruvbrutal` (`sddm-theme/`), règles udev (`udev-rules/`), surcharges systemd (`systemd-overrides/`) |
 | `.config/waybar/` | Barre de status |
-| `.config/rofi/` | Lanceur (`config.rasi`) et menu wifi (`config-wifi.rasi`) |
+| `.config/rofi/` | Lanceur d'applications (`config.rasi`) |
 | `.config/swaync/` | Centre de notifications + scripts d'état |
 | `.config/wlogout/` | Menu extinction/verrouillage |
 | `.config/swappy/` | Annotation des captures d'écran |
@@ -105,7 +105,6 @@ standard).
 | `.config/btop/` | Moniteur de ressources |
 | `.config/gtk-3.0/`, `gtk-4.0/` | Thème GTK (Nautilus, apps GTK) |
 | `.config/nvim/` | Config Neovim (base NvChad) |
-| `.config/networkmanager-dmenu/` | Backend du menu wifi |
 | `.config/atuin/` | Historique shell |
 | `.config/fastfetch/` | Résumé système au lancement (alias `ff`) |
 | `.config/qt5ct/`, `qt6ct/` | Thème des rares apps Qt (surtout `polkit-kde-agent`) |
@@ -161,6 +160,17 @@ bouge jamais après un `cd` (c'est le dossier de lancement) ; le script
 (`smart-terminal.py`) interroge plutôt le contrôle à distance de kitty
 (`kitty @ ls`), qui connaît le vrai process au premier plan de chaque
 fenêtre — fiable, contrairement à parcourir `/proc` à la main.
+
+### Le vrai panneau wifi de GNOME, en popup
+
+`SUPER + W` ouvre `gnome-control-center wifi` plutôt qu'un menu rofi/nmcli
+maison — scan live, dialogues de mot de passe, portails captifs, tout ce
+que GNOME gère déjà bien. Il refuse de démarrer si
+`XDG_CURRENT_DESKTOP` n'est pas `GNOME` : le script (`wifi-settings.sh`)
+le spoofe pour ce seul process. Une règle de fenêtre le force en flottant,
+centré, 600×880 — sous 600px de large la barre latérale libadwaita se
+replie, laissant un popup wifi propre plutôt que le panneau Réglages
+complet (idée et calibrage repris de Cartoone9/dotfiles).
 
 ### Empreinte digitale fiable au quotidien
 
@@ -240,7 +250,6 @@ L'essentiel :
   d'erreurs, cloné et compilé par `bootstrap.sh`.
 - [Hyprland](https://hyprland.org/), [waybar](https://github.com/Alexays/Waybar),
   [rofi](https://github.com/davatorium/rofi),
-  [networkmanager-dmenu](https://github.com/firecat53/networkmanager-dmenu),
   [SwayNotificationCenter](https://github.com/ErikReider/SwayNotificationCenter),
   [wlogout](https://github.com/ArtsyMacaw/wlogout),
   [kitty](https://sw.kovidgoyal.net/kitty/), [btop](https://github.com/aristocratos/btop),

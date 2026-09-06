@@ -35,7 +35,7 @@ PACMAN_CORE=(
     base-devel
     hyprland hyprlock hypridle hyprsunset awww
     waybar kitty rofi swaync sddm nautilus btop fastfetch
-    networkmanager-dmenu polkit-kde-agent xdg-desktop-portal-hyprland uwsm
+    gnome-control-center polkit-kde-agent xdg-desktop-portal-hyprland uwsm
     qt5-wayland qt6-wayland qt5ct qt6ct gnome-keyring
     zsh git neovim atuin zoxide eza fd fzf python
     grim slurp swappy libnotify brightnessctl trash-cli playerctl

@@ -387,8 +387,8 @@ hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/theme-pic
 hl.bind(mainMod .. " + bracketleft",  hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/adjust-temperature.sh warmer"), { repeating = true })
 hl.bind(mainMod .. " + bracketright", hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/adjust-temperature.sh cooler"), { repeating = true })
 
--- Menu wifi (networkmanager-dmenu, thémé Rofi)
-hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("networkmanager_dmenu"))
+-- Menu wifi : panneau GNOME Réglages en fenêtre flottante (voir le script)
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/wifi-settings.sh"))
 
 -- Touche Copilot : envoie SUPER+SHIFT+F23 au niveau matériel (norme
 -- Microsoft), confirmé via `keyd monitor` — XF86Assistant/keycode 201
@@ -516,4 +516,17 @@ hl.window_rule({
 
     float   = true,
     center  = true,
+})
+
+-- Panneau wifi GNOME (SUPER+W, voir wifi-settings.sh) : flottant, centré,
+-- taille fixe. En dessous de 600px de large, la barre latérale libadwaita
+-- se replie, laissant un popup wifi propre plutôt que le plein panneau
+-- Réglages (calibrage repris de Cartoone9/dotfiles).
+hl.window_rule({
+    name    = "float-gnome-control-center",
+    match   = { class = "gnome-control-center" },
+
+    float   = true,
+    center  = true,
+    size    = "600 880",
 })
