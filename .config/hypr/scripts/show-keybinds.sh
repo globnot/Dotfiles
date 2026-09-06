@@ -19,7 +19,8 @@ cat <<'EOF' | rofi -dmenu -i -p "Raccourcis" -mesg "Lecture seule : Échap pour 
 SUPER + Q — Terminal
 SUPER + E — Gestionnaire de fichiers
 SUPER + R — Lanceur d'applications (rofi)
-SUPER + W — Menu wifi
+SUPER + W — Panneau wifi (GNOME Réglages)
+SUPER + B — Panneau bluetooth (GNOME Réglages)
 SUPER + N — Panneau de notifications
 SUPER + M — Menu extinction/verrouillage
 SUPER + L — Verrouiller l'écran

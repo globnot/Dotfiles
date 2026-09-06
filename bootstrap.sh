@@ -41,7 +41,7 @@ PACMAN_CORE=(
     grim slurp swappy libnotify brightnessctl trash-cli playerctl
     ttf-jetbrains-mono-nerd noto-fonts-emoji power-profiles-daemon
     pipewire-alsa pipewire-jack pipewire-pulse wireplumber
-    blueman bluez bluez-utils networkmanager wpa_supplicant xdg-utils
+    bluez bluez-utils networkmanager wpa_supplicant xdg-utils
     lm_sensors desktop-file-utils
 )
 

@@ -61,7 +61,7 @@
         },
         "tooltip-format-wifi": "{essid} ({signalStrength}%)",
         "tooltip-format-ethernet": "{ifname}: {ipaddr}/{cidr}",
-        "on-click": "networkmanager_dmenu"
+        "on-click": "$HOME/.config/hypr/scripts/gnome-panel.sh wifi"
     },
     "custom/vpn": {
         "exec": "$HOME/.config/waybar/scripts/vpn-status.sh",
@@ -97,7 +97,7 @@
         "exec": "$HOME/.config/waybar/scripts/bluetooth-status.sh",
         "return-type": "json",
         "interval": 5,
-        "on-click": "blueman-manager"
+        "on-click": "$HOME/.config/hypr/scripts/gnome-panel.sh bluetooth"
     },
     "cpu": {
         "format": "<span foreground='#928374'>CPU</span> {usage}%",

@@ -161,16 +161,20 @@ bouge jamais après un `cd` (c'est le dossier de lancement) ; le script
 (`kitty @ ls`), qui connaît le vrai process au premier plan de chaque
 fenêtre — fiable, contrairement à parcourir `/proc` à la main.
 
-### Le vrai panneau wifi de GNOME, en popup
+### Les vrais panneaux wifi/bluetooth de GNOME, en popup
 
-`SUPER + W` ouvre `gnome-control-center wifi` plutôt qu'un menu rofi/nmcli
-maison — scan live, dialogues de mot de passe, portails captifs, tout ce
-que GNOME gère déjà bien. Il refuse de démarrer si
-`XDG_CURRENT_DESKTOP` n'est pas `GNOME` : le script (`wifi-settings.sh`)
-le spoofe pour ce seul process. Une règle de fenêtre le force en flottant,
-centré, 600×880 — sous 600px de large la barre latérale libadwaita se
-replie, laissant un popup wifi propre plutôt que le panneau Réglages
-complet (idée et calibrage repris de Cartoone9/dotfiles).
+`SUPER + W` et `SUPER + B` (ou le clic waybar correspondant) ouvrent
+`gnome-control-center wifi`/`bluetooth` plutôt qu'un menu rofi/nmcli
+maison ou `blueman-manager` — scan live, dialogues de mot de passe,
+portails captifs, appairage, tout ce que GNOME gère déjà bien.
+`gnome-control-center` refuse de démarrer si `XDG_CURRENT_DESKTOP` n'est
+pas `GNOME` : le script (`gnome-panel.sh <panel>`) le spoofe pour ce seul
+process. Étant mono-instance, le rappeler avec un autre panneau bascule
+dessus au lieu d'en ouvrir un second — pas de logique toggle/ferme à
+gérer. Une règle de fenêtre le force en flottant, centré, 600×880 — sous
+600px de large la barre latérale libadwaita se replie, laissant un popup
+propre plutôt que le panneau Réglages complet (idée et calibrage repris
+de Cartoone9/dotfiles).
 
 ### Empreinte digitale fiable au quotidien
 
@@ -226,7 +230,8 @@ L'essentiel :
 | `SUPER + Q` | Terminal (dans le dossier courant) |
 | `SUPER + E` | Gestionnaire de fichiers |
 | `SUPER + R` | Lanceur d'applications |
-| `SUPER + W` | Menu wifi |
+| `SUPER + W` | Panneau wifi (GNOME) |
+| `SUPER + B` | Panneau bluetooth (GNOME) |
 | `SUPER + N` | Notifications |
 | `SUPER + M` | Extinction/verrouillage |
 | `SUPER + L` | Verrouiller l'écran (mot de passe ou empreinte) |

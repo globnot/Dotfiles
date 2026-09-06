@@ -387,8 +387,9 @@ hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/theme-pic
 hl.bind(mainMod .. " + bracketleft",  hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/adjust-temperature.sh warmer"), { repeating = true })
 hl.bind(mainMod .. " + bracketright", hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/adjust-temperature.sh cooler"), { repeating = true })
 
--- Menu wifi : panneau GNOME Réglages en fenêtre flottante (voir le script)
-hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/wifi-settings.sh"))
+-- Wifi et bluetooth : panneaux GNOME Réglages en fenêtre flottante (voir le script)
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/gnome-panel.sh wifi"))
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/gnome-panel.sh bluetooth"))
 
 -- Touche Copilot : envoie SUPER+SHIFT+F23 au niveau matériel (norme
 -- Microsoft), confirmé via `keyd monitor` — XF86Assistant/keycode 201
@@ -518,10 +519,10 @@ hl.window_rule({
     center  = true,
 })
 
--- Panneau wifi GNOME (SUPER+W, voir wifi-settings.sh) : flottant, centré,
--- taille fixe. En dessous de 600px de large, la barre latérale libadwaita
--- se replie, laissant un popup wifi propre plutôt que le plein panneau
--- Réglages (calibrage repris de Cartoone9/dotfiles).
+-- Panneaux GNOME (SUPER+W wifi, SUPER+B bluetooth, voir gnome-panel.sh) :
+-- flottant, centré, taille fixe. En dessous de 600px de large, la barre
+-- latérale libadwaita se replie, laissant un popup propre plutôt que le
+-- plein panneau Réglages (calibrage repris de Cartoone9/dotfiles).
 hl.window_rule({
     name    = "float-gnome-control-center",
     match   = { class = "gnome-control-center" },
