@@ -520,14 +520,17 @@ hl.window_rule({
 })
 
 -- Panneaux GNOME (SUPER+W wifi, SUPER+B bluetooth, voir gnome-panel.sh) :
--- flottant, centré, taille fixe. En dessous de 600px de large, la barre
--- latérale libadwaita se replie, laissant un popup propre plutôt que le
--- plein panneau Réglages (calibrage repris de Cartoone9/dotfiles).
+-- flottant, centré. Barre latérale visible exprès (900px de large) : elle
+-- sert à naviguer entre panneaux GNOME au-delà de wifi/bluetooth. Attention,
+-- tous ne s'appliquent pas réellement sur Hyprland : ceux qui dépendent
+-- de gnome-settings-daemon (absent sans vraie session GNOME) — souris,
+-- clavier... — n'ont aucun effet. Wifi/bluetooth/son fonctionnent car ils
+-- parlent à NetworkManager/bluez/PipeWire directement.
 hl.window_rule({
     name    = "float-gnome-control-center",
     match   = { class = "gnome-control-center" },
 
     float   = true,
     center  = true,
-    size    = "600 880",
+    size    = "900 880",
 })
