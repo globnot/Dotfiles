@@ -27,7 +27,8 @@ SUPER + L — Verrouiller l'écran
 SUPER + T — Changer la couleur d'accent
 ── Fenêtres ──
 SUPER + C — Fermer la fenêtre active
-SUPER + V — Basculer flottant/tuilé
+SUPER + F — Basculer flottant/tuilé
+SUPER + G — Maximiser/restaurer (reste flottante)
 SUPER + P — Pseudo-tile
 SUPER + J — Alterner le sens du split (dwindle)
 SUPER + flèches — Déplacer le focus
