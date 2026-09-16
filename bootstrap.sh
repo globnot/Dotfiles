@@ -54,6 +54,7 @@ PACMAN_EXTRAS=(
     discord gimp spotify-launcher pavucontrol htop nano vim wev
     lazygit unzip wget smartmontools fprintd python-pipx
     rofi-emoji network-manager-applet valgrind clang obsidian vlc
+    gnome-calendar
 )
 
 echo "== Paquets officiels (coeur) =="

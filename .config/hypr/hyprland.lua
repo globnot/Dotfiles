@@ -535,3 +535,13 @@ hl.window_rule({
     center  = true,
     size    = "900 880",
 })
+
+-- Calendrier GNOME (clic sur l'horloge dans waybar) : flottant, centré,
+-- taille par défaut (933x1130, tient bien sur 1920x1200).
+hl.window_rule({
+    name    = "float-gnome-calendar",
+    match   = { class = "org.gnome.Calendar" },
+
+    float   = true,
+    center  = true,
+})

@@ -20,6 +20,21 @@ window#waybar {
     border-bottom: 3px solid @fauxnoir;
 }
 
+/* Tooltips (dont le calendrier au clic/survol sur l'horloge) : par défaut
+   rendu GTK générique minuscule, hors DA. */
+tooltip {
+    background-color: @bg1;
+    color: @fg0;
+    border: 3px solid @fauxnoir;
+    border-radius: 4px;
+    padding: 8px;
+}
+
+tooltip label {
+    color: @fg0;
+    font-size: 14px;
+}
+
 #workspaces button {
     padding: 0 2px;
     margin: 8px 2px;
