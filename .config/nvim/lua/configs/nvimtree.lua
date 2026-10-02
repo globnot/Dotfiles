@@ -10,8 +10,13 @@ local options = {
 		},
 	},
 	filters = {
+		-- dotfiles = false sinon .config lui-même (un dossier qui commence
+		-- par un point) disparaîtrait de l'arbo, ce qui viderait ce repo.
+		-- .claude est exclu individuellement à la place, via custom.
 		dotfiles = false,
 		git_ignored = false,
+		-- Regex Vim (vim.fn.match), pas Lua : \. pas %. pour un point littéral.
+		custom = { "^\\.claude$" },
 	},
 }
 
