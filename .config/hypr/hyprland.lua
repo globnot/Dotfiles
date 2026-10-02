@@ -336,7 +336,7 @@ hl.device({
 -- Souris Lenovo (jugée trop sensible) : -1.0 (mini) à 1.0 (maxi), 0 = pas de changement
 hl.device({
     name        = "lenovo-lenovo-usb-a-pro-unified-pairing-receiver-1",
-    sensitivity = -0.4,
+    sensitivity = -0.95,
 })
 
 
