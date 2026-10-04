@@ -98,6 +98,11 @@ hl.on("hyprland.start", function ()
     -- système.
     hl.exec_cmd("fprintd-list \"$USER\" >/dev/null 2>&1")
 
+    -- Service rfkill de gnome-settings-daemon (org.gnome.SettingsDaemon.Rfkill) :
+    -- sans lui, le panneau Bluetooth de GNOME Réglages plante à l'ouverture
+    -- (il lit l'état de la radio via ce nom D-Bus).
+    hl.exec_cmd("/usr/lib/gsd-rfkill")
+
     hl.exec_cmd("waybar")
     hl.exec_cmd("hypridle")
     hl.exec_cmd("awww-daemon")
@@ -525,11 +530,13 @@ hl.window_rule({
 -- sert à naviguer entre panneaux GNOME au-delà de wifi/bluetooth. Attention,
 -- tous ne s'appliquent pas réellement sur Hyprland : ceux qui dépendent
 -- de gnome-settings-daemon (absent sans vraie session GNOME) — souris,
--- clavier... — n'ont aucun effet. Wifi/bluetooth/son fonctionnent car ils
--- parlent à NetworkManager/bluez/PipeWire directement.
+-- clavier... — n'ont aucun effet. Wifi/son fonctionnent car ils parlent à
+-- NetworkManager/PipeWire directement ; bluetooth a besoin de gsd-rfkill
+-- (lancé au démarrage de session).
+-- Classe de la fenêtre : org.gnome.Settings depuis GNOME 50 (avant : gnome-control-center).
 hl.window_rule({
-    name    = "float-gnome-control-center",
-    match   = { class = "gnome-control-center" },
+    name    = "float-gnome-settings",
+    match   = { class = "org.gnome.Settings" },
 
     float   = true,
     center  = true,
