@@ -47,8 +47,7 @@ alias co='cd && cd Code/'
 alias go='coco && cd m5/'
 alias gh='42 && cd github/'
 alias 42='cd && cd Code/42/'
-alias train='42 && cd training/'
-alias exam='train && cd 42_examshell/'
+alias bocal='42 && cd bocal/'
 
 # Norminette
 alias n='norminette'
