@@ -13,5 +13,6 @@
     // Cela redonne 100 % du contrôle des raccourcis Ctrl à VS Code.
     "vscode-neovim.ctrlKeysForNormalMode": [],
     "vscode-neovim.ctrlKeysForInsertMode": [],
-    "chat.disableAIFeatures": true
+    "chat.disableAIFeatures": true,
+    "explorer.compactFolders": false
 }
