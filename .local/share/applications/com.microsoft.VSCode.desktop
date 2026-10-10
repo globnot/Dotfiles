@@ -1,5 +1,8 @@
-# Surcharge de /usr/share/applications/code.desktop (même nom de fichier,
-# ~/.local/share/applications a priorité) : ajoute --no-sandbox.
+# Surcharge de /usr/share/applications/com.microsoft.VSCode.desktop (même
+# nom de fichier, ~/.local/share/applications a priorité) : ajoute
+# --no-sandbox. Le paquet Arch a renommé ce fichier depuis code.desktop ;
+# avec l'ancien nom, cette surcharge n'écrasait plus rien et s'ajoutait à
+# côté — d'où 2 entrées "Visual Studio Code" dans rofi.
 # Sans ça, VS Code n'arrive jamais à parler à gnome-keyring ("An OS keyring
 # couldn't be identified") même avec un trousseau qui marche parfaitement
 # par ailleurs (testé avec Brave) et argv.json en place — le sandbox

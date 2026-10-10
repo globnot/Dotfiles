@@ -42,7 +42,7 @@ link "$REPO_DIR/.config/qt6ct"    "$HOME/.config/qt6ct"
 link "$REPO_DIR/.config/environment.d" "$HOME/.config/environment.d"
 link "$REPO_DIR/.config/Code/argv.json" "$HOME/.config/Code/argv.json"
 link "$REPO_DIR/.config/Code/User/settings.json" "$HOME/.config/Code/User/settings.json"
-link "$REPO_DIR/.local/share/applications/code.desktop" "$HOME/.local/share/applications/code.desktop"
+link "$REPO_DIR/.local/share/applications/com.microsoft.VSCode.desktop" "$HOME/.local/share/applications/com.microsoft.VSCode.desktop"
 link "$REPO_DIR/.local/share/applications/brave-browser.desktop" "$HOME/.local/share/applications/brave-browser.desktop"
 
 # Profil VS Code "42" : le hash du dossier (-77ad35b) est propre à cette
