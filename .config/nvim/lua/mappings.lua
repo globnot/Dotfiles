@@ -1,7 +1,3 @@
-require "nvchad.mappings"
-
-local ui = require "utils.ui"
-
 -- Commentaire bloc style norme 42 : /*\n** ...\n*/
 local function toggle_42_block_comment(start_line, end_line)
   local lines = vim.api.nvim_buf_get_lines(0, start_line - 1, end_line, false)
@@ -51,9 +47,6 @@ local function toggle_42_block_comment(start_line, end_line)
   end
 end
 
--- Redimensionner nvim-tree dynamiquement
-vim.keymap.set('n', '<leader>+', function() ui.resize_nvim_tree(5) end, { noremap = true, silent = true, desc = "Increase nvim-tree width" })
-vim.keymap.set('n', '<leader>-', function() ui.resize_nvim_tree(-5) end, { noremap = true, silent = true, desc = "Decrease nvim-tree width" })
 -- Copier dans le presse-papiers système
 vim.keymap.set('n', 'y', '"+y', { noremap = true, silent = true })
 vim.keymap.set('n', 'yy', '"+yy', { noremap = true, silent = true })

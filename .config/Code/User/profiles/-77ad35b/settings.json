@@ -14,5 +14,5 @@
     "vscode-neovim.ctrlKeysForNormalMode": [],
     "vscode-neovim.ctrlKeysForInsertMode": [],
     "chat.disableAIFeatures": true,
-    "explorer.compactFolders": false
+    "explorer.compactFolders": false,
 }
