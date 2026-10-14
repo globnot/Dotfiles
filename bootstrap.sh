@@ -54,7 +54,7 @@ PACMAN_EXTRAS=(
     discord gimp spotify-launcher pavucontrol htop nano vim wev
     lazygit unzip wget smartmontools fprintd python-pipx
     rofi-emoji network-manager-applet valgrind clang obsidian vlc
-    gnome-calendar man-db man-pages
+    gnome-calendar man-db man-pages reflector
 )
 
 echo "== Paquets officiels (coeur) =="
@@ -131,6 +131,7 @@ fi
 sudo "$REPO_DIR/.config/hypr/scripts/setup-sddm-theme.sh"
 sudo "$REPO_DIR/.config/hypr/scripts/setup-udev-rules.sh"
 sudo "$REPO_DIR/.config/hypr/scripts/setup-fprintd.sh"
+sudo "$REPO_DIR/reflector/setup.sh"
 
 echo
 echo "Terminé. Redémarre (ou lance une session Hyprland) pour tout voir en place."
