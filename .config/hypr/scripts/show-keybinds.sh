@@ -18,6 +18,7 @@ cat <<'EOF' | rofi -dmenu -i -p "Raccourcis" -mesg "Lecture seule : Échap pour 
 ── Applications ──
 SUPER + Q — Terminal
 SUPER + E — Gestionnaire de fichiers
+SUPER + D — Afficher/cacher le dock
 SUPER + R — Lanceur d'applications (rofi)
 SUPER + W — Panneau wifi (GNOME Réglages)
 SUPER + B — Panneau bluetooth (GNOME Réglages)

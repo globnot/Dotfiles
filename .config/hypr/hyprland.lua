@@ -105,8 +105,11 @@ hl.on("hyprland.start", function ()
 
     hl.exec_cmd("waybar")
     -- Dock (clic droit sur une icône d'appli lancée pour l'épingler) :
-    -- auto-hide (-d), en bas, sans bouton lanceur (rofi fait déjà ce rôle).
-    hl.exec_cmd("nwg-dock-hyprland -d -p bottom -nolauncher")
+    -- résident et invisible par défaut (-r, pas d'auto-hide — le hotspot
+    -- invisible en bas d'écran se déclenchait de façon peu fiable), affiché
+    -- via SUPER+D (voir toggle-dock.sh), sans bouton lanceur (rofi fait
+    -- déjà ce rôle).
+    hl.exec_cmd("nwg-dock-hyprland -r -p bottom -nolauncher")
     hl.exec_cmd("hypridle")
     hl.exec_cmd("awww-daemon")
     hl.exec_cmd("sleep 1 && awww img $HOME/Pictures/Wallpapers/gruvbox-tranquility.png")
@@ -362,6 +365,7 @@ local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/wlogout.sh"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
+hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/toggle-dock.sh"))
 hl.bind(mainMod .. " + F", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + G", hl.dsp.exec_cmd("$HOME/.config/hypr/scripts/maximize-toggle.sh"))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))

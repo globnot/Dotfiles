@@ -5,46 +5,61 @@
 @define-color fauxnoir #1d2021;
 @define-color accent #e91e8c;
 
+/* La fenêtre elle-même reste transparente et sans cadre : la surface
+   layer-shell est dimensionnée pile à son contenu, donc un box-shadow posé
+   directement sur "window" est coupé au bord, invisible. En portant
+   cadre+ombre sur #box (un enfant) avec une marge réservée autour, la
+   fenêtre grandit pour laisser la place à l'ombre de se dessiner sans
+   être rognée — même reprise que les vraies fenêtres Hyprland (bordure
+   accent, ombre dure faux noir décalée de 5px, sans flou). */
 window {
-  background: @bg1;
-  border-radius: 0px;
-  border-style: solid;
-  border-width: 3px;
-  border-color: @fauxnoir;
+  background: transparent;
 }
 
 #box {
-  /* Define attributes of the box surrounding icons here */
+  background: @bg1;
   padding: 8px;
-}
-
-#active {
-  /* This is to underline the button representing the currently active window */
-  border-bottom: solid 3px;
+  margin: 6px;
+  border-radius: 0px;
+  border-style: solid;
+  border-width: 3px;
   border-color: @accent;
+  box-shadow: 5px 5px 0 0 @fauxnoir;
 }
 
-button, image {
+/* Juste l'icône : pas de highlight au survol, pas de surlignage de la
+   fenêtre active, rien de plus que le cadre de la fenêtre ci-dessus.
+   #active doit être neutralisé explicitement : GTK (Adwaita) lui applique
+   sinon son propre indicateur bleu par défaut dès qu'on ne le stylise
+   plus nous-mêmes. */
+button, image, #active {
   background: none;
   border-style: none;
   box-shadow: none;
-  color: @fg0;
 }
 
 button {
   padding: 4px;
   margin-left: 4px;
   margin-right: 4px;
-  color: @fg0;
-  font-size: 12px;
 }
 
 button:hover {
-  background-color: @bg0;
-  border-radius: 0px;
-  border: 2px solid @fauxnoir;
+  background: none;
 }
 
 button:focus {
   box-shadow: none;
+}
+
+/* Les boutons sont des GtkRadioButton/ToggleButton en interne : Adwaita
+   leur dessine par défaut un petit indicateur (le point bleu clair sous
+   chaque icône) via ces noeuds CSS internes, pas une classe/id qu'on
+   contrôlait jusque-là. */
+check, radio, arrow {
+  min-width: 0;
+  min-height: 0;
+  opacity: 0;
+  background: none;
+  border: none;
 }
