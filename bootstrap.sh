@@ -34,7 +34,7 @@ fi
 PACMAN_CORE=(
     base-devel
     hyprland hyprlock hypridle hyprsunset awww
-    waybar kitty rofi swaync sddm nautilus btop fastfetch
+    waybar kitty rofi swaync sddm nautilus btop fastfetch nwg-dock-hyprland
     gnome-control-center polkit-kde-agent xdg-desktop-portal-hyprland uwsm
     qt5-wayland qt6-wayland qt5ct qt6ct gnome-keyring
     zsh git neovim atuin zoxide eza fd fzf python

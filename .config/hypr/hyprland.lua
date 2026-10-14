@@ -104,6 +104,9 @@ hl.on("hyprland.start", function ()
     hl.exec_cmd("/usr/lib/gsd-rfkill")
 
     hl.exec_cmd("waybar")
+    -- Dock (clic droit sur une icône d'appli lancée pour l'épingler) :
+    -- auto-hide (-d), en bas, sans bouton lanceur (rofi fait déjà ce rôle).
+    hl.exec_cmd("nwg-dock-hyprland -d -p bottom -nolauncher")
     hl.exec_cmd("hypridle")
     hl.exec_cmd("awww-daemon")
     hl.exec_cmd("sleep 1 && awww img $HOME/Pictures/Wallpapers/gruvbox-tranquility.png")

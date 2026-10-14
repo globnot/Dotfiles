@@ -240,8 +240,8 @@ replace_define_color "$f" "noti-close-bg-hover" "rgba($(hex_to_rgb "$URGENT"), 0
 replace_define_color "$f" "text-color" "rgb($(hex_to_rgb "$FG0"))"
 replace_define_color "$f" "bg-selected" "rgb($(hex_to_rgb "$ACCENT"))"
 
-# --- waybar / wlogout : @define-color en tête de fichier ---
-for f in "$REPO_DIR/.config/waybar/style.css" "$REPO_DIR/.config/wlogout/style.css"; do
+# --- waybar / wlogout / nwg-dock-hyprland : @define-color en tête de fichier ---
+for f in "$REPO_DIR/.config/waybar/style.css" "$REPO_DIR/.config/wlogout/style.css" "$REPO_DIR/.config/nwg-dock-hyprland/style.css"; do
     replace_define_color "$f" "bg0" "#$BG0"
     replace_define_color "$f" "bg1" "#$BG1"
     replace_define_color "$f" "fg0" "#$FG0"
