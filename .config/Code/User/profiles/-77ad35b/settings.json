@@ -16,4 +16,6 @@
     "chat.disableAIFeatures": true,
     "explorer.compactFolders": false,
     "files.autoSave": "afterDelay",
+    "editor.minimap.enabled": false,
+    "git.autofetch": true,
 }
