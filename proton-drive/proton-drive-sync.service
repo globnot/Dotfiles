@@ -1,0 +1,6 @@
+[Unit]
+Description=Push ~/Proton Drive to Proton Drive (/my-files/Thinkpad)
+
+[Service]
+Type=oneshot
+ExecStart=%h/Dotfiles/proton-drive/sync.sh

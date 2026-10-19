@@ -72,7 +72,7 @@ AUR_CORE=(wlogout)
 # aucun moyen de stocker les identifiants (ex. connexion GitHub) dans un
 # vrai trousseau — vérifié en observant qu'il ne contacte jamais le
 # service D-Bus org.freedesktop.secrets. Voir .config/Code/argv.json.
-AUR_EXTRAS=(brave-bin topgrade visual-studio-code-bin proton-vpn-gtk-app)
+AUR_EXTRAS=(brave-bin topgrade visual-studio-code-bin proton-vpn-gtk-app proton-drive-cli-bin)
 
 echo "== Paquets AUR (coeur) =="
 yay -S --needed "${AUR_CORE[@]}"
@@ -132,6 +132,11 @@ sudo "$REPO_DIR/.config/hypr/scripts/setup-sddm-theme.sh"
 sudo "$REPO_DIR/.config/hypr/scripts/setup-udev-rules.sh"
 sudo "$REPO_DIR/.config/hypr/scripts/setup-fprintd.sh"
 sudo "$REPO_DIR/reflector/setup.sh"
+
+# proton-drive auth login est interactif (navigateur) et propre à chaque
+# machine : à faire à la main avant que le timer ci-dessous serve à
+# quelque chose (sinon le push échoue juste, rien de grave).
+"$REPO_DIR/proton-drive/setup.sh"
 
 echo
 echo "Terminé. Redémarre (ou lance une session Hyprland) pour tout voir en place."
