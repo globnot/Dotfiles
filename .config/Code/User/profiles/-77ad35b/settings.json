@@ -8,7 +8,6 @@
     "extensions.experimental.affinity": {
         "asvetliakov.vscode-neovim": 1
     },
-
     // On vide les listes de touches Ctrl gérées par Neovim.
     // Cela redonne 100 % du contrôle des raccourcis Ctrl à VS Code.
     "vscode-neovim.ctrlKeysForNormalMode": [],
@@ -18,4 +17,8 @@
     "files.autoSave": "afterDelay",
     "editor.minimap.enabled": false,
     "git.autofetch": true,
+    "[cpp]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools"
+    },
+    "editor.formatOnSave": true,
 }
