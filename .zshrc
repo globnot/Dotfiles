@@ -85,6 +85,7 @@ alias lock='hyprlock'
 # Tout mettre à jour d'un coup (système, AUR, oh-my-zsh, plugins nvim...)
 # via topgrade (AUR), inspiré de Cartoone
 alias update='topgrade'
+alias proton='bash "$HOME/Dotfiles/proton-drive/sync.sh"'
 
 # ======================================================================================
 # Cached `<tool> init zsh` (atuin, zoxide)
