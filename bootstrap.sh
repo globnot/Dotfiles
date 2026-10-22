@@ -54,7 +54,7 @@ PACMAN_EXTRAS=(
     discord gimp spotify-launcher pavucontrol htop nano vim wev
     lazygit unzip wget smartmontools fprintd python-pipx
     rofi-emoji network-manager-applet valgrind clang obsidian vlc
-    gnome-calendar man-db man-pages reflector
+    gnome-calendar man-db man-pages reflector go gopls delve
 )
 
 echo "== Paquets officiels (coeur) =="
@@ -123,6 +123,10 @@ if ! locale -a | grep -qi '^fr_FR.utf8$'; then
     sudo sed -i -E 's/^#(fr_FR\.UTF-8 UTF-8)/\1/' /etc/locale.gen
     sudo locale-gen
 fi
+
+# GOPATH par défaut (~/go) n'est pas XDG : le cache de modules + binaires
+# installés finiraient directement visibles dans $HOME.
+go env -w GOPATH="$HOME/.local/share/go"
 
 # ----------------------------------------------------------------------
 # 6. Liens symboliques + thème SDDM + règles udev + surcharge fprintd
