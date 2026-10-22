@@ -84,6 +84,7 @@ alias lock='hyprlock'
 # Tout mettre à jour d'un coup (système, AUR, oh-my-zsh, plugins nvim...)
 # via topgrade (AUR), inspiré de Cartoone
 alias update='topgrade'
+alias pacman-sync='sudo pacman -Syu'
 alias proton='bash "$HOME/Dotfiles/proton-drive/sync.sh"'
 
 # ======================================================================================
