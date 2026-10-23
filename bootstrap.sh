@@ -55,6 +55,7 @@ PACMAN_EXTRAS=(
     lazygit unzip wget smartmontools fprintd python-pipx
     rofi-emoji network-manager-applet valgrind clang obsidian vlc
     gnome-calendar man-db man-pages reflector go gopls delve
+    nodejs pnpm
 )
 
 echo "== Paquets officiels (coeur) =="
