@@ -8,6 +8,10 @@ fi
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/funcheck/host:$PATH"
 
+# Dossier des binaires globaux pnpm (pnpm add -g ...).
+export PNPM_HOME="$HOME/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
